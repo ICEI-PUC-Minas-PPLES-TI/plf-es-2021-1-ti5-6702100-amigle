@@ -4,11 +4,14 @@ Liste os artefatos produzidos, com suas localizaçãoes e descrição do conteú
 
 
 * `/atas`
-	* **Ata_xx_ago_2020.docx**: Ata de reunião do dia xx de agosto de 2020.
-* `/canvas
+	* **Ata_09_fev_2021.md**: Ata de reunião do dia 09 de fevereiro de 2021.
+	* **Ata_16_fev_2021.md**: Ata de reunião do dia 16 de fevereiro de 2021.
+* `/apresentacoes`
+	* **2021-02-18.pdf**: Apresentação inicial do TIS
+* `/canvas`
 	* **BusinessModelCanvas.pdf**: Canvas do modelo de negócios.
 * `/processos`
-        * ... 
+    * ... 
 * `/der`
 	* ...
 

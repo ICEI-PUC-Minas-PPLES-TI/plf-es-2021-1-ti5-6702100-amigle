@@ -1,18 +1,21 @@
-# Nome do projeto
+# Amigle
 
-Escreva um ou dois  parágrafo resumindo o objetivo do seu projeto.
+O Amigle será uma plataforma online de bate papo guiada por interesses em comum. Nele é possível encontrar pessoas que tenham o mesmo gosto, seja para uma curta conversa ou para fazer novas amizades.
+
+Ao criar um perfil, o usuário deve selecionar tags para associar a seu perfil. Cada tag representa um de seus interesses. Após adicionadas, é possível iniciar conversas com pessoas que possuem uma tag específica, ou procurar a pessoa mais compatível.
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
+* Arthur Gramiscelli Branco
+* Arthur Henrique Souza Braga
+* Isabella Carine Cruz Nicácio
+* Lucas Alves Gusmão
+* Samuel Alves de Castro Baker
 
 ## Orientadores
 
-* Nome completo do professor 1
-* Nome completo do professor 2
+* Hugo de Paula
+* Pedro Alves de Oliveira
 
 ## Instruções de utilização
 
