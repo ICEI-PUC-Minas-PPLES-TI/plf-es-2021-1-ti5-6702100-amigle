@@ -14,7 +14,7 @@ Ao criar um perfil, o usuário deve selecionar tags para associar a seu perfil. 
 
 ## Orientadores
 
-* Hugo de Paula
+* Hugo Bastos de Paula
 * Pedro Alves de Oliveira
 
 ## Instruções de utilização
