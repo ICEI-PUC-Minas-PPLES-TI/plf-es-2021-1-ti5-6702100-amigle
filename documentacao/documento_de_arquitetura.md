@@ -1,19 +1,18 @@
-# TITULO DO PROJETO
+# Amigle
 
 
-**Nome completo do Aluno 1, email do aluno 1**
-
-**Nome completo do Aluno 2, email do aluno 2**
-
-**Nome completo do Aluno 3, email do aluno 3**
+* Arthur Gramiscelli Branco, arthurgbranco@gmail.com
+* Arthur Henrique Souza Braga, arthebraga@gmail.com
+* Isabella Carine Cruz Nicácio, iccnicacio@gmail.com
+* Lucas Alves Gusmão, lalvesgusmao@gmail.com
+* Samuel Alves de Castro Baker, sacbaker@gmail.com
 
 ---
 
 Professores:
 
-**Prof. Nome do Prof 1**
-
-**Prof. Nome do Prof 2**
+* Hugo Bastos de Paula
+* Pedro Alves de Oliveira
 
 
 ---
@@ -24,8 +23,7 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 
 ---
 
-_**Resumo**. Escrever aqui o resumo. O resumo deve contextualizar rapidamente o trabalho, descrever seu objetivo e, ao final, 
-mostrar algum resultado relevante do trabalho (até 10 linhas)._
+_**Resumo**. O Amigle será uma plataforma online de bate papo guiada por interesses em comum. Nele é possível encontrar pessoas que tenham o mesmo gosto, seja para uma curta conversa ou para fazer novas amizades.
 
 ---
 
@@ -33,7 +31,7 @@ mostrar algum resultado relevante do trabalho (até 10 linhas)._
 
 | **Data** | **Autor** | **Descrição** | **Versão** |
 | --- | --- | --- | --- |
-| **[dd/mm/aaaa]** | [Nome do autor] | [Descrever as principais alterações realizadas no documento, evidenciando as seções ou capítulos alterados] | [X] |
+| **[23/02/2021]** | [Lucas Alves Gusmão] | [Versão preliminar do documento (capitulo 1)] | [X] |
 | | | | |
 | | | | |
 
@@ -67,20 +65,42 @@ mostrar algum resultado relevante do trabalho (até 10 linhas)._
 <a name="apresentacao"></a>
 # 1. Apresentação
 
-_Faça uma introdução ao projeto, apresentando o contexto onde o projeto se situa. É importante deixar claro para o leitor os aspectos que configuram o problema que será apresentado na sequência. Apresente, se possível, números reais que demonstram a relevância do problema apresentado._
+O Amigle será uma plataforma online de bate papo guiada por interesses em comum. Nele é possível encontrar pessoas que tenham o mesmo gosto, seja para uma curta conversa ou para fazer novas amizades.
+
+Ao criar um perfil, o usuário deve selecionar tags para associar a seu perfil. Cada tag representa um de seus interesses. Após adicionadas, é possível iniciar conversas com pessoas que possuem uma tag específica, ou procurar a pessoa mais compatível.
 
 
 ## 1.1. Problema
 
-_Nesse momento você deve apresentar o problema que a sua aplicação deve resolver. No entanto, não é a hora de comentar sobre a aplicação._
+Um dos maiores usos da internet na era moderna é para a socialização. Empresas focadas nesse mercado como o Twitter e Facebook são hoje gigantes no mundo da tecnologia, o que antes era um lugar reservado para empresas de Software e Hardware.
+
+No entanto, a maioria destas plataformas são mais adequadas para a socialização entre um circulo social pré-existente na vida da pessoa, como seus amigos, família, colegas, etc.
+
+Em contraponto, existem plataformas como o Omegle e Chatroulette, que permitem que usuários conheçam outras pessoas de forma aleatória, porém, por possuir poucos ou nenhum filtro, se torna não muito eficiente para este propósito.
 
 ## 1.2. Objetivos do trabalho
+
+### 1.2.1 Objetivos Gerais
+O Amigle tem como o objetivo permitir que pessoas se conheçam com base em seus interesses em comum, que são representados no sistema por meio de tags de assuntos.
+O serviço pode ser utilizado tanto em uma versão web quanto pelo aplicativo mobile, compatível com iOS e Android.
+
+### 1.2.2 Objetivos Específicos
+Para o desenvolvimento das duas aplicações, web e móvel, serão utilizadas tecnologias de ponta de desenvolvimento de software, focadas em escalabilidade, experiência de usuário e performance.
+
+Para o desenvolvimento móvel será utilizado o framework Flutter, por permitir o desenvolviemnto de aplicações multiplataforma com uma boa experiência de usuário. Já na web, será utilizado o framework Svelte, utilizado para o desenvolvimento de interfaces web rápidas e leves em comparação com suas alternativas, como o React e Vue.
+
+Já no back-end, será utilizada uma arquitetura de microsserviços distribuídos. Haverão 3 microsserviços com objetivos distintos:
+
+1. Permanência e manipulação de dados (NodeJS, TypeScript e Loopback)
+2. Comunicação entre usuários (NodeJS, Typescript, Loopback)
+3. Fila de mensagens, match de usuários (Python, Flask)
 
 _Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é apresentar a descrição do projeto arquitetural da aplicação escolhida. Apresente também os objetivos específicos do projeto, descrevendo onde você vai concentrar sua atenção na descrição arquitetural, ou seja, os pontos onde você vai aprofundar no seu trabalho._
 
 ## 1.3. Definições e Abreviaturas
 
-Coloque aqui as definições, siglas e abreviaturas utilizadas no trabalho._
+- Tag: representação do sistema de interesse/assunto de interesse do usuário
+- Match: união que estabelece o chat entre dois usuários com base em seus interesses, realizada automaticamente pelo sistema
 
 <a name="requisitos"></a>
 # 2. Requisitos

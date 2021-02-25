@@ -1,21 +1,23 @@
-# Termo de Abertura de Projeto (TAP) no.: 9999
+# Termo de Abertura de Projeto (TAP) no.: 1
 
-**Nome da empresa:**
+**Nome da empresa:** Amigle, Inc
 
-**Data:**
+**Data:** 23/02/2021
 
 **Integrantes:**
 
-Nome completo do Aluno 1, email do aluno 1
-Nome completo do Aluno 2, email do aluno 2
-Nome completo do Aluno 3, email do aluno 3
+* Arthur Gramiscelli Branco, arthurgbranco@gmail.com
+* Arthur Henrique Souza Braga, arthebraga@gmail.com
+* Isabella Carine Cruz Nicácio, iccnicacio@gmail.com
+* Lucas Alves Gusmão, lalvesgusmao@gmail.com
+* Samuel Alves de Castro Baker, sacbaker@gmail.com
 
 ---
 
 **Professores:**
 
-Prof. Nome do Prof 1
-Prof. Nome do Prof 2
+* Hugo Bastos de Paula
+* Pedro Alves de Oliveira
 
 ---
 
@@ -28,50 +30,61 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 ## 1. IDENTIFICAÇÃO DO PROJETO
 
 **1.1 Nome do Projeto:**
+Amigle
 
 **1.2 Gerente do Projeto:**
+Lucas Alves Gusmão
 
 **1.3 Cliente do Projeto:**
+Professores orientadores da disciplina
 
 **1.4 Tipo de Projeto:**
 
-[ ] Manutenção em produto existente
-[ ] Desenvolvimento de novo produto
-[ ] Outro: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+- [ ] Manutenção em produto existente
+- [x] Desenvolvimento de novo produto
+- [ ] Outro: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 **1.5 Objetivo do projeto:**
+Desenvolver uma aplicação web e mobile de bate papo que une usuários com interesses em comum, e uma aplicação web para gerenciamento, a ser usada pelo administrador do sistema.
 
 **1.6 Benefícios que justificam o projeto:**
+- Aprimoramento dos conhecimentos em desenvolvimento de software
+- Praticar os conteúdos das disciplinas: Gerência de Projetos de Software, Arquitetura de Software e Desenvolvimento de Aplicações Móveis e Distribuídas
 
 **1.7 Qualidade esperada do produto final (requisitos de qualidade):**
+| **#** | Nome |
+| --- | --- |
+| **1.** | Interface responsiva (web) |
+| **2.** | Interface em conformidade com o Material Design |
 
 ## **2. ESCOPO PRELIMINAR E PREMISSAS** |
 
 **2.1 O que será feito (escopo do projeto)**
-
+Serão desenvolvidas duas soluções de software, uma web e outra mobile. Será feita também a documentação do projeto.
 
 **2.2 O que não será feito no projeto (contra-escopo)**
-
+Não será desenvolvido um protocolo de comunicação nem uma biblioteca de UI ou de componentes. Serão utilizados o protocolo WebRTC, a biblioteca Svelte e Svelte Material UI para suprir estas necessidades.
 
 **2.3 Resultados / serviços / produtos a serem entregues**
 
-| **1.** |  |
+| **#** | Descrição |
 | --- | --- |
-| **2.** | |
-| **3.** | |
+| **2.** | Solução de Software Web |
+| **3.** | Solução de Software Mobile |
 
 **2.4 Condições para início do projeto**
-
-
-
+- Formação do grupo
+- Definição da ideia
+- Finalização dos documentos preliminares
 
 ## 3. ESTIMATIVA DE PRAZO
 
 
 **3.1 Prazo previsto (horas):** 9999
 
-**3.2 Data prevista de início:  **\_\_\_\_\_ /\_\_\_\_\_ /\_\_\_\_\_ 
-**3.3 Data prevista de término: **\_\_\_\_\_ /\_\_\_\_\_ /\_\_\_\_\_ 
+* 3.2 Data prevista de início: 25/02/2021
+
+* 3.3 Data prevista de término: 27/05/2021
 
 ## 4. ESTIMATIVA DE CUSTO
 
