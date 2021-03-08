@@ -161,7 +161,7 @@ O SGBD utilizado para a persistência de dados será o PostgreSQL.
 | Back end 1 | Microsserviço de persistência de dados, fila de mensagens e match de usuários | Microsserviço desenvolvido com Python e Flask |
 | Back end 2 | Microsserviço de comunicação entre usuários com protocolo WebRTC | Microsserviço  |
 | Integração | Autenticação por meio do protocolo OAuth2 | Serviço de autenticação do Firebase |
-| Teste de Software | Testes e2e | Selenium |
+| Teste de Software | Testes e2e | WebdriverIO |
 | Deploy | Serviço de deployment de aplicações | Heroku e GCP |
 
 <a name="modelagem"></a>
