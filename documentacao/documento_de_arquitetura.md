@@ -31,15 +31,16 @@ _**Resumo**. O Amigle será uma plataforma online de bate papo guiada por intere
 
 | **Data** | **Autor** | **Descrição** | **Versão** |
 | --- | --- | --- | --- |
-| **[23/02/2021]** | [Lucas Alves Gusmão] | [Versão preliminar do documento (capitulo 1)] | [X] |
-| | | | |
-| | | | |
+| **[23/02/2021]** | [Lucas Alves Gusmão] | [Versão preliminar do documento (capitulo 1)] | 1 |
+| **[07/03/2021]** | [Grupo] | [Correções e finalizações do capitulo 2] | 2 |
 
 ## SUMÁRIO
 
 1. [Apresentação](#apresentacao "Apresentação") <br />
 	1.1. Problema <br />
 	1.2. Objetivos do trabalho <br />
+	1.2.1. Objetivo geral <br />
+	1.2.2. Objetivos específicos <br />
 	1.3. Definições e Abreviaturas <br />
 
 2. [Requisitos](#requisitos "Requisitos") <br />
@@ -65,7 +66,9 @@ _**Resumo**. O Amigle será uma plataforma online de bate papo guiada por intere
 <a name="apresentacao"></a>
 # 1. Apresentação
 
-O Amigle será uma plataforma online de bate papo guiada por interesses em comum. Nele é possível encontrar pessoas que tenham o mesmo gosto, seja para uma curta conversa ou para fazer novas amizades.
+O Brasil possui cerca de 134 milhões de usuários da internet, e o seu principal uso pelo internauta brasileiro é a socialização[1]. No entanto, as redes sociais mais utilizadas como Whatsapp, Facebook e Instagram são mais adequadas para a socialização entre circulos sociais já pré-existentes na vida da pessoa, o que as torna não tão ideal para o conhecimento de pessoas novas.
+
+Visando prover uma alternativa mais focada no O Amigle será uma plataforma online de bate papo guiada por interesses em comum. Nele é possível encontrar pessoas que tenham o mesmo gosto, seja para uma curta conversa ou para fazer novas amizades.
 
 Ao criar um perfil, o usuário deve selecionar tags para associar a seu perfil. Cada tag representa um de seus interesses. Após adicionadas, é possível iniciar conversas com pessoas que possuem uma tag específica, ou procurar a pessoa mais compatível.
 
@@ -80,22 +83,23 @@ Em contraponto, existem plataformas como o Omegle e Chatroulette, que permitem q
 
 ## 1.2. Objetivos do trabalho
 
-### 1.2.1 Objetivos Gerais
-O Amigle tem como o objetivo permitir que pessoas se conheçam com base em seus interesses em comum, que são representados no sistema por meio de tags de assuntos.
-O serviço pode ser utilizado tanto em uma versão web quanto pelo aplicativo mobile, compatível com iOS e Android.
+### 1.2.1 Objetivo Geral
+O Amigle é uma plataforma disponível para web, iOS e Android com o objetivo permitir que pessoas se conheçam com base em seus interesses em comum, que são representados por meio de tags.
 
 ### 1.2.2 Objetivos Específicos
-Para o desenvolvimento das duas aplicações, web e móvel, serão utilizadas tecnologias de ponta de desenvolvimento de software, focadas em escalabilidade, experiência de usuário e performance.
+O trabalho tem como o objetivo desenvolver 3 platafomas distintas, porém que funcionam em conjunto. São elas:
 
-Para o desenvolvimento móvel será utilizado o framework Flutter, por permitir o desenvolviemnto de aplicações multiplataforma com uma boa experiência de usuário. Já na web, será utilizado o framework Svelte, utilizado para o desenvolvimento de interfaces web rápidas e leves em comparação com suas alternativas, como o React e Vue.
+- Aplicação móvel de chat
+- Aplicação web de chat
+- Aplicação web de administração do sistema
 
-Já no back-end, será utilizada uma arquitetura de microsserviços distribuídos. Haverão 3 microsserviços com objetivos distintos:
+Para realizar o desenvolvimento destas aplicações, serão realizadas diversas etapas de trabalho, como:
 
-1. Permanência e manipulação de dados (NodeJS, TypeScript e Loopback)
-2. Comunicação entre usuários (NodeJS, Typescript, Loopback)
-3. Fila de mensagens, match de usuários (Python, Flask)
-
-_Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é apresentar a descrição do projeto arquitetural da aplicação escolhida. Apresente também os objetivos específicos do projeto, descrevendo onde você vai concentrar sua atenção na descrição arquitetural, ou seja, os pontos onde você vai aprofundar no seu trabalho._
+- Coletar requisitos
+- Fazer o desenho de diagramas
+- Fazer mockups e wireframes das telas
+- Criar o projeto arquitetural a ser utilizado como base no desenvolvimento
+- Desenvolver as soluções de software propostas
 
 ## 1.3. Definições e Abreviaturas
 
@@ -105,59 +109,60 @@ _Aqui você deve descrever os objetivos do trabalho indicando que o objetivo ger
 <a name="requisitos"></a>
 # 2. Requisitos
 
-_Esta seção descreve os requisitos comtemplados nesta descrição arquitetural, divididos em dois grupos: funcionais e não funcionais._
-
 ## 2.1. Requisitos Funcionais
-
-_Enumere os requisitos funcionais previstos para a sua aplicação. Concentre-se nos requisitos funcionais que sejam críticos para a definição arquitetural. Lembre-se de listar todos os requisitos que são necessários para garantir cobertura arquitetural. Esta seção deve conter uma lista de requisitos ainda sem modelagem. Na coluna Prioridade utilize uma escala (do mais prioritário para o menos): Essencial, Desejável, Opcional._
 
 | **ID** | **Descrição** | **Prioridade** |
 | --- | --- | --- |
-| RF001 | | |
-| RF002 | | |
-| | | |
-| | | |
-| | | |
+| RF01 | Cadastro de usuário | alta
+| RF02 | Login de usuário | alta
+| RF03 | Usuário adicionar ou remover tags de seus interesses | alto
+| RF04 | Usuário entrar em chat com pessoa aleatória com base em interesses | alto
+| RF05 | Usuário entrar em chat com pessoa com base em uma tag específica | médio
+| RF06 | Usuário entrar em chamada de vídeo com pessoa | médio
+| RF07 | Gerenciar tags | alta
+| RF08 | Gerenciar categorias | alta
+| RF09 | Remover usuários da plataforma (administrador) | baixa
+| RF10 | Exclusão de conta de usuário (usuário) | alta
 
-Obs: acrescente mais linhas, se necessário.
 
 ## 2.2. Requisitos Não-Funcionais
 
-_Enumere os requisitos não-funcionais previstos para a sua aplicação. Entre os requisitos não funcionais, inclua todos os requisitos que julgar importante do ponto de vista arquitetural ou seja os requisitos que terão impacto na definição da arquitetura. Os requisitos devem ser descritos de forma completa e preferencialmente quantitativa._
-
 | **ID** | **Descrição** |
 | --- | --- |
-| RNF001 | |
-| RNF002 | |
-| | |
-| | |
-| | |
-
-Obs: acrescente mais linhas, se necessário.
+| RNF001 | O sistema deve providenciar comunicação em tempo real |
+| RNF002 | A aplicação web deve ter uma interface responsiva |
+| RNF003 | As aplicações devem ter um visual em conformidade com o Material Design |
+| RNF004 | A autenticação deve utilizar o protocolo OAuth 2 |
+| RNF005 | Os dados devem ser persistidos em um banco de dados relacional |
+| RNF006 | O sistema deve possuir uma interface de administrador com as rotas protegidas |
 
 ## 2.3. Restrições Arquiteturais
 
-_Enumere as restrições arquiteturais. Lembre-se de que as restrições arquiteturais geralmente não são consideradas requisitos uma vez que limitam a solução candidata. Os requisitos não impõem restrição, mas precisam ser satisfeitos._
+Para o desenvolvimento das duas aplicações, web e móvel, serão utilizadas tecnologias de ponta de desenvolvimento de software, focadas em escalabilidade, experiência de usuário e performance.
 
-As restrições impostas ao projeto que afetam sua arquitetura são (por exemplo):
+No desenvolvimento móvel será utilizado o framework Flutter, por permitir o desenvolviemnto de aplicações multiplataforma com uma boa experiência de usuário. Já na web, será utilizado o framework Svelte, utilizado para o desenvolvimento de interfaces web rápidas e leves em comparação com suas alternativas, como o React e Vue.
 
-- O software deverá ser desenvolvido em Python/Django;
-- A comunicação da API deve seguir o padrão RESTful.
+Já no back-end, será utilizada uma arquitetura de microsserviços distribuídos. Haverão 2 microsserviços com objetivos distintos:
+
+1. Permanência e manipulação de dados, fila de mensagens, match de usuários (Python, Flask)
+2. Comunicação entre usuários (NodeJS, Typescript, Express, Socket.io)
+
+O SGBD utilizado para a persistência de dados será o PostgreSQL.
 
 ## 2.4. Mecanismos Arquiteturais
+<!-- _Visão geral dos mecanismos que compõem a arquitetura do sosftware baseando-se em três estados: (1) análise, (2) design e (3) implementação. Em termos de Análise devem ser listados os aspectos gerais que compõem a arquitetura do software como: persistência, integração com sistemas legados, geração de logs do sistema, ambiente de front end, tratamento de exceções, formato dos testes, formato de distribuição/implantação (deploy), entre outros. Em Design deve-se identificar o padrão tecnológico a seguir para cada mecanismo identificado na análise. Em Implementação, deve-se identificar o produto a ser utilizado na solução.
+ Ex: Análise (Persistência), Design (ORM), Implementação (Hibernate)._ -->
 
-_Visão geral dos mecanismos que compõem a arquitetura do sosftware baseando-se em três estados: (1) análise, (2) design e (3) implementação. Em termos de Análise devem ser listados os aspectos gerais que compõem a arquitetura do software como: persistência, integração com sistemas legados, geração de logs do sistema, ambiente de front end, tratamento de exceções, formato dos testes, formato de distribuição/implantação (deploy), entre outros. Em Design deve-se identificar o padrão tecnológico a seguir para cada mecanismo identificado na análise. Em Implementação, deve-se identificar o produto a ser utilizado na solução.
- Ex: Análise (Persistência), Design (ORM), Implementação (Hibernate)._
 
 | **Análise** | **Design** | **Implementação** |
 | --- | --- | --- |
-| Persistência | | |
-| Front end | | |
-| Back end | | |
-| Integração | | |
-| Log do sistema | | |
-| Teste de Software | | |
-| Deploy | | |
+| Persistência | API Rest + SGBD | API Rest com o framework Flask que comunica com SGBD PostgreSQL |
+| Front end | Single Page Application | Aplicação Svelte com roteamento no cliente |
+| Back end 1 | Microsserviço de persistência de dados, fila de mensagens e match de usuários | Microsserviço desenvolvido com Python e Flask |
+| Back end 2 | Microsserviço de comunicação entre usuários com protocolo WebRTC | Microsserviço  |
+| Integração | Autenticação por meio do protocolo OAuth2 | Serviço de autenticação do Firebase |
+| Teste de Software | Testes e2e | Selenium |
+| Deploy | Serviço de deployment de aplicações | Heroku e GCP |
 
 <a name="modelagem"></a>
 # 3. Modelagem e projeto arquitetural
@@ -295,14 +300,16 @@ _Apresente imagens, descreva os testes de tal forma que se comprove a realizaç�
 <a name="referencias"></a>
 # 5. REFERÊNCIAS
 
-_Como um projeto da arquitetura de uma aplicação não requer revisão bibliográfica, a inclusão das referências não é obrigatória. No entanto, caso você deseje incluir referências relacionadas às tecnologias, padrões, ou metodologias que serão usadas no seu trabalho, relacione-as de acordo com a ABNT._
+**[1]** - VALENTE, Jonas. **Brasil tem 134 milhões de usuários de internet, aponta pesquisa**. https://agenciabrasil.ebc.com.br/geral/noticia/2020-05/brasil-tem-134-milhoes-de-usuarios-de-internet-aponta-pesquisa. Acesso em: 3 de mar. de 2021.
 
-Verifique no link abaixo como devem ser as referências no padrão ABNT:
+<!-- _Como um projeto da arquitetura de uma aplicação não requer revisão bibliográfica, a inclusão das referências não é obrigatória. No entanto, caso você deseje incluir referências relacionadas às tecnologias, padrões, ou metodologias que serão usadas no seu trabalho, relacione-as de acordo com a ABNT._ -->
 
-http://www.pucminas.br/imagedb/documento/DOC\_DSC\_NOME\_ARQUI20160217102425.pdf
+<!-- Verifique no link abaixo como devem ser as referências no padrão ABNT: -->
+
+<!-- http://www.pucminas.br/imagedb/documento/DOC\_DSC\_NOME\_ARQUI20160217102425.pdf -->
 
 
-**[1]** - _ELMASRI, Ramez; NAVATHE, Sham. **Sistemas de banco de dados**. 7. ed. São Paulo: Pearson, c2019. E-book. ISBN 9788543025001._
+<!-- **[1]** - _ELMASRI, Ramez; NAVATHE, Sham. **Sistemas de banco de dados**. 7. ed. São Paulo: Pearson, c2019. E-book. ISBN 9788543025001._
 
 **[2]** - _COPPIN, Ben. **Inteligência artificial**. Rio de Janeiro, RJ: LTC, c2010. E-book. ISBN 978-85-216-2936-8._
 
@@ -310,7 +317,7 @@ http://www.pucminas.br/imagedb/documento/DOC\_DSC\_NOME\_ARQUI20160217102425.pdf
 
 **[4]** - _SUTHERLAND, Jeffrey Victor. **Scrum: a arte de fazer o dobro do trabalho na metade do tempo**. 2. ed. rev. São Paulo, SP: Leya, 2016. 236, [4] p. ISBN 9788544104514._
 
-**[5]** - _RUSSELL, Stuart J.; NORVIG, Peter. **Inteligência artificial**. Rio de Janeiro: Elsevier, c2013. xxi, 988 p. ISBN 9788535237016._
+**[5]** - _RUSSELL, Stuart J.; NORVIG, Peter. **Inteligência artificial**. Rio de Janeiro: Elsevier, c2013. xxi, 988 p. ISBN 9788535237016._ -->
 
 
 <a name="apendices"></a>
