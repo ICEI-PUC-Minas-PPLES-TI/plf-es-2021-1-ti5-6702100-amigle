@@ -10,8 +10,10 @@ Liste os artefatos produzidos, com suas localizaçãoes e descrição do conteú
 	* **2021-02-18.pdf**: Apresentação inicial do TIS
 * `/businessModelCanvas`
 	* **canvas.pdf**: Canvas do modelo de negócios.
+* `/eap`
+    * **eap.png**: Estrutura Analítica de Projeto
 * `/processos`
-    * **bpmn.sgv**: processos do negócio em bpmn
+    * **bpmn.sgv**: Processos do negócio em bpmn
 * `/der`
 	* ...
 
