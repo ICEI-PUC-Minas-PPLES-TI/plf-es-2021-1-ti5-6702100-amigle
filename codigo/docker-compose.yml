@@ -12,21 +12,29 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data/ # persist db data
 
-  # amigle-backend:
-  #   build:
-  #     context: back-end/
-  #   ports:
-  #     - 8080:8080
-  #   depends_on:
-  #     - amigle-db
+  amigle-backend-chat-manager:
+    build:
+      context: back-end/chat-manager/
+    ports:
+      - 3000:3000
+    depends_on:
+      - amigle-db
+  amigle-backend-user-manager:
+    build:
+      context: back-end/user-manager/
+    ports:
+      - 5000:5000
+    depends_on:
+      - amigle-db   
 
   amigle-frontend:
     build:
       context: front-end/
     ports:
       - 80:80
-    # depends_on:
-    #   - amigle-backend
+    depends_on:
+      - amigle-backend-chat-manager
+      - amigle-backend-user-manager
 
 volumes:
   db-data:
