@@ -117,12 +117,12 @@ Para realizar o desenvolvimento destas aplicações, serão realizadas diversas 
 | RF02 | Login de usuário | alta
 | RF03 | Usuário adicionar ou remover tags de seus interesses | alto
 | RF04 | Usuário entrar em chat com pessoa aleatória com base em interesses | alto
-| RF05 | Usuário entrar em chat com pessoa com base em uma tag específica | médio
-| RF06 | Usuário entrar em chamada de vídeo com pessoa | médio
-| RF07 | Gerenciar tags | alta
-| RF08 | Gerenciar categorias | alta
+| RF05 | Gerenciar tags | alta
+| RF06 | Gerenciar categorias | alta
+| RF07 | Usuário entrar em chat com pessoa com base em uma tag específica | médio
+| RF08 | Usuário entrar em chamada de vídeo com pessoa | médio
 | RF09 | Remover usuários da plataforma (administrador) | baixa
-| RF10 | Exclusão de conta de usuário (usuário) | alta
+| RF10 | Usuário sugerir tag para administrador | baixa
 
 
 ## 2.2. Requisitos Não-Funcionais
