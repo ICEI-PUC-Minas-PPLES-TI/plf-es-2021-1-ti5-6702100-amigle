@@ -94,13 +94,14 @@ O SGBD utilizado para a persistência de dados será o PostgreSQL.
 
 ## Premissas
 
-1. O projeto será realizado do dia 25 de fevereiro de 2021 até 10 de junho de 2016.
+1. O projeto será realizado do dia 25 de fevereiro de 2021 até 10 de junho de 2021.
 2. O projeto seguirá a metodologia scrum e terá suas tarefas dividas em 6 sprints que possuem entre 2 e 3 semanas de duração
 
 ## Marcos agendados
 
 | Nome do Marco | Entregáveis Previstos |
 | --- | --- |
+| Sprint 1 | Definição da ideia do projeto |
 | Sprint 2 | Documentos 1 até 7 (Seção 1 e 2 Documento de Arquitetura) |
 | Sprint 3 | Seção 3 Documento de Arquitetura, API Rest de Gerenciamento dos Usuários, Protótipos de UI, Telas de login e cadastro |
 | Sprint 4 | Telas de gerenciamento de perfil e de tags, API de comunicação WebRTC |

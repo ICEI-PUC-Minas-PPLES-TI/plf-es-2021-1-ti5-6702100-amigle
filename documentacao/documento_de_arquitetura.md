@@ -144,7 +144,7 @@ No desenvolvimento móvel será utilizado o framework Flutter, por permitir o de
 
 Já no back-end, será utilizada uma arquitetura de microsserviços distribuídos. Haverão 2 microsserviços com objetivos distintos:
 
-1. Permanência e manipulação de dados, fila de mensagens, match de usuários (Python, Flask)
+1. Permanência e manipulação de dadoss (Python, Flask)
 2. Comunicação entre usuários (NodeJS, Typescript, Express, Socket.io)
 
 O SGBD utilizado para a persistência de dados será o PostgreSQL.
@@ -156,7 +156,7 @@ O SGBD utilizado para a persistência de dados será o PostgreSQL.
 | --- | --- | --- |
 | Persistência | API Rest + SGBD | API Rest com o framework Flask que comunica com SGBD PostgreSQL |
 | Front end | Single Page Application | Aplicação Svelte com roteamento no cliente |
-| Back end 1 | Microsserviço de persistência de dados, fila de mensagens e match de usuários | Microsserviço desenvolvido com Python e Flask |
+| Back end 1 | Microsserviço de persistência de dados | Microsserviço desenvolvido com Python e Flask |
 | Back end 2 | Microsserviço de comunicação entre usuários com protocolo WebRTC | Microsserviço  |
 | Integração | Autenticação por meio do protocolo OAuth2 | Serviço de autenticação do Firebase |
 | Teste de Software | Testes e2e | WebdriverIO |
