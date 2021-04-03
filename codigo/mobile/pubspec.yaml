@@ -1,0 +1,56 @@
+name: amigleapp
+description: Chat application.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.6.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  flutter_localizations:
+    sdk: flutter
+
+  cupertino_icons: ^0.1.2
+  shared_preferences:
+  get_it:
+  mobx:
+  flutter_mobx:
+  dio:
+  connectivity:
+  intl:
+  mask_text_input_formatter: 1.0.6
+  wakelock:
+  vibrate:
+  image:
+  image_picker: 0.6.3+4
+  camera:
+  path_provider:
+  path:
+  json_annotation:
+  flash:
+  email_validator: 1.0.4
+  hive: 1.4.4
+  hive_flutter: 0.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_launcher_icons:
+  build_runner: ^1.10.2
+  mobx_codegen: 1.0.1
+  json_serializable: 3.2.5
+  hive_generator: 0.7.1
+
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/
+
+    - assets/images/
+    - assets/fonts/
