@@ -1,6 +1,6 @@
-FROM node:latest as builder
+FROM node:alpine as builder
 RUN mkdir -p /usr/src/app
-ADD package*.json /usr/src/app
+ADD package*.json /usr/src/app/
 ADD rollup.config.js /usr/src/app 
 WORKDIR /usr/src/app
 RUN npm install

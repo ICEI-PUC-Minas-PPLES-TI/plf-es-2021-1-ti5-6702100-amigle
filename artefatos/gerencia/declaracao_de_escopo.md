@@ -41,12 +41,12 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 | RF02 | Login de usuário | alta
 | RF03 | Usuário adicionar ou remover tags de seus interesses | alto
 | RF04 | Usuário entrar em chat com pessoa aleatória com base em interesses | alto
-| RF05 | Usuário entrar em chat com pessoa com base em uma tag específica | médio
-| RF06 | Usuário entrar em chamada de vídeo com pessoa | médio
-| RF07 | Gerenciar tags | alta
-| RF08 | Gerenciar categorias | alta
+| RF05 | Gerenciar tags | alta
+| RF06 | Gerenciar categorias | alta
+| RF07 | Usuário entrar em chat com pessoa com base em uma tag específica | médio
+| RF08 | Usuário entrar em chamada de vídeo com pessoa | médio
 | RF09 | Remover usuários da plataforma (administrador) | baixa
-| RF10 | Exclusão de conta de usuário (usuário) | alta
+| RF10 | Usuário sugerir tag para administrador | baixa
 
 
 ## 1.2. Requisitos Não-Funcionais
@@ -78,6 +78,7 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 
 ## Limites
 
+Não será desenvolvido um protocolo de comunicação nem uma biblioteca de UI ou de componentes. Serão utilizados o protocolo WebRTC, a biblioteca Svelte e Svelte Material UI para suprir estas necessidades.
 ## Restrições
 
 Para o desenvolvimento das duas aplicações, web e móvel, serão utilizadas tecnologias de ponta de desenvolvimento de software, focadas em escalabilidade, experiência de usuário e performance.
@@ -93,12 +94,16 @@ O SGBD utilizado para a persistência de dados será o PostgreSQL.
 
 ## Premissas
 
+1. O projeto será realizado do dia 25 de fevereiro de 2021 até 10 de junho de 2021.
+2. O projeto seguirá a metodologia scrum e terá suas tarefas dividas em 6 sprints que possuem entre 2 e 3 semanas de duração
+
 ## Marcos agendados
 
 | Nome do Marco | Entregáveis Previstos |
 | --- | --- |
-| Sprint 2 | Documentos 1 até 7 (Sessão 1 e 2 Documento de Arquitetura) |
-| Sprint 3 | Sessão 3 Documento de Arquitetura, API Rest de Gerenciamento dos Usuários |
-| Sprint 4 | |
-| Sprint 5 | |
-| Sprint 6 | |
+| Sprint 1 | Definição da ideia do projeto |
+| Sprint 2 | Documentos 1 até 7 (Seção 1 e 2 Documento de Arquitetura) |
+| Sprint 3 | Seção 3 Documento de Arquitetura, API Rest de Gerenciamento dos Usuários, Protótipos de UI, Telas de login e cadastro |
+| Sprint 4 | Telas de gerenciamento de perfil e de tags, API de comunicação WebRTC |
+| Sprint 5 | Telas de chat, integração com API de comunicação WebRTC |
+| Sprint 6 | Documento de Arquitetura de Software (versão final, completa e atualizada), código finalizado, Avaliação da Arquitetura, Relatório de encerramento do projeto, Vídeo de apresentação do projeto (pitch), Autoavaliação e avaliação por pares |

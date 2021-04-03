@@ -117,12 +117,12 @@ Para realizar o desenvolvimento destas aplicações, serão realizadas diversas 
 | RF02 | Login de usuário | alta
 | RF03 | Usuário adicionar ou remover tags de seus interesses | alto
 | RF04 | Usuário entrar em chat com pessoa aleatória com base em interesses | alto
-| RF05 | Usuário entrar em chat com pessoa com base em uma tag específica | médio
-| RF06 | Usuário entrar em chamada de vídeo com pessoa | médio
-| RF07 | Gerenciar tags | alta
-| RF08 | Gerenciar categorias | alta
+| RF05 | Gerenciar tags | alta
+| RF06 | Gerenciar categorias | alta
+| RF07 | Usuário entrar em chat com pessoa com base em uma tag específica | médio
+| RF08 | Usuário entrar em chamada de vídeo com pessoa | médio
 | RF09 | Remover usuários da plataforma (administrador) | baixa
-| RF10 | Exclusão de conta de usuário (usuário) | alta
+| RF10 | Usuário sugerir tag para administrador | baixa
 
 
 ## 2.2. Requisitos Não-Funcionais
@@ -144,21 +144,19 @@ No desenvolvimento móvel será utilizado o framework Flutter, por permitir o de
 
 Já no back-end, será utilizada uma arquitetura de microsserviços distribuídos. Haverão 2 microsserviços com objetivos distintos:
 
-1. Permanência e manipulação de dados, fila de mensagens, match de usuários (Python, Flask)
+1. Permanência e manipulação de dadoss (Python, Flask)
 2. Comunicação entre usuários (NodeJS, Typescript, Express, Socket.io)
 
 O SGBD utilizado para a persistência de dados será o PostgreSQL.
 
 ## 2.4. Mecanismos Arquiteturais
-<!-- _Visão geral dos mecanismos que compõem a arquitetura do sosftware baseando-se em três estados: (1) análise, (2) design e (3) implementação. Em termos de Análise devem ser listados os aspectos gerais que compõem a arquitetura do software como: persistência, integração com sistemas legados, geração de logs do sistema, ambiente de front end, tratamento de exceções, formato dos testes, formato de distribuição/implantação (deploy), entre outros. Em Design deve-se identificar o padrão tecnológico a seguir para cada mecanismo identificado na análise. Em Implementação, deve-se identificar o produto a ser utilizado na solução.
- Ex: Análise (Persistência), Design (ORM), Implementação (Hibernate)._ -->
 
 
 | **Análise** | **Design** | **Implementação** |
 | --- | --- | --- |
 | Persistência | API Rest + SGBD | API Rest com o framework Flask que comunica com SGBD PostgreSQL |
 | Front end | Single Page Application | Aplicação Svelte com roteamento no cliente |
-| Back end 1 | Microsserviço de persistência de dados, fila de mensagens e match de usuários | Microsserviço desenvolvido com Python e Flask |
+| Back end 1 | Microsserviço de persistência de dados | Microsserviço desenvolvido com Python e Flask |
 | Back end 2 | Microsserviço de comunicação entre usuários com protocolo WebRTC | Microsserviço  |
 | Integração | Autenticação por meio do protocolo OAuth2 | Serviço de autenticação do Firebase |
 | Teste de Software | Testes e2e | WebdriverIO |
