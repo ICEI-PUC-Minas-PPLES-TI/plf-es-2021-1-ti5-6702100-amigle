@@ -3,14 +3,11 @@
 	import List, { Item, Text } from "@smui/list";
 	import Chip, { Set } from "@smui/chips";
 	import Button from "@smui/button";
-	import Textfield from "@smui/textfield";
 
-	import Spacer from "../../components/Spacer/Spacer.svelte";
 	import Flex from "../../components/Flex/Flex.svelte";
 
 	export let dialog: any;
 
-	let search = "";
 	const categories = [
 		{
 			id: 1,
@@ -36,18 +33,7 @@
 </script>
 
 <Dialog bind:this={dialog}>
-	<Title>Gerenciar Tags</Title>
-	<Content>
-		<Spacer vertical={16} />
-		<Flex width={500}>
-			<Textfield
-				variant="outlined"
-				style="display:flex; width:100%"
-				label="Buscar Tags"
-				bind:value={search}
-			/>
-		</Flex>
-	</Content>
+	<Title>Escolher a Tag</Title>
 	<Set chips={categories} let:chip>
 		<Chip>{chip.name}</Chip>
 	</Set>

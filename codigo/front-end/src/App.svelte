@@ -19,14 +19,22 @@
 	import Login from "./pages/Login/Login.svelte";
 	import Profile from "./pages/Profile/Profile.svelte";
 	import SignUp from "./pages/SignUp/SignUp.svelte";
+	import Trending from "./pages/Trending/Trending.svelte";
+	import History from "./pages/History/History.svelte";
 
 	let drawer: any;
 	let drawerOpen = false;
 
+	const toggleDrawer = () => {
+		drawerOpen = !drawerOpen;
+	};
+
 	const routes = [
 		{ name: "/", component: Home },
-		{ name: "login", component: Login },
+		{ name: "trending", component: Trending },
+		{ name: "history", component: History },
 		{ name: "profile", component: Profile },
+		{ name: "login", component: Login },
 		{ name: "signup", component: SignUp },
 	];
 </script>
@@ -36,9 +44,10 @@
 		<DrawerTitle>Amigle</DrawerTitle>
 	</Header>
 	<Content>
-		<List>
+		<List on:click={toggleDrawer}>
 			<Item><a class="drawer-link" href="/">Início</a></Item>
 			<Item><a class="drawer-link" href="/trending">Trending</a></Item>
+			<Item><a class="drawer-link" href="/history">Histórico</a></Item>
 			<Item><a class="drawer-link" href="/profile">Meu Perfil</a></Item>
 			<Item><a class="drawer-link" href="/">Sair</a></Item>
 		</List>
@@ -52,9 +61,8 @@
 		<TopAppBar variant="fixed">
 			<Row>
 				<Section>
-					<IconButton
-						class="material-icons"
-						on:click={() => (drawerOpen = !drawerOpen)}>menu</IconButton
+					<IconButton class="material-icons" on:click={toggleDrawer}
+						>menu</IconButton
 					>
 					<TopAppBarTitle
 						><a class="app-title" href="/">Amigle</a></TopAppBarTitle

@@ -90,5 +90,5 @@
 			</Flex>
 		</form>
 	</Container>
-	<ManageTags bind:dialog={manageTagsDialog} />
 </div>
+<ManageTags bind:dialog={manageTagsDialog} />

@@ -4,10 +4,11 @@
 	export let justify: "flex-start" | "center" | "flex-end" | "space-between" =
 		"center";
 	export let height: number;
+	export let width: number;
 </script>
 
 <div
-	style={`display: flex; width:100%; height:${
+	style={`display: flex; width:${width ? `${width}px` : "100%"}; height:${
 		height ? `${height}px` : "100%"
 	}; flex-direction: ${direction}; align-items: ${align}; justify-content: ${justify}`}
 >

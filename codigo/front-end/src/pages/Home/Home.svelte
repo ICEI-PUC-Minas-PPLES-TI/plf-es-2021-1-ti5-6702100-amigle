@@ -3,8 +3,20 @@
 	import Button from "@smui/button";
 
 	import Flex from "../../components/Flex/Flex.svelte";
+	import ChooseTag from "../../dialogs/ChooseTag/ChooseTag.svelte";
+	import { onMount } from "svelte";
+	import StartConversation from "../../dialogs/StartConversation/StartConversation.svelte";
+	import Loading from "../../dialogs/Loading/Loading.svelte";
 
 	let message = "";
+
+	let initialDialog;
+	let chooseTagDialog;
+	let loadingDialog;
+
+	onMount(() => {
+		loadingDialog.open();
+	});
 </script>
 
 <div>
@@ -34,6 +46,9 @@
 		</div>
 	</Flex>
 </div>
+<StartConversation bind:dialog={initialDialog} />
+<ChooseTag bind:dialog={chooseTagDialog} />
+<Loading bind:dialog={loadingDialog} />
 
 <style>
 	.home-videoContainer {
