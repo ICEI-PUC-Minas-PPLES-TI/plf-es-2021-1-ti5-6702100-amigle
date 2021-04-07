@@ -188,7 +188,7 @@ _Nesta seção, os casos de uso devem ser resumidos. Esse detalhamento pode ser 
 
 Exemplos de resumo de Casos de Uso:
 
-#### UC01 – NOME DO CASO DE USO 01
+#### UC01 – Gerência de usuários
 
 | **Descrição** | Gerenciar Usuários |
 | --- | --- |
@@ -199,7 +199,7 @@ Exemplos de resumo de Casos de Uso:
 						2) O administrador clica para gerenciar usuários
 						3) O administrador escolher se aceita ou nega um usuário
 						4) O administrador confirma a ação
-#### UC02 – NOME DO CASO DE USO 02
+#### UC02 – Gerência de tags
 
 | **Descrição** | Gerenciar Tags |
 | --- | --- |
@@ -211,7 +211,7 @@ Exemplos de resumo de Casos de Uso:
 						3) O administrador escolher se apaga ou edita determinada tag
 						4) O administrador confirma a ação
 
-#### UC03 – NOME DO CASO DE USO 03
+#### UC03 – Moderação de tags
 
 | **Descrição** | Moderar criação de Tags |
 | --- | --- |
@@ -223,7 +223,7 @@ Exemplos de resumo de Casos de Uso:
 						3) O administrador escolher se aceita ou nega determinada tag
 						4) O administrador confirma a ação
 
-#### UC04 – NOME DO CASO DE USO 04
+#### UC04 – Edição de perfil
 
 | **Descrição** | Editar Perfil |
 | --- | --- |
@@ -235,7 +235,7 @@ Exemplos de resumo de Casos de Uso:
 						3) O usuário edita suas informações de acordo com sua necessidade
 						4) O usuário confirma a ação
 
-#### UC05 – NOME DO CASO DE USO 05
+#### UC05 – Login no sistema
 
 | **Descrição** | Fazer login |
 | --- | --- |
@@ -257,7 +257,7 @@ Exemplos de resumo de Casos de Uso:
 						5) O usuário clica para recuperar senha
 						6) Usuário digita nova senha
    
-#### UC06 – NOME DO CASO DE USO 06
+#### UC06 – Conversa
 
 | **Descrição** | Iniciar Conversa |
 | --- | --- |
@@ -274,7 +274,7 @@ Exemplos de resumo de Casos de Uso:
 						3) O usuário entra em uma fila de espera
 						4) O usuário inicia a conversa
 
-#### UC07 – NOME DO CASO DE USO 07
+#### UC07 – Edição de tags do usuário
 
 | **Descrição** | Editar tags do perfil |
 | --- | --- |
@@ -286,7 +286,7 @@ Exemplos de resumo de Casos de Uso:
 						3) O usuário edita as informações de acordo com sua necessidade
 						4) O usuário confirma a ação
 
-#### UC08 – NOME DO CASO DE USO 08
+#### UC08 – Solicitação de novas tags
 
 | **Descrição** | Solicitar criação de tags |
 | --- | --- |
