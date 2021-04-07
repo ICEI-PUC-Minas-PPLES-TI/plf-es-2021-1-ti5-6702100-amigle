@@ -301,7 +301,7 @@ Exemplos de Histórias de Usuário:
 
 - Como administrador eu quero poder gerenciar os usuários da minha plataforma, para que eu possa ter o controle de quem usa meu software
 
-- Como administrador eu quero poder gerenciar as tags da minha plataforma, para que eu possa ter o controle de o que meus usuários estão conversando
+- Como administrador eu quero poder gerenciar as tags da minha plataforma, para que eu possa ter controle sobre as tags meus usuários desejam criar
 
 - Como administrador eu quero poder gerenciar a criação de tags indicadas pelos usuários, para que eu possa ter o controle de o que meus usuários estão conversando
 
