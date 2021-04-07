@@ -33,6 +33,7 @@ _**Resumo**. O Amigle será uma plataforma online de bate papo guiada por intere
 | --- | --- | --- | --- |
 | **[23/02/2021]** | [Lucas Alves Gusmão] | [Versão preliminar do documento (capitulo 1)] | 1 |
 | **[07/03/2021]** | [Grupo] | [Correções e finalizações do capitulo 2] | 2 |
+| **[06/04/2021]** | [Arthur Branco] | [Visões arquiteturais, diagramas e finalização do capitulo 3] | 3 |
 
 ## SUMÁRIO
 
@@ -165,13 +166,11 @@ O SGBD utilizado para a persistência de dados será o PostgreSQL.
 <a name="modelagem"></a>
 # 3. Modelagem e projeto arquitetural
 
-_Apresente uma visão geral da solução proposta para o projeto e explique brevemente esse diagrama de visão geral, de forma textual. Esse diagrama não precisa seguir os padrões da UML, e deve ser completo e tão simples quanto possível, apresentando a macroarquitetura da solução._
+A visão prevê uma aplicação distribuida que utiliza microservições e uma aplicação mobile a serem implementadas em soluções cloud. Se compoe por duas camadas front-end paralelas (web e mobile) com backend base somado a multiplos microservições que utilizam como camada de persistência um banco de dados na nuvem e um serviço de mensageria.
 
 ![Visão Geral da Solução](imagens/visao.png "Visão Geral da Solução")
 
 **Figura 1 - Visão Geral da Solução (fonte: https://medium.com)**
-
-Obs: substitua esta imagem por outra, adequada ao seu projeto (cada arquitetura é única).
 
 ## 3.1. Visão de Negócio (Funcionalidades)
 
@@ -217,16 +216,17 @@ Exemplos de Histórias de Usuário:
 
 ## 3.2. Visão Lógica
 
-_Apresente os artefatos que serão utilizados descrevendo em linhas gerais as motivações que levaram a equipe a utilizar estes diagramas._
+* O diagrama de classe foi escolhido como artefato relevante para o projeto para que a equipe tivesse uma visão prévia geral da arquitetura do código e fossem discutidas a partir dele os planos de comunicação dos componentes do projeto. 
+* O diagrama de componentes foi feito para mapear as comunicações e para facilitar o planejamento dos protocolos e elementos externos a serem utilizados.
+* O diagrama de Entidade Relacionamento (ER) foi escolhido para padronizar parte da estrutura de dados utilizada no projeto e estabelecer relacionamento entre as entidades participantes, garantindo maior durabilidade das informações do sistema e resistencia a falhas.
 
 ### Diagrama de Classes
 
-![Diagrama de classes](imagens/classes.gif "Diagrama de classes")
+![Diagrama de classes](imagens/classes.png "Diagrama de classes")
 
+**Figura 2 – Diagrama de classes Fonte: o próprio autor.**
 
-**Figura 2 – Diagrama de classes (exemplo). Fonte: o próprio autor.**
-
-Obs: Acrescente uma breve descrição sobre o diagrama apresentado na Figura 3.
+Nesse diagrama podemos observar que tags serão associadas aos usuários que irão participar dos chats no sistema e que será criado um CRUD para cada entidade (excluindo chat).
 
 ### Diagrama de componentes
 
@@ -238,12 +238,12 @@ _Apresente o diagrama de componentes da aplicação, indicando, os elementos da 
 
 _Apresente uma descrição detalhada dos artefatos que constituem o diagrama de implantação._
 
-Ex: conforme diagrama apresentado na Figura X, as entidades participantes da solução são:
+Ex: conforme diagrama apresentado na Figura 3, as entidades participantes da solução são:
 
 - **Componente 1** - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nunc magna, accumsan eget porta a, tincidunt sed mauris. Suspendisse orci nulla, sagittis a lorem laoreet, tincidunt imperdiet ipsum. Morbi malesuada pretium suscipit.
 - **Componente 2** - Praesent nec nisi hendrerit, ullamcorper tortor non, rutrum sem. In non lectus tortor. Nulla vel tincidunt eros.
 
-## 3.3. Modelo de dados (opcional)
+## 3.3. Modelo de Entidade Relacionamento
 
 _Caso julgue necessário para explicar a arquitetura, apresente o diagrama de classes ou diagrama de Entidade/Relacionamentos ou tabelas do banco de dados. Este modelo pode ser essencial caso a arquitetura utilize uma solução de banco de dados distribuídos ou um banco NoSQL._
 
@@ -251,7 +251,7 @@ _Caso julgue necessário para explicar a arquitetura, apresente o diagrama de cl
 
 **Figura 4 – Diagrama de Entidade Relacionamento (ER) - exemplo. Fonte: o próprio autor.**
 
-Obs: Acrescente uma breve descrição sobre o diagrama apresentado na Figura 3.
+Obs: Acrescente uma breve descrição sobre o diagrama apresentado na Figura 4.
 
 <a name="avaliacao"></a>
 # 4. Avaliação da Arquitetura
