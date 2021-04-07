@@ -190,21 +190,113 @@ Exemplos de resumo de Casos de Uso:
 
 #### UC01 – NOME DO CASO DE USO 01
 
-| **Descrição** | |
+| **Descrição** | Gerenciar Usuários |
 | --- | --- |
-| **Atores** | |
-| **Prioridade** | |
-| **Requisitos associados** | |
-| **Fluxo Principal** | |
-
+| **Atores** | Usuário administrador |
+| **Prioridade** | 	Média |
+| **Requisitos associados** |  |
+| **Fluxo Principal** | 1) O administrador loga na plataforma |
+						2) O administrador clica para gerenciar usuários
+						3) O administrador escolher se aceita ou nega um usuário
+						4) O administrador confirma a ação
 #### UC02 – NOME DO CASO DE USO 02
 
-| **Descrição** | |
+| **Descrição** | Gerenciar Tags |
 | --- | --- |
-| **Atores** | |
-| **Prioridade** | |
-| **Requisitos associados** | |
-| **Fluxo Principal** | |
+| **Atores** | Usuário administrador |
+| **Prioridade** | 	Média |
+| **Requisitos associados** |  |
+| **Fluxo Principal** | 1) O administrador loga na plataforma |
+						2) O administrador clica para gerenciar tags
+						3) O administrador escolher se apaga ou edita determinada tag
+						4) O administrador confirma a ação
+
+#### UC03 – NOME DO CASO DE USO 03
+
+| **Descrição** | Moderar criação de Tags |
+| --- | --- |
+| **Atores** | Usuário administrador |
+| **Prioridade** | 	Essencial |
+| **Requisitos associados** |  |
+| **Fluxo Principal** | 1) O administrador loga na plataforma |
+						2) O administrador clica para gerenciar tags
+						3) O administrador escolher se aceita ou nega determinada tag
+						4) O administrador confirma a ação
+
+#### UC04 – NOME DO CASO DE USO 04
+
+| **Descrição** | Editar Perfil |
+| --- | --- |
+| **Atores** | Usuário |
+| **Prioridade** | 	Alta |
+| **Requisitos associados** |  |
+| **Fluxo Principal** | 1) O usuário loga na plataforma |
+						2) O usuário clica para editar perfil
+						3) O usuário edita suas informações de acordo com sua necessidade
+						4) O usuário confirma a ação
+
+#### UC05 – NOME DO CASO DE USO 05
+
+| **Descrição** | Fazer login |
+| --- | --- |
+| **Atores** | Usuário |
+| **Prioridade** | 	Essencial |
+| **Requisitos associados** |  |
+| **Fluxo Principal** | 1) O usuário entra na plataforma |
+						2) O usuário clica para digitar seu login
+						3) O usuário clica para digitar sua senha
+						4) O usuário confirma a ação
+| **Fluxo Alternativo** | 1) O usuário entra na plataforma |
+						2) O usuário clica para digitar um login incorreto ou senha incorreta
+						3) O usuário confirma a ação
+						4) O usuário não loga no sistema
+| **Fluxo Alternativo** | 1) O usuário entra na plataforma |
+						2) O usuário clica para recuperar senha
+						3) O usuário confirma a ação
+						4) O usuário recebe email para alterar senha
+						5) O usuário clica para recuperar senha
+						6) Usuário digita nova senha
+   
+#### UC06 – NOME DO CASO DE USO 06
+
+| **Descrição** | Iniciar Conversa |
+| --- | --- |
+| **Atores** | Usuário |
+| **Prioridade** | 	Essencial |
+|**Dependência**| UC05 |
+| **Requisitos associados** |  |
+| **Fluxo Principal** | 1) O usuário loga na plataforma |
+						2) O usuário clica para iniciar conversa por tag específica
+						3) O usuário entra em uma fila de espera
+						4) O usuário inicia a conversa
+**Fluxo Alternativo** | 1) O usuário loga na plataforma |
+						2) O usuário clica para iniciar conversa por todas as tags
+						3) O usuário entra em uma fila de espera
+						4) O usuário inicia a conversa
+
+#### UC07 – NOME DO CASO DE USO 07
+
+| **Descrição** | Editar tags do perfil |
+| --- | --- |
+| **Atores** | Usuário |
+| **Prioridade** | 	Alta |
+| **Requisitos associados** |  |
+| **Fluxo Principal** | 1) O usuário loga na plataforma |
+						2) O usuário clica para editar tags
+						3) O usuário edita as informações de acordo com sua necessidade
+						4) O usuário confirma a ação
+
+#### UC08 – NOME DO CASO DE USO 08
+
+| **Descrição** | Solicitar criação de tags |
+| --- | --- |
+| **Atores** | Usuário |
+| **Prioridade** | 	Baixa |
+| **Requisitos associados** |  |
+| **Fluxo Principal** | 1) O usuário loga na plataforma |
+						2) O usuário clica para solicitar novas tags
+						3) O usuário digita o nome da tag que deseja criar
+						4) O usuário confirma a ação
 
 Exemplos de Histórias de Usuário:
 
