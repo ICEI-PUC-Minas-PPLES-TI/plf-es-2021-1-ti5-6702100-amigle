@@ -193,8 +193,8 @@ Exemplos de resumo de Casos de Uso:
 | **Descrição** | Gerenciar Usuários |
 | --- | --- |
 | **Atores** | Usuário administrador |
-| **Prioridade** | 	Média |
-| **Requisitos associados** |  |
+| **Prioridade** | 	Baixa |
+| **Requisitos associados** | RF09  |
 | **Fluxo Principal** | 1) O administrador loga na plataforma |
 						2) O administrador clica para gerenciar usuários
 						3) O administrador escolher se aceita ou nega um usuário
@@ -204,8 +204,8 @@ Exemplos de resumo de Casos de Uso:
 | **Descrição** | Gerenciar Tags |
 | --- | --- |
 | **Atores** | Usuário administrador |
-| **Prioridade** | 	Média |
-| **Requisitos associados** |  |
+| **Prioridade** | 	Alta |
+| **Requisitos associados** | RF05,  RF06 |
 | **Fluxo Principal** | 1) O administrador loga na plataforma |
 						2) O administrador clica para gerenciar tags
 						3) O administrador escolher se apaga ou edita determinada tag
@@ -216,8 +216,8 @@ Exemplos de resumo de Casos de Uso:
 | **Descrição** | Moderar criação de Tags |
 | --- | --- |
 | **Atores** | Usuário administrador |
-| **Prioridade** | 	Essencial |
-| **Requisitos associados** |  |
+| **Prioridade** | 	Alta |
+| **Requisitos associados** |  RF05, RF06 |
 | **Fluxo Principal** | 1) O administrador loga na plataforma |
 						2) O administrador clica para gerenciar tags
 						3) O administrador escolher se aceita ou nega determinada tag
@@ -229,7 +229,7 @@ Exemplos de resumo de Casos de Uso:
 | --- | --- |
 | **Atores** | Usuário |
 | **Prioridade** | 	Alta |
-| **Requisitos associados** |  |
+| **Requisitos associados** | RF01 |
 | **Fluxo Principal** | 1) O usuário loga na plataforma |
 						2) O usuário clica para editar perfil
 						3) O usuário edita suas informações de acordo com sua necessidade
@@ -239,9 +239,9 @@ Exemplos de resumo de Casos de Uso:
 
 | **Descrição** | Fazer login |
 | --- | --- |
-| **Atores** | Usuário |
-| **Prioridade** | 	Essencial |
-| **Requisitos associados** |  |
+| **Atores** | Usuário e usuário administrador |
+| **Prioridade** | 	Alta |
+| **Requisitos associados** | RF02 |
 | **Fluxo Principal** | 1) O usuário entra na plataforma |
 						2) O usuário clica para digitar seu login
 						3) O usuário clica para digitar sua senha
@@ -262,9 +262,9 @@ Exemplos de resumo de Casos de Uso:
 | **Descrição** | Iniciar Conversa |
 | --- | --- |
 | **Atores** | Usuário |
-| **Prioridade** | 	Essencial |
+| **Prioridade** | 	Média |
 |**Dependência**| UC05 |
-| **Requisitos associados** |  |
+| **Requisitos associados** | RF07, RF04 |
 | **Fluxo Principal** | 1) O usuário loga na plataforma |
 						2) O usuário clica para iniciar conversa por tag específica
 						3) O usuário entra em uma fila de espera
@@ -280,7 +280,7 @@ Exemplos de resumo de Casos de Uso:
 | --- | --- |
 | **Atores** | Usuário |
 | **Prioridade** | 	Alta |
-| **Requisitos associados** |  |
+| **Requisitos associados** | RF03 |
 | **Fluxo Principal** | 1) O usuário loga na plataforma |
 						2) O usuário clica para editar tags
 						3) O usuário edita as informações de acordo com sua necessidade
@@ -292,10 +292,9 @@ Exemplos de resumo de Casos de Uso:
 | --- | --- |
 | **Atores** | Usuário |
 | **Prioridade** | 	Baixa |
-| **Requisitos associados** |  |
+| **Requisitos associados** | RF10 |
 | **Fluxo Principal** | 1) O usuário loga na plataforma |
    					  | 2) O usuário clica para solicitar novas tags |
-					  | 3) O usuário digita o nome da tag que deseja criar |
 					  | 4) O usuário confirma a ação |
 
 Exemplos de Histórias de Usuário:
