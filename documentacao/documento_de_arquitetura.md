@@ -294,9 +294,9 @@ Exemplos de resumo de Casos de Uso:
 | **Prioridade** | 	Baixa |
 | **Requisitos associados** |  |
 | **Fluxo Principal** | 1) O usuário loga na plataforma |
-						2) O usuário clica para solicitar novas tags
-						3) O usuário digita o nome da tag que deseja criar
-						4) O usuário confirma a ação
+   					  | 2) O usuário clica para solicitar novas tags |
+					  | 3) O usuário digita o nome da tag que deseja criar |
+					  | 4) O usuário confirma a ação |
 
 Exemplos de Histórias de Usuário:
 
