@@ -300,11 +300,23 @@ Exemplos de resumo de Casos de Uso:
 
 Exemplos de Histórias de Usuário:
 
-- Como Fulano eu quero poder convidar meus amigos para que a gente possa se reunir...
+- Como administrador eu quero poder gerenciar os usuários da minha plataforma, para que eu possa ter o controle de quem usa meu software
 
-- Como Cicrano eu quero poder organizar minhas tarefas diárias, para que...
+- Como administrador eu quero poder gerenciar as tags da minha plataforma, para que eu possa ter o controle de o que meus usuários estão conversando
 
-- Como gerente eu quero conseguir entender o progresso do trabalho do meu time, para que eu possa ter relatórios periódicos dos nossos acertos e falhas.
+- Como administrador eu quero poder gerenciar a criação de tags indicadas pelos usuários, para que eu possa ter o controle de o que meus usuários estão conversando
+
+- Como usuário eu gostaria de poder editar meu perfil para que eu informe meus dados corretamente, caso eu tenha cometido algum erro
+
+- Como usuário eu gostaria de poder realizar meu login no software, para que eu possa utilizar de seus serviços
+
+- Como usuário eu gostaria de poder iniciar uma conversa de acordo com uma tag específica anteriormente indicada por mim, para que eu possa encontrar novos amigos com um gosto similar ao meu
+
+- Como usuário eu gostaria de poder iniciar uma conversa de acordo com todas as tags de meu perfil anteriormente indicadas por mim, para que eu possa encontrar novos amigos com gostos similares aos meus
+
+- Como usuário eu gostaria de poder editar as tags de meu perfil, para que eu informe meus gostos corretamente
+
+- Como usuário eu gostaria de poder solicitar novas tags para a plataforma, para que eu as adicione ao meu pefil
 
 ## 3.2. Visão Lógica
 
