@@ -53,7 +53,7 @@ _**Resumo**. O Amigle será uma plataforma online de bate papo guiada por intere
 3. [Modelagem](#modelagem "Modelagem e projeto arquitetural") <br />
 	3.1. Visão de Negócio <br />
 	3.2. Visão Lógica <br />
-	3.3. Modelo de dados (opcional) <br />
+	3.3. Modelo de dados <br />
 
 4. [Avaliação](#avaliacao "Avaliação da Arquitetura") <br />
 	4.1. Cenários <br />
@@ -230,13 +230,11 @@ Nesse diagrama podemos observar que tags serão associadas aos usuários que ir�
 
 ### Diagrama de componentes
 
-_Apresente o diagrama de componentes da aplicação, indicando, os elementos da arquitetura e as interfaces entre eles. Liste os estilos/padrões arquiteturais utilizados e faça uma descrição sucinta dos componentes indicando o papel de cada um deles dentro da arquitetura/estilo/padrão arquitetural. Indique também quais componentes serão reutilizados (navegadores, SGBDs, middlewares, etc), quais componentes serão adquiridos por serem proprietários e quais componentes precisam ser desenvolvidos._
-
 ![Diagrama de componentes](imagens/componentes.png "Diagrama de componentes")
 
 **Figura 3 – Diagrama de Componentes. Fonte: o próprio autor.**
 
-Conforme diagrama apresentado na Figura 3, as entidades participantes da solução são:
+Conforme diagrama apresentado na Figura 3, os componentes desenvolvidos pela solução do projeto são:
 
 - **Componente 1 (Aplicação Web)** - Responsável por uma das camadas de apresentação, a aplicação web apresenta rotas para as logicas de perfil, cadastro, login e chat, também contendo uma pagina de administração para gerência das tags disponiveis.
 - **Componente 2 (Aplicação Móvel)** - Responsável pela camada de apresentação alternativa, apresenta as mesmas funcionalidades da aplicação web, fora a plataforma de administração.
