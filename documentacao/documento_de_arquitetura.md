@@ -174,19 +174,19 @@ A visão prevê uma aplicação distribuida que utiliza microservições e uma a
 
 ## 3.1. Visão de Negócio (Funcionalidades)
 
-_Apresente uma lista simples com as funcionalidades previstas no projeto (escopo do produto)._
+<!-- _Apresente uma lista simples com as funcionalidades previstas no projeto (escopo do produto)._ -->
 
-1. O sistema deve...
+<!-- 1. O sistema deve...
 2. O sistema deve...
 3. ...
 
-Obs: a quantidade e o escopo das funcionalidades deve ser negociado com os professores/orientadores do trabalho.
+Obs: a quantidade e o escopo das funcionalidades deve ser negociado com os professores/orientadores do trabalho. -->
 
 ### Descrição resumida dos Casos de Uso / Histórias de Usuário
 
-_Nesta seção, os casos de uso devem ser resumidos. Esse detalhamento pode ser na forma de um texto sintético ou, alternativamente, você pode optar por descrever estórias de usuários seguindo os métodos ágeis. Neste caso a seção deve chamar &quot;Histórias de usuários&quot;. Lembre-se das características de qualidade das estórias de usuários, ou seja, o que é preciso para descrever boas histórias de usuários._
+<!-- _Nesta seção, os casos de uso devem ser resumidos. Esse detalhamento pode ser na forma de um texto sintético ou, alternativamente, você pode optar por descrever estórias de usuários seguindo os métodos ágeis. Neste caso a seção deve chamar &quot;Histórias de usuários&quot;. Lembre-se das características de qualidade das estórias de usuários, ou seja, o que é preciso para descrever boas histórias de usuários._ -->
 
-Exemplos de resumo de Casos de Uso:
+Resumos de casos de uso:
 
 #### UC01 – Gerência de usuários
 
@@ -195,10 +195,7 @@ Exemplos de resumo de Casos de Uso:
 | **Atores** | Usuário administrador |
 | **Prioridade** | 	Baixa |
 | **Requisitos associados** | RF09  |
-| **Fluxo Principal** | 1) O administrador loga na plataforma |
-						2) O administrador clica para gerenciar usuários
-						3) O administrador escolher se aceita ou nega um usuário
-						4) O administrador confirma a ação
+| **Fluxo Principal** | 1) O administrador loga na plataforma <br>2) O administrador clica para gerenciar usuários <br>3) O administrador escolher se aceita ou nega um usuário <br>4) O administrador confirma a ação |
 #### UC02 – Gerência de tags
 
 | **Descrição** | Gerenciar Tags |
@@ -206,10 +203,7 @@ Exemplos de resumo de Casos de Uso:
 | **Atores** | Usuário administrador |
 | **Prioridade** | 	Alta |
 | **Requisitos associados** | RF05,  RF06 |
-| **Fluxo Principal** | 1) O administrador loga na plataforma |
-						2) O administrador clica para gerenciar tags
-						3) O administrador escolher se apaga ou edita determinada tag
-						4) O administrador confirma a ação
+| **Fluxo Principal** | 1) O administrador loga na plataforma <br>2) O administrador clica para gerenciar tags <br>3) O administrador escolher se apaga ou edita determinada tag <br>4) O administrador confirma a ação |
 
 #### UC03 – Moderação de tags
 
@@ -218,10 +212,7 @@ Exemplos de resumo de Casos de Uso:
 | **Atores** | Usuário administrador |
 | **Prioridade** | 	Alta |
 | **Requisitos associados** |  RF05, RF06 |
-| **Fluxo Principal** | 1) O administrador loga na plataforma |
-						2) O administrador clica para gerenciar tags
-						3) O administrador escolher se aceita ou nega determinada tag
-						4) O administrador confirma a ação
+| **Fluxo Principal** | 1) O administrador loga na plataforma <br>2) O administrador clica para gerenciar tags <br>3) O administrador escolher se aceita ou nega determinada tag <br>4) O administrador confirma a ação |
 
 #### UC04 – Edição de perfil
 
@@ -230,10 +221,7 @@ Exemplos de resumo de Casos de Uso:
 | **Atores** | Usuário |
 | **Prioridade** | 	Alta |
 | **Requisitos associados** | RF01 |
-| **Fluxo Principal** | 1) O usuário loga na plataforma |
-						2) O usuário clica para editar perfil
-						3) O usuário edita suas informações de acordo com sua necessidade
-						4) O usuário confirma a ação
+| **Fluxo Principal** | 1) O usuário loga na plataforma <br>2) O usuário clica para editar perfil <br>3) O usuário edita suas informações de acordo com sua necessidade <br>4) O usuário confirma a ação |
 
 #### UC05 – Login no sistema
 
@@ -242,20 +230,9 @@ Exemplos de resumo de Casos de Uso:
 | **Atores** | Usuário e usuário administrador |
 | **Prioridade** | 	Alta |
 | **Requisitos associados** | RF02 |
-| **Fluxo Principal** | 1) O usuário entra na plataforma |
-						2) O usuário clica para digitar seu login
-						3) O usuário clica para digitar sua senha
-						4) O usuário confirma a ação
-| **Fluxo Alternativo** | 1) O usuário entra na plataforma |
-						2) O usuário clica para digitar um login incorreto ou senha incorreta
-						3) O usuário confirma a ação
-						4) O usuário não loga no sistema
-| **Fluxo Alternativo** | 1) O usuário entra na plataforma |
-						2) O usuário clica para recuperar senha
-						3) O usuário confirma a ação
-						4) O usuário recebe email para alterar senha
-						5) O usuário clica para recuperar senha
-						6) Usuário digita nova senha
+| **Fluxo Principal** | 1) O usuário entra na plataforma <br>2) O usuário clica para digitar seu login <br>3) O usuário clica para digitar sua senha <br>4) O usuário confirma a ação |
+| **Fluxo Alternativo** | 1) O usuário entra na plataforma <br>2) O usuário clica para digitar um login incorreto ou senha incorreta <br>3) O usuário confirma a ação <br>4) O usuário não loga no sistema |
+| **Fluxo Alternativo** | 1) O usuário entra na plataforma <br>2) O usuário clica para recuperar senha <br>3) O usuário confirma a ação <br>4) O usuário recebe email para alterar senha <br>5) O usuário clica para recuperar senha <br>6) Usuário digita nova senha
    
 #### UC06 – Conversa
 
@@ -265,14 +242,8 @@ Exemplos de resumo de Casos de Uso:
 | **Prioridade** | 	Média |
 |**Dependência**| UC05 |
 | **Requisitos associados** | RF07, RF04 |
-| **Fluxo Principal** | 1) O usuário loga na plataforma |
-						2) O usuário clica para iniciar conversa por tag específica
-						3) O usuário entra em uma fila de espera
-						4) O usuário inicia a conversa
-**Fluxo Alternativo** | 1) O usuário loga na plataforma |
-						2) O usuário clica para iniciar conversa por todas as tags
-						3) O usuário entra em uma fila de espera
-						4) O usuário inicia a conversa
+| **Fluxo Principal** | 1) O usuário loga na plataforma <br>2) O usuário clica para iniciar conversa por tag específica <br>3) O usuário entra em uma fila de espera 4) O usuário inicia a conversa |
+**Fluxo Alternativo** | 1) O usuário loga na plataforma <br>2) O usuário clica para iniciar conversa por todas as tags <br>3) O usuário entra em uma fila de espera <br>4) O usuário inicia a conversa |
 
 #### UC07 – Edição de tags do usuário
 
@@ -281,10 +252,7 @@ Exemplos de resumo de Casos de Uso:
 | **Atores** | Usuário |
 | **Prioridade** | 	Alta |
 | **Requisitos associados** | RF03 |
-| **Fluxo Principal** | 1) O usuário loga na plataforma |
-						2) O usuário clica para editar tags
-						3) O usuário edita as informações de acordo com sua necessidade
-						4) O usuário confirma a ação
+| **Fluxo Principal** | 1) O usuário loga na plataforma <br>2) O usuário clica para editar tags <br>3) O usuário edita as informações de acordo com sua necessidade <br>4) O usuário confirma a ação |
 
 #### UC08 – Solicitação de novas tags
 
@@ -293,9 +261,7 @@ Exemplos de resumo de Casos de Uso:
 | **Atores** | Usuário |
 | **Prioridade** | 	Baixa |
 | **Requisitos associados** | RF10 |
-| **Fluxo Principal** | 1) O usuário loga na plataforma |
-   					  | 2) O usuário clica para solicitar novas tags |
-					  | 4) O usuário confirma a ação |
+| **Fluxo Principal** | 1) O usuário loga na plataforma <br>2) O usuário clica para solicitar novas tags <br>4) O usuário confirma a ação |
 
 Exemplos de Histórias de Usuário:
 
@@ -323,15 +289,15 @@ Exemplos de Histórias de Usuário:
 * O diagrama de componentes foi feito para mapear as comunicações e para facilitar o planejamento dos protocolos e elementos externos a serem utilizados.
 * O diagrama de Entidade Relacionamento (ER) foi escolhido para padronizar parte da estrutura de dados utilizada no projeto e estabelecer relacionamento entre as entidades participantes, garantindo maior durabilidade das informações do sistema e resistencia a falhas.
 
-### Diagrama de Classes
+## 3.2.1. Diagrama de Classes
 
 ![Diagrama de classes](imagens/classes.png "Diagrama de classes")
 
 **Figura 2 – Diagrama de classes Fonte: o próprio autor.**
 
-Nesse diagrama podemos observar que tags serão associadas aos usuários que irão participar dos chats no sistema e que será criado um CRUD para cada entidade (excluindo chat).
+Nesse diagrama podemos observar que tags serão associadas aos usuários que irão participar dos chats no sistema e que será criado um CRUD para cada entidade.
 
-### Diagrama de componentes
+## 3.2.2. Diagrama de componentes
 
 ![Diagrama de componentes](imagens/componentes.png "Diagrama de componentes")
 
@@ -344,13 +310,14 @@ Conforme diagrama apresentado na Figura 3, os componentes desenvolvidos pela sol
 - **Componente 3 (Gerencia de dados)** - Responsável pela parte lógica da aplicação, ela controla a validade de autenticação, controle de dados e comunicação com banco de dados, controle das tags disponiveis e informações de usuarios.
 - **Componente 4 (Comunicação WebRTC)** - Esta camada é responsável pela lógica e protocolos de conexão de chat entre os usuários.
 
-## 3.3. Modelo de Entidade Relacionamento
+## 3.3.3. Modelo de Entidade Relacionamento
 
 ![Diagrama de Entidade Relacionamento (ER) ](imagens/der.png "Diagrama de Entidade Relacionamento (ER) ")
 
+**Figura 4 – Diagrama de Entidade Relacionamento (ER). Fonte: o próprio autor.**
+
 Esse diagrama apresenta as entidades e seus relacionamentos utilizados na aplicação e armazenados no banco de dados.
 
-**Figura 4 – Diagrama de Entidade Relacionamento (ER). Fonte: o próprio autor.**
 
 <a name="avaliacao"></a>
 # 4. Avaliação da Arquitetura
