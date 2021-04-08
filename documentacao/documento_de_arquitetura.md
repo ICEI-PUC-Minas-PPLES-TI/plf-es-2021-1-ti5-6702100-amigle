@@ -182,6 +182,9 @@ A visão prevê uma aplicação distribuida que utiliza microservições e uma a
 
 Obs: a quantidade e o escopo das funcionalidades deve ser negociado com os professores/orientadores do trabalho. -->
 
+### Diagrama de Casos de Uso
+![useCaseDiagram](imagens/casosDeUso.png "Casos de Uso")
+
 ### Descrição resumida dos Casos de Uso / Histórias de Usuário
 
 <!-- _Nesta seção, os casos de uso devem ser resumidos. Esse detalhamento pode ser na forma de um texto sintético ou, alternativamente, você pode optar por descrever estórias de usuários seguindo os métodos ágeis. Neste caso a seção deve chamar &quot;Histórias de usuários&quot;. Lembre-se das características de qualidade das estórias de usuários, ou seja, o que é preciso para descrever boas histórias de usuários._ -->
