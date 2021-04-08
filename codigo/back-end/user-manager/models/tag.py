@@ -4,6 +4,7 @@ from conf.db_connection import Base
 
 class Tag(Base):
     __tablename__ = 'tag'
+    __table_args__ = {"schema": "amigle"}
 
     id = Column(Integer, primary_key=True, unique=True)
     name = Column(String, nullable=False)

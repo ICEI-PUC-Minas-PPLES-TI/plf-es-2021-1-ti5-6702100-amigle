@@ -15,12 +15,12 @@ def insert():
 
 @tag.route("/tag/<int:id>", methods=['GET'])
 def get(id):
-    tag_service.get(id)
+    return jsonify(tag_service.get(id))
 
 
 @tag.route("/tag", methods=['GET'])
 def get_all():
-    tag_service.get_all()
+    return jsonify(tag_service.get_all())
 
 
 @tag.route("/tag/<int:id>", methods=['PUT'])

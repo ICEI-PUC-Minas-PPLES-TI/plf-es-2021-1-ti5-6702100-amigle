@@ -1,7 +1,7 @@
 from functools import reduce
-from flask import Blueprint, request, jsonify, Response, abort, make_response
-
 from services import user_service
+from conf.firebase_auth import login
+from flask import Blueprint, request, jsonify, abort, make_response
 
 user = Blueprint('user', __name__)
 
@@ -9,18 +9,20 @@ user = Blueprint('user', __name__)
 @user.route("/user", methods=['POST'])
 def insert():
     body = request.json
-    if not validate_body_request(body, ["name", "age", "email", "is_admin"]): endpoints_exception(400, "INVALID_BODY")
+    if not validate_body_request(body, ["name", "age", "email", "isAdmin", "password"]): endpoints_exception(400, "INVALID_BODY")
     user_service.insert(body)
 
 
 @user.route("/user/<int:id>", methods=['GET'])
 def get(id):
-    user_service.get(id)
+    response = user_service.get(id)
+    return jsonify(response)
 
 
 @user.route("/user", methods=['GET'])
 def get_all():
-    user_service.get_all()
+    response = user_service.get_all()
+    return jsonify(response)
 
 
 @user.route("/user/<int:id>", methods=['PUT'])
@@ -33,6 +35,16 @@ def update(id):
 @user.route("/user/<int:id>", methods=['DELETE'])
 def delete(id):
     user_service.delete(id)
+
+
+@user.route("/user/login", methods=['POST'])
+def login_with_email_and_password():
+    email = request.form['email']
+    password = request.form['password']
+    auth = login(email, password)
+    id = auth['localId']
+
+    return jsonify(user_service.get(id))
 
 
 def validate_body_request(body, properties):

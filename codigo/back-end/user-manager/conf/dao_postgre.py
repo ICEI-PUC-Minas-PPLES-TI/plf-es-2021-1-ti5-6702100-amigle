@@ -1,4 +1,4 @@
-from services.base import Session
+from conf.db_connection import Session
 
 
 def insert(data):

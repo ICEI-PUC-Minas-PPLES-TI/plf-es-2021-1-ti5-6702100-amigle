@@ -5,6 +5,7 @@ from conf.firebase_auth import sign_up
 
 class User(Base):
     __tablename__ = 'user'
+    __table_args__ = {"schema": "amigle"}
 
     id = Column(String, primary_key=True, unique=True)
     name = Column(String, nullable=False)

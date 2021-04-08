@@ -1,26 +1,27 @@
-from conf.dao_postgre import start_session, close_session
+from conf import dao_postgre
+from dtos.user_dto import UserDTO
 from models.user import User
 
 
 def insert(body):
-    user = User(None, body["name"], body["age"], body["email"], body["is_admin"])
-    user.create_firebase_user(body["email"], body["email"])
-    insert(user)
+    user = User("teste", body["name"], body["age"], body["isAdmin"])
+    # user.create_firebase_user(body["email"], body["password"])
+    dao_postgre.insert(user)
 
 
 def get_all():
-    users = get_all(User)
+    users = dao_postgre.get_all(User)
     return format_json(users)
 
 
 def get(id):
-    user = get(User, id)
+    user = dao_postgre.get(User, id)
     user = user.__dict__
     return UserDTO(user['id'], user['name'], user['age'], user['is_admin'], user['email']).__dict__
 
 
 def update(id, body):
-    s = start_session()
+    s = dao_postgre.start_session()
 
     s.query(User).filter(User.id == id).update({
         'name': body["name"],
@@ -28,11 +29,11 @@ def update(id, body):
         'email': body["email"],
         'is_admin': body["is_admin"]
     })
-    close_session(s)
+    dao_postgre.close_session(s)
 
 
 def delete(id):
-    delete(User, id)
+    dao_postgre.delete(User, id)
 
 
 def format_json(users):

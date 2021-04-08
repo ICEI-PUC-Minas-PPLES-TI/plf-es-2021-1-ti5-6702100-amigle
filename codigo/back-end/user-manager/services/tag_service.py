@@ -1,18 +1,20 @@
 from conf.dao_postgre import start_session, close_session
+from dtos.tag_dto import TagDTO
 from models.tag import Tag
+from conf import dao_postgre
 
 
 def insert(body):
-    insert(Tag(None, body["name"], body["tag_category_id"], body["is_approved"]))
+    dao_postgre.insert(Tag(None, body["name"], body["tag_category_id"], body["is_approved"]))
 
 
 def get_all():
-    tags = get_all(Tag)
+    tags = dao_postgre.get_all(Tag)
     return format_json(tags)
 
 
 def get(id):
-    tag = get(Tag, id)
+    tag = dao_postgre.get(Tag, id)
     tag = tag.__dict__
     return TagDTO(tag['id'], tag['name'], tag['tag_category_id'], tag['is_approved']).__dict__
 
@@ -29,7 +31,7 @@ def update(id, body):
 
 
 def delete(id):
-    delete(Tag, id)
+    dao_postgre.delete(Tag, id)
 
 
 def format_json(tags):

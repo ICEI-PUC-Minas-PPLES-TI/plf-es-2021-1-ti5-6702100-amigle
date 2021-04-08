@@ -1,18 +1,20 @@
 from conf.dao_postgre import start_session, close_session
+from dtos.tag_category_dto import TagCategoryDTO
 from models.tag_category import TagCategory
+from conf import dao_postgre
 
 
 def insert(body):
-    insert(TagCategory(None, body["name"]))
+    dao_postgre.insert(TagCategory(None, body["name"]))
 
 
 def get_all():
-    tag_categories = get_all(TagCategory)
+    tag_categories = dao_postgre.get_all(TagCategory)
     return format_json(tag_categories)
 
 
 def get(id):
-    tag_category = get(TagCategory, id)
+    tag_category = dao_postgre.get(TagCategory, id)
     tag_category = tag_category.__dict__
     return TagCategoryDTO(tag_category['id'], tag_category['name']).__dict__
 
@@ -27,7 +29,7 @@ def update(id, body):
 
 
 def delete(id):
-    delete(TagCategory, id)
+    dao_postgre.delete(TagCategory, id)
 
 
 def format_json(tag_categories):
