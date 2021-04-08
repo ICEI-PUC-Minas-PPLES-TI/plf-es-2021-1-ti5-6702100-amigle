@@ -2,10 +2,10 @@
 
 
 * Arthur Gramiscelli Branco, arthurgbranco@gmail.com
-* Arthur Henrique Souza Braga, arthebraga@gmail.com
+* Arthur Henrique Souza Braga, arthesbraga@gmail.com
 * Isabella Carine Cruz Nicácio, iccnicacio@gmail.com
 * Lucas Alves Gusmão, lalvesgusmao@gmail.com
-* Samuel Alves de Castro Baker, sacbaker@gmail.com
+* Samuel Alves de Castro Baker, sacbaker@sga.pucminas.br
 
 ---
 
