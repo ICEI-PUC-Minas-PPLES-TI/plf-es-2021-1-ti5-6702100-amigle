@@ -2,10 +2,10 @@
 
 
 * Arthur Gramiscelli Branco, arthurgbranco@gmail.com
-* Arthur Henrique Souza Braga, arthebraga@gmail.com
+* Arthur Henrique Souza Braga, arthesbraga@gmail.com
 * Isabella Carine Cruz Nicácio, iccnicacio@gmail.com
 * Lucas Alves Gusmão, lalvesgusmao@gmail.com
-* Samuel Alves de Castro Baker, sacbaker@gmail.com
+* Samuel Alves de Castro Baker, sacbaker@sga.pucminas.br
 
 ---
 
@@ -33,6 +33,7 @@ _**Resumo**. O Amigle será uma plataforma online de bate papo guiada por intere
 | --- | --- | --- | --- |
 | **[23/02/2021]** | [Lucas Alves Gusmão] | [Versão preliminar do documento (capitulo 1)] | 1 |
 | **[07/03/2021]** | [Grupo] | [Correções e finalizações do capitulo 2] | 2 |
+| **[06/04/2021]** | [Arthur Branco] | [Visões arquiteturais, diagramas e finalização do capitulo 3] | 3 |
 
 ## SUMÁRIO
 
@@ -52,7 +53,7 @@ _**Resumo**. O Amigle será uma plataforma online de bate papo guiada por intere
 3. [Modelagem](#modelagem "Modelagem e projeto arquitetural") <br />
 	3.1. Visão de Negócio <br />
 	3.2. Visão Lógica <br />
-	3.3. Modelo de dados (opcional) <br />
+	3.3. Modelo de dados <br />
 
 4. [Avaliação](#avaliacao "Avaliação da Arquitetura") <br />
 	4.1. Cenários <br />
@@ -165,93 +166,161 @@ O SGBD utilizado para a persistência de dados será o PostgreSQL.
 <a name="modelagem"></a>
 # 3. Modelagem e projeto arquitetural
 
-_Apresente uma visão geral da solução proposta para o projeto e explique brevemente esse diagrama de visão geral, de forma textual. Esse diagrama não precisa seguir os padrões da UML, e deve ser completo e tão simples quanto possível, apresentando a macroarquitetura da solução._
+A visão prevê uma aplicação distribuida que utiliza microservições e uma aplicação mobile a serem implementadas em soluções cloud. Se compoe por duas camadas front-end paralelas (web e mobile) com backend base somado a multiplos microservições que utilizam como camada de persistência um banco de dados na nuvem e um serviço de mensageria.
 
 ![Visão Geral da Solução](imagens/visao.png "Visão Geral da Solução")
 
 **Figura 1 - Visão Geral da Solução (fonte: https://medium.com)**
 
-Obs: substitua esta imagem por outra, adequada ao seu projeto (cada arquitetura é única).
-
 ## 3.1. Visão de Negócio (Funcionalidades)
 
-_Apresente uma lista simples com as funcionalidades previstas no projeto (escopo do produto)._
+<!-- _Apresente uma lista simples com as funcionalidades previstas no projeto (escopo do produto)._ -->
 
-1. O sistema deve...
+<!-- 1. O sistema deve...
 2. O sistema deve...
 3. ...
 
-Obs: a quantidade e o escopo das funcionalidades deve ser negociado com os professores/orientadores do trabalho.
+Obs: a quantidade e o escopo das funcionalidades deve ser negociado com os professores/orientadores do trabalho. -->
+
+### Diagrama de Casos de Uso
+![useCaseDiagram](imagens/casosDeUso.png "Casos de Uso")
 
 ### Descrição resumida dos Casos de Uso / Histórias de Usuário
 
-_Nesta seção, os casos de uso devem ser resumidos. Esse detalhamento pode ser na forma de um texto sintético ou, alternativamente, você pode optar por descrever estórias de usuários seguindo os métodos ágeis. Neste caso a seção deve chamar &quot;Histórias de usuários&quot;. Lembre-se das características de qualidade das estórias de usuários, ou seja, o que é preciso para descrever boas histórias de usuários._
+<!-- _Nesta seção, os casos de uso devem ser resumidos. Esse detalhamento pode ser na forma de um texto sintético ou, alternativamente, você pode optar por descrever estórias de usuários seguindo os métodos ágeis. Neste caso a seção deve chamar &quot;Histórias de usuários&quot;. Lembre-se das características de qualidade das estórias de usuários, ou seja, o que é preciso para descrever boas histórias de usuários._ -->
 
-Exemplos de resumo de Casos de Uso:
+Resumos de casos de uso:
 
-#### UC01 – NOME DO CASO DE USO 01
+#### UC01 – Gerência de usuários
 
-| **Descrição** | |
+| **Descrição** | Gerenciar Usuários |
 | --- | --- |
-| **Atores** | |
-| **Prioridade** | |
-| **Requisitos associados** | |
-| **Fluxo Principal** | |
+| **Atores** | Usuário administrador |
+| **Prioridade** | 	Baixa |
+| **Requisitos associados** | RF09  |
+| **Fluxo Principal** | 1) O administrador loga na plataforma <br>2) O administrador clica para gerenciar usuários <br>3) O administrador escolher se aceita ou nega um usuário <br>4) O administrador confirma a ação |
+#### UC02 – Gerência de tags
 
-#### UC02 – NOME DO CASO DE USO 02
-
-| **Descrição** | |
+| **Descrição** | Gerenciar Tags |
 | --- | --- |
-| **Atores** | |
-| **Prioridade** | |
-| **Requisitos associados** | |
-| **Fluxo Principal** | |
+| **Atores** | Usuário administrador |
+| **Prioridade** | 	Alta |
+| **Requisitos associados** | RF05,  RF06 |
+| **Fluxo Principal** | 1) O administrador loga na plataforma <br>2) O administrador clica para gerenciar tags <br>3) O administrador escolher se apaga ou edita determinada tag <br>4) O administrador confirma a ação |
+
+#### UC03 – Moderação de tags
+
+| **Descrição** | Moderar criação de Tags |
+| --- | --- |
+| **Atores** | Usuário administrador |
+| **Prioridade** | 	Alta |
+| **Requisitos associados** |  RF05, RF06 |
+| **Fluxo Principal** | 1) O administrador loga na plataforma <br>2) O administrador clica para gerenciar tags <br>3) O administrador escolher se aceita ou nega determinada tag <br>4) O administrador confirma a ação |
+
+#### UC04 – Edição de perfil
+
+| **Descrição** | Editar Perfil |
+| --- | --- |
+| **Atores** | Usuário |
+| **Prioridade** | 	Alta |
+| **Requisitos associados** | RF01 |
+| **Fluxo Principal** | 1) O usuário loga na plataforma <br>2) O usuário clica para editar perfil <br>3) O usuário edita suas informações de acordo com sua necessidade <br>4) O usuário confirma a ação |
+
+#### UC05 – Login no sistema
+
+| **Descrição** | Fazer login |
+| --- | --- |
+| **Atores** | Usuário e usuário administrador |
+| **Prioridade** | 	Alta |
+| **Requisitos associados** | RF02 |
+| **Fluxo Principal** | 1) O usuário entra na plataforma <br>2) O usuário clica para digitar seu login <br>3) O usuário clica para digitar sua senha <br>4) O usuário confirma a ação |
+| **Fluxo Alternativo** | 1) O usuário entra na plataforma <br>2) O usuário clica para digitar um login incorreto ou senha incorreta <br>3) O usuário confirma a ação <br>4) O usuário não loga no sistema |
+| **Fluxo Alternativo** | 1) O usuário entra na plataforma <br>2) O usuário clica para recuperar senha <br>3) O usuário confirma a ação <br>4) O usuário recebe email para alterar senha <br>5) O usuário clica para recuperar senha <br>6) Usuário digita nova senha
+   
+#### UC06 – Conversa
+
+| **Descrição** | Iniciar Conversa |
+| --- | --- |
+| **Atores** | Usuário |
+| **Prioridade** | 	Média |
+|**Dependência**| UC05 |
+| **Requisitos associados** | RF07, RF04 |
+| **Fluxo Principal** | 1) O usuário loga na plataforma <br>2) O usuário clica para iniciar conversa por tag específica <br>3) O usuário entra em uma fila de espera 4) O usuário inicia a conversa |
+**Fluxo Alternativo** | 1) O usuário loga na plataforma <br>2) O usuário clica para iniciar conversa por todas as tags <br>3) O usuário entra em uma fila de espera <br>4) O usuário inicia a conversa |
+
+#### UC07 – Edição de tags do usuário
+
+| **Descrição** | Editar tags do perfil |
+| --- | --- |
+| **Atores** | Usuário |
+| **Prioridade** | 	Alta |
+| **Requisitos associados** | RF03 |
+| **Fluxo Principal** | 1) O usuário loga na plataforma <br>2) O usuário clica para editar tags <br>3) O usuário edita as informações de acordo com sua necessidade <br>4) O usuário confirma a ação |
+
+#### UC08 – Solicitação de novas tags
+
+| **Descrição** | Solicitar criação de tags |
+| --- | --- |
+| **Atores** | Usuário |
+| **Prioridade** | 	Baixa |
+| **Requisitos associados** | RF10 |
+| **Fluxo Principal** | 1) O usuário loga na plataforma <br>2) O usuário clica para solicitar novas tags <br>4) O usuário confirma a ação |
 
 Exemplos de Histórias de Usuário:
 
-- Como Fulano eu quero poder convidar meus amigos para que a gente possa se reunir...
+- Como administrador eu quero poder gerenciar os usuários da minha plataforma, para que eu possa ter o controle de quem usa meu software
 
-- Como Cicrano eu quero poder organizar minhas tarefas diárias, para que...
+- Como administrador eu quero poder gerenciar as tags da minha plataforma, para que eu possa ter controle sobre as tags meus usuários desejam criar
 
-- Como gerente eu quero conseguir entender o progresso do trabalho do meu time, para que eu possa ter relatórios periódicos dos nossos acertos e falhas.
+- Como administrador eu quero poder gerenciar a criação de tags indicadas pelos usuários, para que eu possa ter o controle de o que meus usuários estão conversando
+
+- Como usuário eu gostaria de poder editar meu perfil para que eu informe meus dados corretamente, caso eu tenha cometido algum erro
+
+- Como usuário eu gostaria de poder realizar meu login no software, para que eu possa utilizar de seus serviços
+
+- Como usuário eu gostaria de poder iniciar uma conversa de acordo com uma tag específica anteriormente indicada por mim, para que eu possa encontrar novos amigos com um gosto similar ao meu
+
+- Como usuário eu gostaria de poder iniciar uma conversa de acordo com todas as tags de meu perfil anteriormente indicadas por mim, para que eu possa encontrar novos amigos com gostos similares aos meus
+
+- Como usuário eu gostaria de poder editar as tags de meu perfil, para que eu informe meus gostos corretamente
+
+- Como usuário eu gostaria de poder solicitar novas tags para a plataforma, para que eu as adicione ao meu pefil
 
 ## 3.2. Visão Lógica
 
-_Apresente os artefatos que serão utilizados descrevendo em linhas gerais as motivações que levaram a equipe a utilizar estes diagramas._
+* O diagrama de classe foi escolhido como artefato relevante para o projeto para que a equipe tivesse uma visão prévia geral da arquitetura do código e fossem discutidas a partir dele os planos de comunicação dos componentes do projeto. 
+* O diagrama de componentes foi feito para mapear as comunicações e para facilitar o planejamento dos protocolos e elementos externos a serem utilizados.
+* O diagrama de Entidade Relacionamento (ER) foi escolhido para padronizar parte da estrutura de dados utilizada no projeto e estabelecer relacionamento entre as entidades participantes, garantindo maior durabilidade das informações do sistema e resistencia a falhas.
 
-### Diagrama de Classes
+## 3.2.1. Diagrama de Classes
 
-![Diagrama de classes](imagens/classes.gif "Diagrama de classes")
+![Diagrama de classes](imagens/classes.png "Diagrama de classes")
 
+**Figura 2 – Diagrama de classes Fonte: o próprio autor.**
 
-**Figura 2 – Diagrama de classes (exemplo). Fonte: o próprio autor.**
+Nesse diagrama podemos observar que tags serão associadas aos usuários que irão participar dos chats no sistema e que será criado um CRUD para cada entidade.
 
-Obs: Acrescente uma breve descrição sobre o diagrama apresentado na Figura 3.
-
-### Diagrama de componentes
-
-_Apresente o diagrama de componentes da aplicação, indicando, os elementos da arquitetura e as interfaces entre eles. Liste os estilos/padrões arquiteturais utilizados e faça uma descrição sucinta dos componentes indicando o papel de cada um deles dentro da arquitetura/estilo/padrão arquitetural. Indique também quais componentes serão reutilizados (navegadores, SGBDs, middlewares, etc), quais componentes serão adquiridos por serem proprietários e quais componentes precisam ser desenvolvidos._
+## 3.2.2. Diagrama de componentes
 
 ![Diagrama de componentes](imagens/componentes.png "Diagrama de componentes")
 
-**Figura 3 – Diagrama de Componentes (exemplo). Fonte: o próprio autor.**
+**Figura 3 – Diagrama de Componentes. Fonte: o próprio autor.**
 
-_Apresente uma descrição detalhada dos artefatos que constituem o diagrama de implantação._
+Conforme diagrama apresentado na Figura 3, os componentes desenvolvidos pela solução do projeto são:
 
-Ex: conforme diagrama apresentado na Figura X, as entidades participantes da solução são:
+- **Componente 1 (Aplicação Web)** - Responsável por uma das camadas de apresentação, a aplicação web apresenta rotas para as logicas de perfil, cadastro, login e chat, também contendo uma pagina de administração para gerência das tags disponiveis.
+- **Componente 2 (Aplicação Móvel)** - Responsável pela camada de apresentação alternativa, apresenta as mesmas funcionalidades da aplicação web, fora a plataforma de administração.
+- **Componente 3 (Gerencia de dados)** - Responsável pela parte lógica da aplicação, ela controla a validade de autenticação, controle de dados e comunicação com banco de dados, controle das tags disponiveis e informações de usuarios.
+- **Componente 4 (Comunicação WebRTC)** - Esta camada é responsável pela lógica e protocolos de conexão de chat entre os usuários.
 
-- **Componente 1** - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nunc magna, accumsan eget porta a, tincidunt sed mauris. Suspendisse orci nulla, sagittis a lorem laoreet, tincidunt imperdiet ipsum. Morbi malesuada pretium suscipit.
-- **Componente 2** - Praesent nec nisi hendrerit, ullamcorper tortor non, rutrum sem. In non lectus tortor. Nulla vel tincidunt eros.
-
-## 3.3. Modelo de dados (opcional)
-
-_Caso julgue necessário para explicar a arquitetura, apresente o diagrama de classes ou diagrama de Entidade/Relacionamentos ou tabelas do banco de dados. Este modelo pode ser essencial caso a arquitetura utilize uma solução de banco de dados distribuídos ou um banco NoSQL._
+## 3.3.3. Modelo de Entidade Relacionamento
 
 ![Diagrama de Entidade Relacionamento (ER) ](imagens/der.png "Diagrama de Entidade Relacionamento (ER) ")
 
-**Figura 4 – Diagrama de Entidade Relacionamento (ER) - exemplo. Fonte: o próprio autor.**
+**Figura 4 – Diagrama de Entidade Relacionamento (ER). Fonte: o próprio autor.**
 
-Obs: Acrescente uma breve descrição sobre o diagrama apresentado na Figura 3.
+Esse diagrama apresenta as entidades e seus relacionamentos utilizados na aplicação e armazenados no banco de dados.
+
 
 <a name="avaliacao"></a>
 # 4. Avaliação da Arquitetura
