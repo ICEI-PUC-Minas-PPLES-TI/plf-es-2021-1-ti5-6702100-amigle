@@ -170,7 +170,7 @@ A visão prevê uma aplicação distribuida que utiliza microservições e uma a
 
 ![Visão Geral da Solução](imagens/visao.png "Visão Geral da Solução")
 
-**Figura 1 - Visão Geral da Solução (fonte: https://medium.com)**
+**Figura 1 - Visão Geral da Solução**
 
 ## 3.1. Visão de Negócio (Funcionalidades)
 
@@ -318,6 +318,10 @@ Conforme diagrama apresentado na Figura 3, os componentes desenvolvidos pela sol
 ![Diagrama de Entidade Relacionamento (ER) ](imagens/der.png "Diagrama de Entidade Relacionamento (ER) ")
 
 **Figura 4 – Diagrama de Entidade Relacionamento (ER). Fonte: o próprio autor.**
+
+![Modelo Lógico ](imagens/modeloLogico.png "Modelo Lógico")
+
+**Figura 5 – Modelo Lógico. Fonte: o próprio autor.**
 
 Esse diagrama apresenta as entidades e seus relacionamentos utilizados na aplicação e armazenados no banco de dados.
 
