@@ -36,14 +36,14 @@ services:
       - amigle-backend-chat-manager
       - amigle-backend-user-manager
 
-  # amigle-mobile:
-  #   build:
-  #     context: mobile/
-  #   ports:  
-  #     - 
-  #   depends_on:
-  #     - amigle-backend-chat-manager
-  #     - amigle-backend-user-manager
+  amigle-mobile:
+    build:
+      context: mobile/
+    ports:  
+      - 81:80
+    depends_on:
+      - amigle-backend-chat-manager
+      - amigle-backend-user-manager
 
 volumes:
   db-data:
