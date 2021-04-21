@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Textfield from "@smui/textfield";
 	import Button from "@smui/button";
 

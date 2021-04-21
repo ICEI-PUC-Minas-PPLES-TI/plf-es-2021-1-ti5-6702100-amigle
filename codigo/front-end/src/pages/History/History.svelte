@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import DataTable, { Head, Body, Row, Cell } from "@smui/data-table";
 
 	import Spacer from "../../components/Spacer/Spacer.svelte";
