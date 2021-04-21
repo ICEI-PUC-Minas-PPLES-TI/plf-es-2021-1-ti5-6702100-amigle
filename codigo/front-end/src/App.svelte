@@ -21,6 +21,10 @@
 	import SignUp from "./pages/SignUp/SignUp.svelte";
 	import Trending from "./pages/Trending/Trending.svelte";
 	import History from "./pages/History/History.svelte";
+	import AdmChats from "./pages/AdmChats/AdmChats.svelte";
+	import AdmUsers from "./pages/AdmUsers/AdmUsers.svelte";
+	import AdmManageTags from "./pages/AdmManageTags/AdmManageTags.svelte";
+	import AdmSuggestedTags from "./pages/AdmSuggestedTags/AdmSuggestedTags.svelte";
 
 	let drawer: any;
 	let drawerOpen = false;
@@ -36,6 +40,10 @@
 		{ name: "profile", component: Profile },
 		{ name: "login", component: Login },
 		{ name: "signup", component: SignUp },
+		{ name: "adm/chats", component: AdmChats },
+		{ name: "adm/users", component: AdmUsers },
+		{ name: "adm/manage-tags", component: AdmManageTags },
+		{ name: "adm/suggested-tags", component: AdmSuggestedTags },
 	];
 </script>
 
@@ -50,6 +58,26 @@
 			<Item><a class="drawer-link" href="/history">Histórico</a></Item>
 			<Item><a class="drawer-link" href="/profile">Meu Perfil</a></Item>
 			<Item><a class="drawer-link" href="/">Sair</a></Item>
+			<Item
+				><a class="drawer-link" href="/adm/chats"
+					><strong>[ADM] Conversas</strong></a
+				></Item
+			>
+			<Item
+				><a class="drawer-link" href="/adm/users"
+					><strong>[ADM] Usuários</strong></a
+				></Item
+			>
+			<Item
+				><a class="drawer-link" href="/adm/manage-tags"
+					><strong>[ADM] Gerenciar Tags</strong></a
+				></Item
+			>
+			<Item
+				><a class="drawer-link" href="/adm/suggested-tags"
+					><strong>[ADM] Tags Sugeridas</strong></a
+				></Item
+			>
 		</List>
 	</Content>
 </Drawer>

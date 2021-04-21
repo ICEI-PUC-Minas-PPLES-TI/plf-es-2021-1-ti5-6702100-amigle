@@ -40,7 +40,7 @@ services:
   #   build:
   #     context: mobile/
   #   ports:  
-  #     - 
+  #     - 81:80
   #   depends_on:
   #     - amigle-backend-chat-manager
   #     - amigle-backend-user-manager

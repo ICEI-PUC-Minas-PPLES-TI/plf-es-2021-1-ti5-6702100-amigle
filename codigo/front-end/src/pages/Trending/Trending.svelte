@@ -34,7 +34,7 @@
 					<span>Ação</span>
 				</Flex>
 				<div>
-					<Button>+ Adicionar ao perfil</Button>
+					<Button>+ Adicionar</Button>
 				</div>
 			</Flex>
 		</Item>
