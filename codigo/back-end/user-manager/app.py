@@ -3,8 +3,11 @@ from flask import Flask
 from endpoints.tag_endpoint import tag
 from endpoints.user_endpoint import user
 from endpoints.tag_category_endpoint import tag_category
+from flask import Flask
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 app.register_blueprint(user)
 app.register_blueprint(tag)
