@@ -26,7 +26,7 @@ def get(type_class, id):
 
 def update(type_class, id, data):
     session = start_session()
-    data = session.query(type_class).filter(id).update()
+    data = session.query(type_class).update()
     session.add(data)
     close_session(session)
 

@@ -1,33 +1,42 @@
-from conf.dao_postgre import start_session, close_session
 from dtos.tag_dto import TagDTO
+from models import tag
 from models.tag import Tag
 from conf import dao_postgre
+from services import user_service
 
 
-def insert(body):
-    dao_postgre.insert(Tag(None, body["name"], body["tag_category_id"], body["is_approved"]))
+def insert(user_id, body):
+    is_approved = user_service.get(user_id)["isAdmin"]
+    category_id = body["categoryId"] if is_approved and "categoryId" in body else 1
+    dao_postgre.insert(Tag(None, body["name"], category_id, is_approved))
 
 
 def get_all():
-    tags = dao_postgre.get_all(Tag)
-    return format_json(tags)
+    return format_json(tag.get_all())
+
+
+def get_all_by_category(category_id):
+    return format_json(tag.get_all_by_category(category_id))
 
 
 def get(id):
-    tag = dao_postgre.get(Tag, id)
-    tag = tag.__dict__
-    return TagDTO(tag['id'], tag['name'], tag['tag_category_id'], tag['is_approved']).__dict__
+    result = tag.get(id)
+    return TagDTO(result[0], result[1], result[2], result[3]).__dict__
 
 
-def update(id, body):
-    s = start_session()
+def search_by_name(name):
+    return format_json(tag.search_by_name(name))
 
-    s.query(Tag).filter(Tag.id == id).update({
-        'name': body["name"],
-        'tag_category_id': body["tag_category_id"],
-        'is_approved': body["is_approved"],
-    })
-    close_session(s)
+
+def update(id, request_body):
+    body = {}
+    if "name" in request_body:
+        body["name"] = request_body["name"]
+    if "categoryId" in request_body:
+        body["tag_category_id"] = request_body["categoryId"]
+    if "isApproved" in request_body:
+        body["is_approved"] = request_body["isApproved"]
+    tag.update(id, body)
 
 
 def delete(id):
@@ -38,7 +47,5 @@ def format_json(tags):
     tags_json = []
 
     for tag in tags:
-        tag = tag.__dict__
-        tags_json.append(
-            TagDTO(tag['id'], tag['name'], tag['tag_category_id'], tag['is_approved']).__dict__)
+        tags_json.append(TagDTO(tag[0], tag[1], tag[2], tag[3]).__dict__)
     return tags_json

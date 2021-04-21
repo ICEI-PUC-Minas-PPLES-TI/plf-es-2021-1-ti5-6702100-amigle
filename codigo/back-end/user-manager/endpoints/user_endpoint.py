@@ -1,7 +1,7 @@
 from functools import reduce
 from services import user_service
 from conf.firebase_auth import login
-from flask import Blueprint, request, jsonify, abort, make_response
+from flask import Blueprint, request, jsonify, abort, make_response, Response
 
 user = Blueprint('user', __name__)
 
@@ -9,11 +9,25 @@ user = Blueprint('user', __name__)
 @user.route("/user", methods=['POST'])
 def insert():
     body = request.json
-    if not validate_body_request(body, ["name", "age", "email", "isAdmin", "password"]): endpoints_exception(400, "INVALID_BODY")
-    user_service.insert(body)
+    if not validate_body_request(body, ["name", "age", "email", "password"]):
+        endpoints_exception(400, "INVALID_BODY")
+    try:
+        user_service.insert(body)
+        return Response('Added succefully', mimetype='text/plain', status=201)
+    except SystemError:
+        return Response('Insertion failed', mimetype='text/plain', status=401)
 
 
-@user.route("/user/<int:id>", methods=['GET'])
+@user.route("/user/<string:id>/<int:tag_id>", methods=['POST'])
+def add_tag(id, tag_id):
+    try:
+        user_service.add_tag(id, tag_id)
+        return Response('Added succefully', mimetype='text/plain', status=201)
+    except SystemError:
+        return Response('Insertion failed', mimetype='text/plain', status=401)
+
+
+@user.route("/user/<string:id>", methods=['GET'])
 def get(id):
     response = user_service.get(id)
     return jsonify(response)
@@ -25,16 +39,25 @@ def get_all():
     return jsonify(response)
 
 
-@user.route("/user/<int:id>", methods=['PUT'])
+@user.route("/user/<string:id>", methods=['PUT'])
 def update(id):
     body = request.json
-    if not validate_body_request(body, ["name", "age", "email", "is_admin"]): endpoints_exception(400, "INVALID_BODY")
-    user_service.update(id, body)
+    if body is None:
+        endpoints_exception(400, "INVALID_BODY")
+    try:
+        user_service.update(id, body)
+        return Response('Updated succefully', mimetype='text/plain', status=201)
+    except SystemError:
+        return Response('Updated failed', mimetype='text/plain', status=401)
 
 
-@user.route("/user/<int:id>", methods=['DELETE'])
+@user.route("/user/<string:id>", methods=['DELETE'])
 def delete(id):
-    user_service.delete(id)
+    try:
+        user_service.delete(id)
+        return Response('Deleted succefully', mimetype='text/plain', status=201)
+    except SystemError:
+        return Response('Deletion failed', mimetype='text/plain', status=401)
 
 
 @user.route("/user/login", methods=['POST'])
