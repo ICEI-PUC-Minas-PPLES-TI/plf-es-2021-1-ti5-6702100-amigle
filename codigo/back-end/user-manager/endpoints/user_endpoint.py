@@ -60,6 +60,15 @@ def delete(id):
         return Response('Deletion failed', mimetype='text/plain', status=401)
 
 
+@user.route("/user/<string:user_id>/<int:tag_id>", methods=['DELETE'])
+def delete_user_tag(user_id, tag_id):
+    try:
+        user_service.delete_user_tag(user_id, tag_id)
+        return Response('Deleted succefully', mimetype='text/plain', status=201)
+    except SystemError:
+        return Response('Deletion failed', mimetype='text/plain', status=401)
+
+
 @user.route("/user/login", methods=['POST'])
 def login_with_email_and_password():
     email = request.form['email']

@@ -1,7 +1,14 @@
 from sqlalchemy import Column, String, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 
+from conf.dao_postgre import start_session, close_session
 from conf.db_connection import Base
+
+
+def delete_user_tag(user_id, tag_id):
+    session = start_session()
+    session.query(UserTag).filter(UserTag.user_id == user_id, UserTag.tag_id == tag_id).delete()
+    close_session(session)
 
 
 class UserTag(Base):

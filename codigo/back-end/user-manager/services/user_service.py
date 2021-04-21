@@ -2,6 +2,7 @@ from conf import dao_postgre
 from models import user
 from models.user import User
 from dtos.user_dto import UserDTO
+from models import user_tag
 from models.user_tag import UserTag
 
 
@@ -35,9 +36,13 @@ def delete(id):
     dao_postgre.delete(User, id)
 
 
+def delete_user_tag(user_id, tag_id):
+    user_tag.delete_user_tag(user_id, tag_id)
+
+
 def add_tag(id, tag_id):
     user_tag = UserTag(None, id, tag_id)
-    # dao_postgre.insert(user)
+    dao_postgre.insert(user_tag)
 
 
 def format_json(users):
