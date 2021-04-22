@@ -25,6 +25,7 @@
 	import AdmUsers from "./pages/AdmUsers/AdmUsers.svelte";
 	import AdmManageTags from "./pages/AdmManageTags/AdmManageTags.svelte";
 	import AdmSuggestedTags from "./pages/AdmSuggestedTags/AdmSuggestedTags.svelte";
+	import { isAdmin, isAuthenticated } from "./utils/authStorage";
 
 	let drawer: any;
 	let drawerOpen = false;
@@ -34,16 +35,48 @@
 	};
 
 	const routes = [
-		{ name: "/", component: Home },
-		{ name: "trending", component: Trending },
-		{ name: "history", component: History },
-		{ name: "profile", component: Profile },
+		{
+			name: "/",
+			component: Home,
+			onlyIf: { guard: isAuthenticated, redirect: "/login" },
+		},
+		{
+			name: "trending",
+			component: Trending,
+			onlyIf: { guard: isAuthenticated, redirect: "/login" },
+		},
+		{
+			name: "history",
+			component: History,
+			onlyIf: { guard: isAuthenticated, redirect: "/login" },
+		},
+		{
+			name: "profile",
+			component: Profile,
+			onlyIf: { guard: isAuthenticated, redirect: "/login" },
+		},
 		{ name: "login", component: Login },
 		{ name: "signup", component: SignUp },
-		{ name: "adm/chats", component: AdmChats },
-		{ name: "adm/users", component: AdmUsers },
-		{ name: "adm/manage-tags", component: AdmManageTags },
-		{ name: "adm/suggested-tags", component: AdmSuggestedTags },
+		{
+			name: "adm/chats",
+			component: AdmChats,
+			onlyIf: { guard: isAdmin, redirect: "/" },
+		},
+		{
+			name: "adm/users",
+			component: AdmUsers,
+			onlyIf: { guard: isAdmin, redirect: "/" },
+		},
+		{
+			name: "adm/manage-tags",
+			component: AdmManageTags,
+			onlyIf: { guard: isAdmin, redirect: "/" },
+		},
+		{
+			name: "adm/suggested-tags",
+			component: AdmSuggestedTags,
+			onlyIf: { guard: isAdmin, redirect: "/" },
+		},
 	];
 </script>
 
@@ -58,26 +91,28 @@
 			<Item><a class="drawer-link" href="/history">Histórico</a></Item>
 			<Item><a class="drawer-link" href="/profile">Meu Perfil</a></Item>
 			<Item><a class="drawer-link" href="/">Sair</a></Item>
-			<Item
-				><a class="drawer-link" href="/adm/chats"
-					><strong>[ADM] Conversas</strong></a
-				></Item
-			>
-			<Item
-				><a class="drawer-link" href="/adm/users"
-					><strong>[ADM] Usuários</strong></a
-				></Item
-			>
-			<Item
-				><a class="drawer-link" href="/adm/manage-tags"
-					><strong>[ADM] Gerenciar Tags</strong></a
-				></Item
-			>
-			<Item
-				><a class="drawer-link" href="/adm/suggested-tags"
-					><strong>[ADM] Tags Sugeridas</strong></a
-				></Item
-			>
+			{#if isAdmin()}
+				<Item
+					><a class="drawer-link" href="/adm/chats"
+						><strong>[ADM] Conversas</strong></a
+					></Item
+				>
+				<Item
+					><a class="drawer-link" href="/adm/users"
+						><strong>[ADM] Usuários</strong></a
+					></Item
+				>
+				<Item
+					><a class="drawer-link" href="/adm/manage-tags"
+						><strong>[ADM] Gerenciar Tags</strong></a
+					></Item
+				>
+				<Item
+					><a class="drawer-link" href="/adm/suggested-tags"
+						><strong>[ADM] Tags Sugeridas</strong></a
+					></Item
+				>
+			{/if}
 		</List>
 	</Content>
 </Drawer>

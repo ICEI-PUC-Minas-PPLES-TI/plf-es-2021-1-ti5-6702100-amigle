@@ -71,8 +71,8 @@ def delete_user_tag(user_id, tag_id):
 
 @user.route("/user/login", methods=['POST'])
 def login_with_email_and_password():
-    email = request.form['email']
-    password = request.form['password']
+    email = request.json['email']
+    password = request.json['password']
     auth = login(email, password)
     id = auth['localId']
 

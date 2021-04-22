@@ -1,8 +1,10 @@
 <script lang="ts">
 	import Button from "@smui/button";
 	import Textfield from "@smui/textfield";
-	import Container from "../../components/Container/Container.svelte";
 
+	import { postUser } from "../../api/user";
+
+	import Container from "../../components/Container/Container.svelte";
 	import Flex from "../../components/Flex/Flex.svelte";
 	import ImagePicker from "../../components/ImagePicker/ImagePicker.svelte";
 	import Spacer from "../../components/Spacer/Spacer.svelte";
@@ -14,8 +16,15 @@
 	let password = "";
 	let confirmPassword = "";
 
-	const onSubmit = (event: Event) => {
+	const onSubmit = async (event: Event) => {
 		event.preventDefault();
+
+		await postUser({
+			name,
+			age,
+			email,
+			password,
+		});
 	};
 </script>
 
