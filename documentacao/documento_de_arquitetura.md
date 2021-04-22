@@ -266,6 +266,33 @@ Resumos de casos de uso:
 | **Requisitos associados** | RF10 |
 | **Fluxo Principal** | 1) O usuário loga na plataforma <br>2) O usuário clica para solicitar novas tags <br>4) O usuário confirma a ação |
 
+#### UC09 – Tags em alta
+
+| **Descrição** | Visualização de tags em alta |
+| --- | --- |
+| **Atores** | Usuário |
+| **Prioridade** | 	Baixa |
+| **Requisitos associados** | RF11 |
+| **Fluxo Principal** | 1) O usuário loga na plataforma <br>2) O usuário clica para ver as tags em alta |
+
+#### UC010 – Tags em alta
+
+| **Descrição** | Visualização de históricos de conversa |
+| --- | --- |
+| **Atores** | Usuário |
+| **Prioridade** | 	Baixa |
+| **Requisitos associados** | RF12 |
+| **Fluxo Principal** | 1) O usuário loga na plataforma <br>2) O usuário clica para ver o histórico de conversas |
+
+#### UC011 – Tags em alta
+
+| **Descrição** | Visualização de estátisticas de conversa |
+| --- | --- |
+| **Atores** | Administrador |
+| **Prioridade** | 	Baixa |
+| **Requisitos associados** | RF13 |
+| **Fluxo Principal** | 1) O administrador loga na plataforma <br>2) O administrador clica para ver o histórico de conversas <br>3) O administrador seleciona os filtros de estátisticas <br>4) O administrador confirma ação |
+
 Exemplos de Histórias de Usuário:
 
 - Como administrador eu quero poder gerenciar os usuários da minha plataforma, para que eu possa ter o controle de quem usa meu software
@@ -285,6 +312,12 @@ Exemplos de Histórias de Usuário:
 - Como usuário eu gostaria de poder editar as tags de meu perfil, para que eu informe meus gostos corretamente
 
 - Como usuário eu gostaria de poder solicitar novas tags para a plataforma, para que eu as adicione ao meu pefil
+
+- Como usuário eu gostaria de poder visualizar as tags mais faladas (em alta), para que eu possa ficar interado dos assuntos mais conversados
+
+- Como usuário eu gostaria de poder visualizar os históricos de pessoas que eu conversei, para que eu possa entrar em contato com elas no futuro caso seja de minha vontade
+
+- Como administrador eu gostaria de poder visualizar as estatísticas de conversas, para que eu possa ficar interado e ter novos insights dos assuntos que meus usuários estão interagindo
 
 ## 3.2. Visão Lógica
 
