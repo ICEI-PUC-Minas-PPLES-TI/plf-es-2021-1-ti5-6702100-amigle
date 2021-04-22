@@ -126,7 +126,7 @@ Para realizar o desenvolvimento destas aplicações, serão realizadas diversas 
 | RF10 | Usuário sugerir tag para administrador | baixa
 | RF11 | Administrador visualizar estatísticas sobre o uso da aplicação | baixa
 | RF12 | Usuário visualizar histórico de conversas | baixa
-| RF12 | Usuário visualizar tags em alta | baixa
+| RF13 | Usuário visualizar tags em alta | baixa
 
 
 ## 2.2. Requisitos Não-Funcionais
