@@ -14,3 +14,13 @@ Session = sessionmaker(bind=engine)
 
 Base = declarative_base()
 Base.metadata.create_all(engine)
+
+
+def start_session():
+    # Create a new session
+    return Session()
+
+
+def close_session(session):
+    session.commit()
+    session.close()

@@ -1,7 +1,6 @@
 from conf import dao_postgre
-from models import tag_category
-from models.tag_category import TagCategory
-from dtos.tag_category_dto import TagCategoryDTO
+from models import tag_category_model
+from models.tag_category_model import TagCategory
 
 
 def insert(body):
@@ -9,28 +8,31 @@ def insert(body):
 
 
 def get_all():
-    tag_categories = dao_postgre.get_all(TagCategory)
-    return format_json(tag_categories) if tag_categories is not None else None
+    result = dao_postgre.get_all(TagCategory)
+    if result is None:
+        return None
+    return format_json(result)
 
 
-def get(id):
-    data = dao_postgre.get(TagCategory, id)
-    return TagCategoryDTO(data.id, data.name).__dict__ if data is not None else None
+def get(category_id):
+    result = dao_postgre.get(TagCategory, category_id)
+    if result is None:
+        return None
+    return TagCategory(result.id, result.name)
 
 
-def update(id, body):
-    tag_category.update(id, body)
+def update(category_id, body):
+    tag_category_model.update(category_id, body)
 
 
-def delete(id):
-    response = dao_postgre.delete(TagCategory, id)
-    return response
+def delete(category_id):
+    dao_postgre.delete(TagCategory, category_id)
 
 
 def format_json(tag_categories):
     tag_categories_json = []
 
-    for data in tag_categories:
+    for tag_category in tag_categories:
         tag_categories_json.append(
-            TagCategoryDTO(data.id, data.name).__dict__)
+            TagCategory(tag_category.id, tag_category.name))
     return tag_categories_json

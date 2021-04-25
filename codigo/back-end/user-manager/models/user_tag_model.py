@@ -1,5 +1,4 @@
 from sqlalchemy import Column, String, Integer, ForeignKey
-from sqlalchemy.orm import relationship
 
 from conf.dao_postgre import start_session, close_session
 from conf.db_connection import Base
@@ -18,9 +17,6 @@ class UserTag(Base):
     id = Column(Integer, primary_key=True, unique=True)
     user_id = Column(String, ForeignKey('amigle.user.id'))
     tag_id = Column(Integer, ForeignKey('amigle.tag.id'))
-
-    # tag = relationship('Tag')
-    # user = relationship('User')
 
     def __init__(self, id, user_id, tag_id):
         self.id = id
