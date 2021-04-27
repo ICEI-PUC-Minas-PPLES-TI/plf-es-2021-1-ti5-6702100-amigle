@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  amigle-db:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Amigle@1234
+      POSTGRES_DB: amigle
+    volumes:
+      - db-data:/var/lib/postgresql/data/ # persist db data
+
+  amigle-backend-chat-manager:
+    build:
+      context: ../back-end/chat-manager/
+    ports:
+      - 3000:3000
+    depends_on:
+      - amigle-db
+  amigle-backend-user-manager:
+    build:
+      context: ../back-end/user-manager/
+    ports:
+      - 5000:5000
+    depends_on:
+      - amigle-db   
+
+volumes:
+  db-data:
+    driver: local
+
