@@ -10,10 +10,8 @@ jspm_packages/
 # Optional npm cache directory
 .npm
 
-### react ###
+### MacOS ###
 .DS_*
-**/*.backup.*
-**/*.back.*
 
 # db-data
 **/db-data
