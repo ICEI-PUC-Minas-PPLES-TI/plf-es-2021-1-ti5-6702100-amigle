@@ -11,7 +11,7 @@ user = Blueprint('user', __name__)
 
 @user.route("/user", methods=['POST'])
 def insert():
-    body = request.json
+    body = request.args
     if not validate_body_request(body, ["name", "birthDate", "email", "password"]):
         endpoints_exception(400, "INVALID_BODY")
 
@@ -103,10 +103,12 @@ def delete_user_tag(user_id, tag_id):
 def login_with_email_and_password():
     email = request.json['email']
     password = request.json['password']
+
     auth = login(email, password)
     user_id = auth['localId']
 
-    return jsonify(user_service.get(user_id))
+    user_dto = dto_formatter.user_dto(user_service.get(user_id))
+    return jsonify(user_dto)
 
 
 def validate_body_request(body, properties):
