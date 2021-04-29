@@ -3,13 +3,14 @@
 	import { onMount } from "svelte";
 
 	export let image = null;
+	export let src = null;
 
 	let input = null;
 
 	onMount(() => {
 		input = document.getElementById("imagePicker-input");
 
-		input.addEventListener("change", (event) => {
+		input.addEventListener("change", (event: any) => {
 			const file = event.target.files[0];
 
 			image = file;
@@ -33,7 +34,7 @@
 	/>
 	<img
 		class="imagePicker-image"
-		src={image ? URL.createObjectURL(image) : "img/empty.webp"}
+		src={image ? URL.createObjectURL(image) : src || "img/empty.webp"}
 		alt=""
 	/>
 </div>

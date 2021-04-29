@@ -2,7 +2,7 @@
 	import Button from "@smui/button";
 	import Textfield from "@smui/textfield";
 
-	import { postUser } from "../../api/user";
+	import { login, postUser } from "../../api/user";
 
 	import Container from "../../components/Container/Container.svelte";
 	import Flex from "../../components/Flex/Flex.svelte";
@@ -19,12 +19,23 @@
 	const onSubmit = async (event: Event) => {
 		event.preventDefault();
 
-		await postUser({
-			name,
-			age,
-			email,
-			password,
-		});
+		try {
+			await postUser({
+				name,
+				age,
+				email,
+				password,
+			});
+
+			window.location.href = "/";
+
+			const user = await login(email, password);
+			localStorage.setItem("user", JSON.stringify(user));
+
+			window.location.pathname = "/";
+		} catch (error) {
+			alert("Ocorreu um erro ao realizar o cadastro");
+		}
 	};
 </script>
 
