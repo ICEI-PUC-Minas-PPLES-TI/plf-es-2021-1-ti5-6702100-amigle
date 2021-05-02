@@ -11,7 +11,7 @@
 	import { onMount } from "svelte";
 	import type { UserType } from "../../types/userType";
 	import { getUser } from "../../api/user";
-	import { io } from "socket.io-client";
+	import io from "socket.io-client";
 
 	const userId = getLocalUser().id;
 	const tagId = 2;
@@ -41,7 +41,7 @@
 	};
 
 	const openChatModal = () => {
-		socket = io("localhost:5001");
+		socket = io("ws://localhost:5001");
 		initialDialog.open();
 	};
 
@@ -67,14 +67,12 @@
 	};
 
 	const handleAnswer = (message: any) => {
-		console.log("answered");
 		const desc = new RTCSessionDescription(message.sdp);
 		peer.setRemoteDescription(desc);
 		loadingDialog.close();
 	};
 
 	const handleReceiveCall = (incoming: any) => {
-		console.log("received");
 		peer = createPeer();
 		const desc = new RTCSessionDescription(incoming.sdp);
 
@@ -145,7 +143,7 @@
 		if (option === "allTags") {
 			socket.emit("join-all-tags", user);
 		} else {
-			socket.emit("join-specific-tag", user, tagId);
+			socket.emit("join-specific-tag", { user, tagId });
 		}
 
 		loadingDialog.open();
@@ -164,7 +162,6 @@
 		socket.on(
 			"message-received",
 			(message: { received: boolean; text: string }) => {
-				console.log(message);
 				messages = [...messages, message];
 			}
 		);

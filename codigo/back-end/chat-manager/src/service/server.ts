@@ -1,7 +1,7 @@
 import { createServer, Server as HTTPServer } from "http";
 import express from "express";
 import { Application } from "express";
-import { Server as SocketIOServer } from "socket.io";
+import socketIO, { Server as SocketIOServer } from "socket.io";
 
 export default class Server {
 	#app: Application;
@@ -11,12 +11,7 @@ export default class Server {
 	constructor() {
 		this.#app = express();
 		this.#httpServer = createServer(this.#app);
-		this.#io = new SocketIOServer(this.#httpServer, {
-			cors: {
-				origin: "*",
-				methods: ["GET", "POST"],
-			},
-		});
+		this.#io = socketIO(this.#httpServer);
 
 		this.#httpServer.listen(5001);
 	}

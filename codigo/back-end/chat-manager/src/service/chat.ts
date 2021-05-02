@@ -22,6 +22,7 @@ class ChatService {
 
 	listenToSocketConnections() {
 		this.#io.on("connection", (socket) => {
+			console.log("Connected" + socket.id);
 			socket.on("join-all-tags", (user) => {
 				if (user) {
 					this.#allTagsQueue.push(new UserConnection(user, socket));
@@ -63,6 +64,10 @@ class ChatService {
 						call.firstUser.socket.id === socket.id ||
 						call.secondUser.socket.id === socket.id
 				);
+
+				if (!call) {
+					return;
+				}
 
 				call.hangUp(socket.id);
 
