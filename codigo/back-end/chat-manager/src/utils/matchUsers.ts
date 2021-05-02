@@ -1,3 +1,4 @@
+import UserConnection from "../model/UserConnection";
 import { Tag } from "../types/tag";
 import { User } from "../types/user";
 
@@ -16,15 +17,16 @@ function compareUserTags(t1: Tag[], t2: Tag[]) {
 	return score;
 }
 
-export function getTagScoreArray(user: User, users: User[]) {
-	const otherUsers = users.filter((u) => u.id !== user.id);
-	const scores: { userId: string; socketId: string; score: number }[] = [];
+export function getTagScoreArray(
+	userConnection: UserConnection,
+	userConnections: UserConnection[]
+) {
+	const scores: { uc: UserConnection; score: number }[] = [];
 
-	otherUsers.forEach((u) => {
+	userConnections.forEach((uc) => {
 		scores.push({
-			userId: u.id,
-			socketId: u.socketId,
-			score: compareUserTags(user.tags, u.tags),
+			uc: uc,
+			score: compareUserTags(userConnection.user.tags, uc.user.tags),
 		});
 	});
 

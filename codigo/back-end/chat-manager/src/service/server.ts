@@ -17,6 +17,8 @@ export default class Server {
 				methods: ["GET", "POST"],
 			},
 		});
+
+		this.#httpServer.listen(5001);
 	}
 
 	get io() {

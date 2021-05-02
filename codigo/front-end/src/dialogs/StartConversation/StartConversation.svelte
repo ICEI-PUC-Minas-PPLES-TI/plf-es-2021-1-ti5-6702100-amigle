@@ -3,6 +3,7 @@
 	import Button from "@smui/button";
 
 	export let dialog: any;
+	export let onSelectOption = (option: "allTags" | "specificTag") => {};
 </script>
 
 <Dialog bind:this={dialog}>
@@ -12,7 +13,9 @@
 		base em todas as suas tags, ou com base em uma tag específica
 	</Content>
 	<Actions>
-		<Button>Todas as Tags</Button>
-		<Button>Tag Específica</Button>
+		<Button on:click={() => onSelectOption("allTags")}>Todas as Tags</Button>
+		<Button on:click={() => onSelectOption("specificTag")}
+			>Tag Específica</Button
+		>
 	</Actions>
 </Dialog>
