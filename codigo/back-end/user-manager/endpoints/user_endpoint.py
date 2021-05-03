@@ -73,7 +73,7 @@ def update(user_id):
     if "birthDate" in body:
         birth_date = datetime.fromisoformat(body["birthDate"]).date()
         if datetime.now().date().year - birth_date.year < 13:
-           endpoints_exception(400, "INVALID_BIRTH_DATE")
+            endpoints_exception(400, "INVALID_BIRTH_DATE")
     try:
         user_service.update(user_id, body)
         return Response('Updated succefully', mimetype='text/plain', status=201)
