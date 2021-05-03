@@ -59,8 +59,8 @@ def get_all():
 
     result = []
     for user_object in users_object:
-        tag_dto = dto_formatter.user_dto(user_object)
-        result.append(tag_dto)
+        user_dto = dto_formatter.user_dto(user_object)
+        result.append(user_dto)
 
     return jsonify(result)
 
