@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"build": "rollup -c",
-		"dev": "rollup -c -w",
+		"dev": "HOST=0.0.0.0 rollup -c -w",
 		"start": "sirv public --single",
 		"validate": "svelte-check"
 	},
@@ -34,11 +34,12 @@
 		"@smui/drawer": "^2.0.0-beta.1",
 		"@smui/icon-button": "^2.0.0-beta.1",
 		"@smui/list": "^2.0.0-beta.1",
+		"@smui/select": "^4.1.0",
 		"@smui/textfield": "^2.0.0-beta.1",
 		"@smui/top-app-bar": "^2.0.0-beta.1",
 		"postcss": "^8.2.9",
 		"sirv-cli": "^1.0.0",
-		"socket.io-client": "^4.0.1",
+		"socket.io-client": "^2.3.0",
 		"svelte-chartjs": "^1.0.1",
 		"svelte-router-spa": "^6.0.2"
 	}

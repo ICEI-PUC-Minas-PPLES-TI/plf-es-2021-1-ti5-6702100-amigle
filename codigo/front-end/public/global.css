@@ -90,3 +90,11 @@ h6,
 small {
 	font-size: inherit;
 }
+
+.disabled {
+	pointer-events: none;
+}
+.disabled .mdc-chip {
+	background-color: #e0e0e0!important;
+	color: #000000de!important;
+}

@@ -6,9 +6,9 @@ from services import user_service
 
 
 def insert(user_id, body):
-    is_approved = user_service.get(user_id)["isAdmin"]
+    is_approved = user_service.get(user_id).is_admin
     category_id = body["categoryId"] if is_approved and "categoryId" in body else 1
-    dao_postgre.insert(Tag(None, body["name"], category_id, is_approved))
+    dao_postgre.insert(Tag(None, body["name"], is_approved, category_id))
 
 
 def get_all():

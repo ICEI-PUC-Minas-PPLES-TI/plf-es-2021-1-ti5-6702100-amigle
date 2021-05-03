@@ -25,14 +25,30 @@
 	import AdmUsers from "./pages/AdmUsers/AdmUsers.svelte";
 	import AdmManageTags from "./pages/AdmManageTags/AdmManageTags.svelte";
 	import AdmSuggestedTags from "./pages/AdmSuggestedTags/AdmSuggestedTags.svelte";
-	import { isAdmin, isAuthenticated } from "./utils/authStorage";
+	import {
+		getLocalUser,
+		isAdmin,
+		isAuthenticated,
+		removeLocalUser,
+	} from "./utils/authStorage";
+	import { onMount } from "svelte";
 
 	let drawer: any;
 	let drawerOpen = false;
+	let user = null;
 
 	const toggleDrawer = () => {
 		drawerOpen = !drawerOpen;
 	};
+
+	const logout = async () => {
+		removeLocalUser();
+		window.location.reload();
+	};
+
+	onMount(() => {
+		user = getLocalUser();
+	});
 
 	const routes = [
 		{
@@ -90,7 +106,7 @@
 			<Item><a class="drawer-link" href="/trending">Trending</a></Item>
 			<Item><a class="drawer-link" href="/history">Histórico</a></Item>
 			<Item><a class="drawer-link" href="/profile">Meu Perfil</a></Item>
-			<Item><a class="drawer-link" href="/">Sair</a></Item>
+			<Item><a on:click={logout} class="drawer-link" href="/">Sair</a></Item>
 			{#if isAdmin()}
 				<Item
 					><a class="drawer-link" href="/adm/chats"
@@ -134,11 +150,11 @@
 				<Section align="end" toolbar>
 					<div class="app-profile">
 						<span class="mdc-typography--subtitle1 app-profile-username"
-							>Lucas</span
+							>{user?.name ?? "Deslogado"}</span
 						>
 						<img
 							class="app-profile-avatar"
-							src="https://placekitten.com/40/40"
+							src={user?.profilePic ?? "img/empty.webp"}
 							alt=""
 						/>
 					</div>
@@ -161,6 +177,9 @@
 		font-weight: bold;
 	}
 	.app-profile-avatar {
+		height: 40px;
+		width: 40px;
+		object-fit: cover;
 		border-radius: 50%;
 	}
 	.app-title {

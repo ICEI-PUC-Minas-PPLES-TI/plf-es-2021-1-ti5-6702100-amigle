@@ -31,8 +31,9 @@ def get(tag_id):
 @tag.route("/tag", methods=['GET'])
 def get_all():
     tags_object = None
-    body = request.json
-    if body is None:
+    body = request.args
+
+    if len(body) == 0:
         tags_object = tag_service.get_all()
     elif "name" in body:
         tags_object = tag_service.search_by_name(body["name"])
