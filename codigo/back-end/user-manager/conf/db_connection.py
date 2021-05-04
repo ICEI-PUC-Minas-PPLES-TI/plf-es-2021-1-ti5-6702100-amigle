@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 host = os.environ.get('HOST')
-port = os.environ.get('PORT')
+port = os.environ.get('DB_PORT')
 username = os.environ.get('USERNAME')
 password = os.environ.get('PASSWORD')
 database = os.environ.get('DATABASE')

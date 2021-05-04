@@ -13,7 +13,7 @@ export default class Server {
 		this.#httpServer = createServer(this.#app);
 		this.#io = socketIO(this.#httpServer);
 
-		this.#httpServer.listen(5001);
+		this.#httpServer.listen(process.env.PORT || 5001);
 	}
 
 	get io() {
