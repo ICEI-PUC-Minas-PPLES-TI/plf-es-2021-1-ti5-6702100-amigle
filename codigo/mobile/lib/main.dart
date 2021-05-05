@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:amigleapp/src/app/models/entities/user/user_entity.dart';
 import 'package:amigleapp/src/app/screens/auth/login_controller.dart';
 import 'package:amigleapp/src/app/screens/auth/login_screen.dart';
 import 'package:amigleapp/src/app/screens/auth/register_controller.dart';
+import 'package:amigleapp/src/app/screens/home/chat_controller.dart';
 import 'package:amigleapp/src/app/utils/network/connection_controller.dart';
 import 'package:amigleapp/src/app/utils/network/network_service.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +26,7 @@ bool intro;
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  HttpOverrides.global = new MyHttpOverrides();
 
   _configDatabase();
   _registerStores();
@@ -50,6 +54,7 @@ _registerStores() {
   getIt.registerSingleton(RegisterController());
   getIt.registerSingleton(LoginController());
   getIt.registerSingleton(ConnectionController());
+  getIt.registerSingleton(ChatController());
 }
 
 _configDatabase() async {
@@ -83,12 +88,20 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
               fontFamily: 'Roboto',
               backgroundColor: ColorsStyle.background,
-              canvasColor: Colors.transparent,
               primaryColor: ColorsStyle.purple),
           // home: AberturaScreen(),
           home: LoginScreen(),
         );
       },
     );
+  }
+}
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }

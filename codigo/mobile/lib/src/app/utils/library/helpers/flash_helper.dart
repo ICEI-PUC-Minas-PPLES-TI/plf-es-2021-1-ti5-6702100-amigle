@@ -248,16 +248,12 @@ class FlashHelper {
     );
   }
 
-  static Future<T> blockDialog<T>(
-    BuildContext context, {
-    @required Completer<T> dismissCompleter,
-  }) {
+  static Future<T> blockDialog<T>(BuildContext context) {
     return showFlash<T>(
       context: context,
       persistent: false,
       onWillPop: () => Future.value(false),
       builder: (context, FlashController<T> controller) {
-        dismissCompleter.future.then((value) => controller.dismiss(value));
         return Flash.dialog(
           controller: controller,
           barrierDismissible: false,

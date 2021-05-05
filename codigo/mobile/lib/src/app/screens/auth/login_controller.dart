@@ -1,6 +1,9 @@
 import 'package:amigleapp/src/app/models/dto/user/UserDTO.dart';
+import 'package:amigleapp/src/app/screens/home/home_screen.dart';
 import 'package:amigleapp/src/app/services/service_status_data.dart';
 import 'package:amigleapp/src/app/services/user_service.dart';
+import 'package:amigleapp/src/app/utils/library/helpers/flash_helper.dart';
+import 'package:amigleapp/src/app/utils/library/helpers/global.dart';
 import 'package:dio/dio.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:mobx/mobx.dart';
@@ -63,10 +66,40 @@ abstract class _LoginControllerBase with Store {
     } else {
       errorPassword = null;
     }
+
+    if (isValid) login(email, password);
   }
 
   @action
-  Future<bool> login(String email, String password) {
-    FormData data = FormData.fromMap({'email': email, 'password': password});
+  login(String email, String password, {var image}) {
+    var body = {'email': email, 'password': password};
+
+    _userService.login(user: body).then((value) async {
+      appNavigator.navigate(HomeScreen(), replace: true);
+      user.setDone(value);
+
+      if (image != null) {
+        var form = FormData.fromMap({'profilePic': image.readAsBytesSync()});
+
+        uploadPic(form, value.id);
+      }
+    }).catchError((e) {
+      FlashHelper.errorBar(appNavigator.currentContext,
+          message: 'E-mail ou senha incorretos.',
+          duration: Duration(seconds: 6));
+    });
+  }
+
+  @action
+  uploadPic(FormData form, String id) {
+    _userService.uploadPicUser(pic: form, uid: id).then((value) {
+      FlashHelper.successBar(appNavigator.currentContext,
+          message: 'Foto do usuario atualizado com sucesso!',
+          duration: Duration(seconds: 6));
+    }).catchError((e) {
+      FlashHelper.errorBar(appNavigator.currentContext,
+          message: 'Ops, erro ao atualizar foto do usuario.',
+          duration: Duration(seconds: 6));
+    });
   }
 }

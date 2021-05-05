@@ -11,8 +11,8 @@ class CustomButtonWidget extends StatelessWidget {
 
   CustomButtonWidget(
       {@required this.title,
-      @required this.backgroundColor,
       @required this.onPressed,
+      this.backgroundColor,
       this.height,
       this.margin,
       this.radius,

@@ -1,25 +1,23 @@
+import 'package:amigleapp/src/app/models/dto/tags/TagDTO.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'UserDTO.g.dart';
 
 @JsonSerializable()
 class UserDTO {
-  String uid;
+  String id;
   String name;
-  String phone;
-  String document;
-  String businessName;
-  String message;
-  bool isAdmin;
+  String profilePic;
+  String birthDate;
+  List<TagDTO> tags;
 
-  UserDTO(
-      {this.uid,
-      this.name,
-      this.phone,
-      this.document,
-      this.businessName,
-      this.message,
-      this.isAdmin});
+  UserDTO({
+    this.id,
+    this.name,
+    this.profilePic,
+    this.birthDate,
+    this.tags,
+  });
 
   factory UserDTO.fromJson(Map<String, dynamic> json) =>
       _$UserDTOFromJson(json);

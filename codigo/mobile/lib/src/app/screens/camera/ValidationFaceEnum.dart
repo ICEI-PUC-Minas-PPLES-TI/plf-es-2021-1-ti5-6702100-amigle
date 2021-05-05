@@ -1,0 +1,8 @@
+enum ValidationFaceEnum {
+  //NEED_ALL,
+  NEED_JUST_EYES,
+  //NEED_JUST_SMILE,
+  SUCCESS,
+  NEED_OPEN_EYES,
+  BEFORE_DETECTION
+}

@@ -6,14 +6,15 @@ import 'package:amigleapp/src/app/services/service_status_data.dart';
 import 'package:amigleapp/src/app/services/user_service.dart';
 import 'package:amigleapp/src/app/utils/library/helpers/flash_helper.dart';
 import 'package:amigleapp/src/app/utils/library/helpers/global.dart';
+import 'package:dio/dio.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:mobx/mobx.dart';
 
-part 'register_controller.g.dart';
+part 'my_profile_controller.g.dart';
 
-class RegisterController = _RegisterControllerBase with _$RegisterController;
+class MyProfileController = _MyProfileControllerBase with _$MyProfileController;
 
-abstract class _RegisterControllerBase with Store {
+abstract class _MyProfileControllerBase with Store {
   UserService _userService = UserService();
 
   ServiceStatusData<UserDTO> registeredUser = ServiceStatusData();
@@ -95,69 +96,57 @@ abstract class _RegisterControllerBase with Store {
 
   @action
   verify() {
-    isValid = true;
-
-    if (!verifyName) {
-      isValid = false;
-      errorName = 'Digite um nome válido';
-    } else {
-      errorName = null;
+    if (name == null && image == null && age == null) {
+      return;
     }
 
-    if (!verifyAge) {
-      isValid = false;
-      errorAge = 'Digite uma data de nascimento válida';
-    } else {
-      errorAge = null;
-    }
-
-    if (!verifyEmail) {
-      isValid = false;
-      errorEmail = 'Digite um email válido';
-    } else {
-      errorEmail = null;
-    }
-
-    if (!verifyPassword) {
-      isValid = false;
-      errorPassword = 'Digite uma senha com pelo menos 8 caracteres';
-    } else {
-      errorPassword = null;
-    }
-
-    if (!verifyConfirm) {
-      isValid = false;
-      errorConfirm = 'A confirmação da senha deve ser igual a senha';
-    } else {
-      errorConfirm = null;
-    }
-
-    if (isValid) registerUser();
+    updateUser();
   }
 
   @action
-  registerUser() {
-    var ageArray = age.split('/');
-    var body = {
-      'name': name,
-      'email': email,
-      'password': password,
-      'birthDate': '${ageArray[2]}-${ageArray[1]}-${ageArray[0]}'
-    };
+  updateUser() async {
+    var body;
+    var ageArray;
+    FormData form;
 
-    _userService.registerUser(user: body).then((value) {
-      FlashHelper.successBar(appNavigator.currentContext,
-          message: 'Usuario cadastrado com sucesso!',
-          duration: Duration(seconds: 6));
+    if (image == null) {
+      ageArray = age?.split('/') ?? [];
 
-      userController.login(email, password, image: image);
-    }).catchError((e) {
-      FlashHelper.errorBar(appNavigator.currentContext,
-          message: 'Ops, erro ao cadastrar usuario.',
-          duration: Duration(seconds: 6));
-    });
+      body = {
+        'name': name ?? userController.user.getData.name,
+        'birthDate': ageArray.isNotEmpty
+            ? '${ageArray[2]}-${ageArray[1]}-${ageArray[0]}'
+            : userController.user.getData.birthDate
+      };
+
+      if (password != null) {
+        body.addAll({'password': password});
+      }
+
+      _userService
+          .updateUser(user: body, uid: userController.user.getData.id)
+          .then((value) {
+        FlashHelper.successBar(appNavigator.currentContext,
+            message: 'Usuario atualizado com sucesso!',
+            duration: Duration(seconds: 6));
+
+        if (name != null) {
+          userController.user.getData.name = name;
+        }
+
+        if (ageArray.isNotEmpty) {
+          userController.user.getData.birthDate =
+              '${ageArray[2]}-${ageArray[1]}-${ageArray[0]}';
+        }
+      }).catchError((e) {
+        FlashHelper.errorBar(appNavigator.currentContext,
+            message: 'Ops, erro ao atualizar usuario.',
+            duration: Duration(seconds: 6));
+      });
+    } else {
+      var form = FormData.fromMap({'profilePic': image.readAsBytesSync()});
+
+      userController.uploadPic(form, userController.user.getData.id);
+    }
   }
-
-  @action
-  updateUser() {}
 }

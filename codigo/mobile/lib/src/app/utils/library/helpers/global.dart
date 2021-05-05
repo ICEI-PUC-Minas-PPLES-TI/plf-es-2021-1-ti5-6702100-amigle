@@ -1,5 +1,6 @@
 import 'package:amigleapp/src/app/screens/auth/login_controller.dart';
 import 'package:amigleapp/src/app/screens/auth/register_controller.dart';
+import 'package:amigleapp/src/app/screens/home/chat_controller.dart';
 import 'package:amigleapp/src/app/shared/alert-dialog/alert_controller.dart';
 import 'package:amigleapp/src/app/shared/alert-dialog/loading_hud.dart';
 import 'package:amigleapp/src/app/shared/loading-screen/loading_controller.dart';
@@ -19,3 +20,4 @@ final frwkLoadHud = GetIt.I<LoadingHUD>();
 final registerController = GetIt.I<RegisterController>();
 final userController = GetIt.I<LoginController>();
 final appConnection = GetIt.I<ConnectionController>();
+final chatController = GetIt.I<ChatController>();

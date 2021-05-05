@@ -21,83 +21,82 @@ class LoginScreen extends StatelessWidget {
         }
       },
       child: Scaffold(
-          backgroundColor: ColorsStyle.background,
-          appBar: AppBarWidget.build(),
-          body: _buildBody()),
+          appBar: AppBarWidget.build(noAction: true), body: _buildBody()),
     ));
   }
 
   _buildBody() {
-    return SingleChildScrollView(
-      padding: EdgeInsets.only(top: 32, left: 16, right: 16, bottom: 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Text(
-            'Login',
-            style: TextStyle(color: Colors.black, fontSize: 34),
-          ),
-          SizedBox(
-            height: 24,
-          ),
-          Observer(
-            builder: (_) {
-              return Column(
-                children: <Widget>[
-                  TextFieldWidget(
-                      label: 'E-mail',
-                      password: false,
-                      keyBoardType: TextInputType.emailAddress,
-                      errorText: userController.errorEmail,
-                      onChange: (text) {
-                        userController.email = text?.trim();
-                      }),
-                  SizedBox(
-                    height: 16,
+    return Scaffold(
+      body: SingleChildScrollView(
+        padding: EdgeInsets.only(top: 32, left: 16, right: 16, bottom: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Text(
+              'Login',
+              style: TextStyle(color: Colors.black, fontSize: 34),
+            ),
+            SizedBox(
+              height: 24,
+            ),
+            Observer(
+              builder: (_) {
+                return Column(
+                  children: <Widget>[
+                    TextFieldWidget(
+                        label: 'E-mail',
+                        password: false,
+                        keyBoardType: TextInputType.emailAddress,
+                        errorText: userController.errorEmail,
+                        onChange: (text) {
+                          userController.email = text?.trim();
+                        }),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    TextFieldWidget(
+                        label: 'Senha',
+                        password: true,
+                        errorText: userController.errorPassword,
+                        onChange: (text) {
+                          userController.password = text?.trim();
+                        }),
+                  ],
+                );
+              },
+            ),
+            SizedBox(
+              height: 14,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CustomButtonWidget(
+                  title: Text(
+                    'CADASTRE-SE',
+                    style: TextStyle(
+                        color: ColorsStyle.purple, fontWeight: FontWeight.bold),
                   ),
-                  TextFieldWidget(
-                      label: 'Senha',
-                      password: true,
-                      errorText: userController.errorPassword,
-                      onChange: (text) {
-                        userController.password = text?.trim();
-                      }),
-                ],
-              );
-            },
-          ),
-          SizedBox(
-            height: 14,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              CustomButtonWidget(
-                title: Text(
-                  'CADASTRE-SE',
-                  style: TextStyle(
-                      color: ColorsStyle.purple, fontWeight: FontWeight.bold),
+                  onPressed: () {
+                    appNavigator.navigate(RegisterScreen());
+                  },
+                  borderColor: ColorsStyle.gray,
+                  radius: 4,
                 ),
-                backgroundColor: ColorsStyle.background,
-                onPressed: () {
-                  appNavigator.navigate(RegisterScreen());
-                },
-                borderColor: ColorsStyle.gray,
-                radius: 4,
-              ),
-              CustomButtonWidget(
-                title: Text(
-                  'LOGIN',
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
+                CustomButtonWidget(
+                  title: Text(
+                    'LOGIN',
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                  backgroundColor: ColorsStyle.purple,
+                  onPressed: userController.verify,
+                  radius: 4,
                 ),
-                backgroundColor: ColorsStyle.purple,
-                onPressed: userController.verify,
-                radius: 4,
-              ),
-            ],
-          )
-        ],
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

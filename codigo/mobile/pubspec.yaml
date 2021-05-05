@@ -34,6 +34,10 @@ dependencies:
   email_validator: 1.0.4
   hive: 1.4.4
   hive_flutter: 0.3.1
+  flutter_image_compress: 0.7.0
+  socket_io_client: 0.9.12
+  flutter_webrtc: 0.5.8
+  sdp_transform: ^0.2.0
 
 dev_dependencies:
   flutter_test:

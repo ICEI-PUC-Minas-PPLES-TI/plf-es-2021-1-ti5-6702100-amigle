@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'register_controller.dart';
+part of 'my_profile_controller.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,7 +8,7 @@ part of 'register_controller.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$RegisterController on _RegisterControllerBase, Store {
+mixin _$MyProfileController on _MyProfileControllerBase, Store {
   Computed<bool> _$verifyEmailComputed;
 
   @override
@@ -37,7 +37,7 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
   bool get verifyAge =>
       (_$verifyAgeComputed ??= Computed<bool>(() => super.verifyAge)).value;
 
-  final _$imageAtom = Atom(name: '_RegisterControllerBase.image');
+  final _$imageAtom = Atom(name: '_MyProfileControllerBase.image');
 
   @override
   File get image {
@@ -54,7 +54,7 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
     }, _$imageAtom, name: '${_$imageAtom.name}_set');
   }
 
-  final _$emailAtom = Atom(name: '_RegisterControllerBase.email');
+  final _$emailAtom = Atom(name: '_MyProfileControllerBase.email');
 
   @override
   String get email {
@@ -71,7 +71,7 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
     }, _$emailAtom, name: '${_$emailAtom.name}_set');
   }
 
-  final _$errorEmailAtom = Atom(name: '_RegisterControllerBase.errorEmail');
+  final _$errorEmailAtom = Atom(name: '_MyProfileControllerBase.errorEmail');
 
   @override
   String get errorEmail {
@@ -88,7 +88,7 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
     }, _$errorEmailAtom, name: '${_$errorEmailAtom.name}_set');
   }
 
-  final _$passwordAtom = Atom(name: '_RegisterControllerBase.password');
+  final _$passwordAtom = Atom(name: '_MyProfileControllerBase.password');
 
   @override
   String get password {
@@ -106,7 +106,7 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
   }
 
   final _$errorPasswordAtom =
-      Atom(name: '_RegisterControllerBase.errorPassword');
+      Atom(name: '_MyProfileControllerBase.errorPassword');
 
   @override
   String get errorPassword {
@@ -124,7 +124,7 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
   }
 
   final _$confirmPasswordAtom =
-      Atom(name: '_RegisterControllerBase.confirmPassword');
+      Atom(name: '_MyProfileControllerBase.confirmPassword');
 
   @override
   String get confirmPassword {
@@ -141,7 +141,8 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
     }, _$confirmPasswordAtom, name: '${_$confirmPasswordAtom.name}_set');
   }
 
-  final _$errorConfirmAtom = Atom(name: '_RegisterControllerBase.errorConfirm');
+  final _$errorConfirmAtom =
+      Atom(name: '_MyProfileControllerBase.errorConfirm');
 
   @override
   String get errorConfirm {
@@ -158,7 +159,7 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
     }, _$errorConfirmAtom, name: '${_$errorConfirmAtom.name}_set');
   }
 
-  final _$nameAtom = Atom(name: '_RegisterControllerBase.name');
+  final _$nameAtom = Atom(name: '_MyProfileControllerBase.name');
 
   @override
   String get name {
@@ -175,7 +176,7 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
     }, _$nameAtom, name: '${_$nameAtom.name}_set');
   }
 
-  final _$errorNameAtom = Atom(name: '_RegisterControllerBase.errorName');
+  final _$errorNameAtom = Atom(name: '_MyProfileControllerBase.errorName');
 
   @override
   String get errorName {
@@ -192,7 +193,7 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
     }, _$errorNameAtom, name: '${_$errorNameAtom.name}_set');
   }
 
-  final _$ageAtom = Atom(name: '_RegisterControllerBase.age');
+  final _$ageAtom = Atom(name: '_MyProfileControllerBase.age');
 
   @override
   String get age {
@@ -209,7 +210,7 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
     }, _$ageAtom, name: '${_$ageAtom.name}_set');
   }
 
-  final _$errorAgeAtom = Atom(name: '_RegisterControllerBase.errorAge');
+  final _$errorAgeAtom = Atom(name: '_MyProfileControllerBase.errorAge');
 
   @override
   String get errorAge {
@@ -226,7 +227,7 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
     }, _$errorAgeAtom, name: '${_$errorAgeAtom.name}_set');
   }
 
-  final _$isValidAtom = Atom(name: '_RegisterControllerBase.isValid');
+  final _$isValidAtom = Atom(name: '_MyProfileControllerBase.isValid');
 
   @override
   bool get isValid {
@@ -243,50 +244,35 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
     }, _$isValidAtom, name: '${_$isValidAtom.name}_set');
   }
 
-  final _$_RegisterControllerBaseActionController =
-      ActionController(name: '_RegisterControllerBase');
+  final _$updateUserAsyncAction = AsyncAction('updateUser');
+
+  @override
+  Future updateUser() {
+    return _$updateUserAsyncAction.run(() => super.updateUser());
+  }
+
+  final _$_MyProfileControllerBaseActionController =
+      ActionController(name: '_MyProfileControllerBase');
 
   @override
   dynamic setImage(File image) {
     final _$actionInfo =
-        _$_RegisterControllerBaseActionController.startAction();
+        _$_MyProfileControllerBaseActionController.startAction();
     try {
       return super.setImage(image);
     } finally {
-      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
+      _$_MyProfileControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic verify() {
     final _$actionInfo =
-        _$_RegisterControllerBaseActionController.startAction();
+        _$_MyProfileControllerBaseActionController.startAction();
     try {
       return super.verify();
     } finally {
-      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic registerUser() {
-    final _$actionInfo =
-        _$_RegisterControllerBaseActionController.startAction();
-    try {
-      return super.registerUser();
-    } finally {
-      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic updateUser() {
-    final _$actionInfo =
-        _$_RegisterControllerBaseActionController.startAction();
-    try {
-      return super.updateUser();
-    } finally {
-      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
+      _$_MyProfileControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 }

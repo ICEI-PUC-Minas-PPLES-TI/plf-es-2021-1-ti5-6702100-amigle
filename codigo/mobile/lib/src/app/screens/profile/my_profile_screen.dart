@@ -1,6 +1,8 @@
 import 'package:amigleapp/src/app/components/app_bar_widget.dart';
 import 'package:amigleapp/src/app/components/custom_button_widget.dart';
+import 'package:amigleapp/src/app/components/nav_drawer.dart';
 import 'package:amigleapp/src/app/components/text_field_widget.dart';
+import 'package:amigleapp/src/app/screens/profile/tags_screen.dart';
 import 'package:amigleapp/src/app/shared/loading-screen/loading_screen.dart';
 import 'package:amigleapp/src/app/utils/library/helpers/global.dart';
 import 'package:amigleapp/src/app/utils/styles/colors_style.dart';
@@ -8,7 +10,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:image_picker/image_picker.dart';
 
-class RegisterScreen extends StatelessWidget {
+import 'my_profile_controller.dart';
+
+class MyProfileScreen extends StatelessWidget {
+  final MyProfileController _controller = MyProfileController();
+
   @override
   Widget build(BuildContext context) {
     return LoadingScreen(
@@ -21,7 +27,12 @@ class RegisterScreen extends StatelessWidget {
         }
       },
       child: Scaffold(
-          appBar: AppBarWidget.build(backButton: true), body: _buildBody()),
+          appBar: AppBarWidget.build(),
+          body: Scaffold(
+            key: AppBarWidget.scaffoldKey,
+            drawer: NavDrawer(),
+            body: _buildBody(),
+          )),
     ));
   }
 
@@ -32,7 +43,7 @@ class RegisterScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Text(
-            'Cadastro',
+            'Editar Perfil',
             style: TextStyle(color: Colors.black, fontSize: 34),
           ),
           SizedBox(
@@ -50,9 +61,9 @@ class RegisterScreen extends StatelessWidget {
                       label: 'Nome',
                       password: false,
                       keyBoardType: TextInputType.text,
-                      errorText: registerController.errorName,
+                      errorText: _controller.errorName,
                       onChange: (text) {
-                        registerController.name = text?.trim();
+                        _controller.name = text?.trim();
                       }),
                   SizedBox(
                     height: 16,
@@ -62,40 +73,9 @@ class RegisterScreen extends StatelessWidget {
                       keyBoardType: TextInputType.number,
                       password: false,
                       mask: '##/##/####',
-                      errorText: registerController.errorAge,
+                      errorText: _controller.errorAge,
                       onChange: (text) {
-                        registerController.age = text?.trim();
-                      }),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  TextFieldWidget(
-                      label: 'E-mail',
-                      password: false,
-                      keyBoardType: TextInputType.emailAddress,
-                      errorText: registerController.errorEmail,
-                      onChange: (text) {
-                        registerController.email = text?.trim();
-                      }),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  TextFieldWidget(
-                      label: 'Senha',
-                      password: true,
-                      errorText: registerController.errorPassword,
-                      onChange: (text) {
-                        registerController.password = text?.trim();
-                      }),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  TextFieldWidget(
-                      label: 'Confirmar Senha',
-                      password: true,
-                      errorText: registerController.errorConfirm,
-                      onChange: (text) {
-                        registerController.confirmPassword = text?.trim();
+                        _controller.age = text?.trim();
                       }),
                 ],
               );
@@ -105,16 +85,28 @@ class RegisterScreen extends StatelessWidget {
             height: 14,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomButtonWidget(
                 title: Text(
-                  'CADASTRAR',
+                  'GERENCIAR TAGS',
+                  style: TextStyle(
+                      color: ColorsStyle.purple, fontWeight: FontWeight.bold),
+                ),
+                onPressed: () {
+                  appNavigator.navigate(TagsScreen());
+                },
+                borderColor: ColorsStyle.gray,
+                radius: 4,
+              ),
+              CustomButtonWidget(
+                title: Text(
+                  'SALVAR',
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
                 backgroundColor: ColorsStyle.purple,
-                onPressed: registerController.verify,
+                onPressed: _controller.verify,
                 radius: 4,
               ),
             ],
@@ -145,7 +137,7 @@ class RegisterScreen extends StatelessWidget {
             SizedBox(
               width: 10,
             ),
-            registerController.image != null
+            _controller.image != null
                 ? Container(
                     width: 40.0,
                     height: 40.0,
@@ -153,7 +145,7 @@ class RegisterScreen extends StatelessWidget {
                         shape: BoxShape.circle,
                         image: DecorationImage(
                             fit: BoxFit.cover,
-                            image: FileImage(registerController.image))))
+                            image: FileImage(_controller.image))))
                 : Icon(
                     Icons.account_circle,
                     size: 40,
@@ -166,7 +158,7 @@ class RegisterScreen extends StatelessWidget {
   }
 
   _pickImage() async {
-    registerController.setImage(await ImagePicker.pickImage(
+    _controller.setImage(await ImagePicker.pickImage(
         source: ImageSource.camera, imageQuality: 50));
   }
 }

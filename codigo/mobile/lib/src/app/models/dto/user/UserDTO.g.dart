@@ -8,22 +8,21 @@ part of 'UserDTO.dart';
 
 UserDTO _$UserDTOFromJson(Map<String, dynamic> json) {
   return UserDTO(
-    uid: json['uid'] as String,
+    id: json['id'] as String,
     name: json['name'] as String,
-    phone: json['phone'] as String,
-    document: json['document'] as String,
-    businessName: json['businessName'] as String,
-    message: json['message'] as String,
-    isAdmin: json['isAdmin'] as bool,
+    profilePic: json['profilePic'] as String,
+    birthDate: json['birthDate'] as String,
+    tags: (json['tags'] as List)
+        ?.map((e) =>
+            e == null ? null : TagDTO.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
   );
 }
 
 Map<String, dynamic> _$UserDTOToJson(UserDTO instance) => <String, dynamic>{
-      'uid': instance.uid,
+      'id': instance.id,
       'name': instance.name,
-      'phone': instance.phone,
-      'document': instance.document,
-      'businessName': instance.businessName,
-      'message': instance.message,
-      'isAdmin': instance.isAdmin,
+      'profilePic': instance.profilePic,
+      'birthDate': instance.birthDate,
+      'tags': instance.tags,
     };

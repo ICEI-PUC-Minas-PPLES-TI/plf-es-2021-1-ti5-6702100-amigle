@@ -120,10 +120,20 @@ mixin _$LoginController on _LoginControllerBase, Store {
   }
 
   @override
-  Future<bool> login(String email, String password) {
+  dynamic login(String email, String password, {dynamic image}) {
     final _$actionInfo = _$_LoginControllerBaseActionController.startAction();
     try {
-      return super.login(email, password);
+      return super.login(email, password, image: image);
+    } finally {
+      _$_LoginControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic uploadPic(FormData form, String id) {
+    final _$actionInfo = _$_LoginControllerBaseActionController.startAction();
+    try {
+      return super.uploadPic(form, id);
     } finally {
       _$_LoginControllerBaseActionController.endAction(_$actionInfo);
     }
