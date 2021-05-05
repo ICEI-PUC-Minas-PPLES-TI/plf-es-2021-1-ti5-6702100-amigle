@@ -23,10 +23,6 @@
 			alert("Ocorreu um erro ao fazer o login.");
 		}
 	};
-
-	const signup = () => {
-		window.location.pathname = "/signup";
-	};
 </script>
 
 <div>
@@ -54,8 +50,10 @@
 			<Spacer vertical={32} />
 
 			<Flex justify="space-between">
-				<Button variant="outlined" type="button" on:click={signup}
-					>Cadastrar-se</Button
+				<a
+					class=" mdc-button mdc-ripple-upgraded mdc-button--outlined"
+					href="/signup"
+					type="submit">Cadastre-se</a
 				>
 				<Button variant="raised" type="submit">Login</Button>
 			</Flex>
