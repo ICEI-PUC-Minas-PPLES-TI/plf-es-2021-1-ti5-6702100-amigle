@@ -44,7 +44,10 @@
 		socket = io(
 			window.location.href.includes("localhost")
 				? "ws://localhost:5001"
-				: "ws://amigle-chat-manager.herokuapp.com"
+				: "wss://amigle-chat-manager.herokuapp.com",
+			{
+				secure: true,
+			}
 		);
 		initialDialog.open();
 	};
