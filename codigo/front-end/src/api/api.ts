@@ -1,4 +1,6 @@
-const baseAddress = "http://localhost:3000";
+const baseAddress = window.location.href.includes("localhost")
+	? "http://localhost:3000"
+	: "https://amigle-user-manager.herokuapp.com";
 
 export const getReq = async (path: string) => {
 	try {

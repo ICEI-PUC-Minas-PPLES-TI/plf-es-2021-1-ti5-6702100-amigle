@@ -41,7 +41,11 @@
 	};
 
 	const openChatModal = () => {
-		socket = io("ws://localhost:5001");
+		socket = io(
+			window.location.href.includes("localhost")
+				? "ws://localhost:5001"
+				: "ws://amigle-chat-manager.herokuapp.com"
+		);
 		initialDialog.open();
 	};
 
@@ -191,6 +195,8 @@
 
 	onMount(async () => {
 		user = await getUser(userId);
+
+		openChatModal();
 		navigator.mediaDevices
 			.getUserMedia({ video: true, audio: true })
 			.then((stream) => {
@@ -217,6 +223,7 @@
 				bind:this={localVideo}
 				class="home-videoContainer-localVideo"
 				autoplay
+				muted
 			>
 				<source type="video/mp4" />
 			</video>
