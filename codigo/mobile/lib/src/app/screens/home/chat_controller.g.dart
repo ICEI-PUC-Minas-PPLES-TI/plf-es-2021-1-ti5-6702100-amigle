@@ -43,21 +43,18 @@ mixin _$ChatController on _ChatControllerBase, Store {
     }, _$messagesAtom, name: '${_$messagesAtom.name}_set');
   }
 
-  final _$remoteRendererAtom = Atom(name: '_ChatControllerBase.remoteRenderer');
+  final _$connectAsyncAction = AsyncAction('connect');
 
   @override
-  RTCVideoRenderer get remoteRenderer {
-    _$remoteRendererAtom.context.enforceReadPolicy(_$remoteRendererAtom);
-    _$remoteRendererAtom.reportObserved();
-    return super.remoteRenderer;
+  Future connect() {
+    return _$connectAsyncAction.run(() => super.connect());
   }
 
+  final _$allTagsAsyncAction = AsyncAction('allTags');
+
   @override
-  set remoteRenderer(RTCVideoRenderer value) {
-    _$remoteRendererAtom.context.conditionallyRunInAction(() {
-      super.remoteRenderer = value;
-      _$remoteRendererAtom.reportChanged();
-    }, _$remoteRendererAtom, name: '${_$remoteRendererAtom.name}_set');
+  Future allTags(Signaling signaling) {
+    return _$allTagsAsyncAction.run(() => super.allTags(signaling));
   }
 
   final _$_callUserAsyncAction = AsyncAction('_callUser');
@@ -76,6 +73,13 @@ mixin _$ChatController on _ChatControllerBase, Store {
         .run(() => super._createPeerConnection(socketId));
   }
 
+  final _$_createStreamAsyncAction = AsyncAction('_createStream');
+
+  @override
+  Future<MediaStream> _createStream() {
+    return _$_createStreamAsyncAction.run(() => super._createStream());
+  }
+
   final _$_ChatControllerBaseActionController =
       ActionController(name: '_ChatControllerBase');
 
@@ -84,26 +88,6 @@ mixin _$ChatController on _ChatControllerBase, Store {
     final _$actionInfo = _$_ChatControllerBaseActionController.startAction();
     try {
       return super.addMessage(text, otherUser);
-    } finally {
-      _$_ChatControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic connect() {
-    final _$actionInfo = _$_ChatControllerBaseActionController.startAction();
-    try {
-      return super.connect();
-    } finally {
-      _$_ChatControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic allTags() {
-    final _$actionInfo = _$_ChatControllerBaseActionController.startAction();
-    try {
-      return super.allTags();
     } finally {
       _$_ChatControllerBaseActionController.endAction(_$actionInfo);
     }

@@ -1,5 +1,6 @@
 import 'package:amigleapp/src/app/components/app_bar_widget.dart';
 import 'package:amigleapp/src/app/components/nav_drawer.dart';
+import 'package:amigleapp/src/app/screens/home/Signaling.dart';
 import 'package:amigleapp/src/app/shared/loading-screen/loading_screen.dart';
 import 'package:amigleapp/src/app/utils/library/helpers/global.dart';
 import 'package:amigleapp/src/app/utils/styles/colors_style.dart';
@@ -18,6 +19,11 @@ class _HomeScreenState extends State<HomeScreen> {
   var _selfId;
   bool _inCalling = false;
 
+  Signaling signaling = Signaling();
+
+  RTCVideoRenderer _localRenderer = RTCVideoRenderer();
+  RTCVideoRenderer _remoteRenderer = RTCVideoRenderer();
+
   @override
   void initState() {
     SchedulerBinding.instance.addPostFrameCallback((_) {
@@ -25,6 +31,31 @@ class _HomeScreenState extends State<HomeScreen> {
     });
 
     super.initState();
+    initRenderers();
+  }
+
+  initRenderers() async {
+    await _localRenderer.initialize();
+    await _remoteRenderer.initialize();
+
+    signaling.onLocalChange = (m) {
+      setState(() {
+        _localRenderer.srcObject = m;
+      });
+    };
+
+    signaling.onRemoteChange = (m) {
+      setState(() {
+        _remoteRenderer.srcObject = m;
+      });
+    };
+  }
+
+  @override
+  deactivate() {
+    super.deactivate();
+    _localRenderer.dispose();
+    _remoteRenderer.dispose();
   }
 
   @override
@@ -55,20 +86,24 @@ class _HomeScreenState extends State<HomeScreen> {
             margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
-            child: RTCVideoView(chatController.remoteRenderer),
+            child: RTCVideoView(_remoteRenderer),
             decoration: BoxDecoration(color: Colors.black54),
           ));
         }),
-        /*Positioned(
-          left: 20.0,
-          top: 20.0,
-          child: Container(
-            width:  90.0 ,
-            height: 120.0 ,
-            child: RTCVideoView(chatController.localRenderer),
-            decoration: BoxDecoration(color: Colors.black54),
-          ),
-        ),*/
+        Observer(builder: (_) {
+          return Positioned(
+            left: 20.0,
+            top: 20.0,
+            child: Container(
+              width: 90.0,
+              height: 120.0,
+              child: RTCVideoView(
+                _localRenderer,
+              ),
+              decoration: BoxDecoration(color: Colors.black54),
+            ),
+          );
+        }),
         //TakePictureScreen(),
         Align(
             alignment: Alignment.bottomCenter,
@@ -119,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: EdgeInsets.all(2),
                     onPressed: () {
                       appNavigator.popNavigate();
-                      chatController.allTags();
+                      chatController.allTags(signaling);
                     },
                     child: Text(
                       'TODAS AS TAGS',

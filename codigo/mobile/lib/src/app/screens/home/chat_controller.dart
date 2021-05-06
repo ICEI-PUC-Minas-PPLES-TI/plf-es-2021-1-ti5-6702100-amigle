@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:amigleapp/src/app/screens/home/Signaling.dart';
 import 'package:amigleapp/src/app/utils/library/helpers/global.dart';
 import 'package:amigleapp/src/configs/app_config.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
@@ -23,10 +24,16 @@ abstract class _ChatControllerBase with Store {
 
   RTCPeerConnection peer;
 
-  RTCVideoRenderer localRenderer = RTCVideoRenderer();
+  // @observable
+  // RTCVideoRenderer localRenderer = RTCVideoRenderer();
 
-  @observable
-  RTCVideoRenderer remoteRenderer = RTCVideoRenderer();
+  // @observable
+  // RTCVideoRenderer remoteRenderer = RTCVideoRenderer();
+
+  MediaStream localMediaStream;
+  MediaStream remoteMediaStream;
+
+  Signaling signaling;
 
   @action
   addMessage(String text, bool otherUser) {
@@ -34,23 +41,23 @@ abstract class _ChatControllerBase with Store {
     messages = messages;
   }
 
-  _ChatControllerBase() {
+  @action
+  connect() async {
     socket = io(APP_CONFIG.SOCKET_SERVER, <String, dynamic>{
       'transports': ['websocket'],
       'autoConnect': false,
     });
-  }
-
-  @action
-  connect() {
     socket.on('connect', (_) => print('Connected'));
     socket.connect();
   }
 
   @action
-  allTags() {
-    connect();
-    remoteRenderer.initialize();
+  allTags(Signaling signaling) async {
+    await connect();
+    this.signaling = signaling;
+    localMediaStream = await _createStream();
+    this.signaling.onLocalChange?.call(localMediaStream);
+    //localRenderer.srcObject = localMediaStream;
     socket.emit("join-all-tags", userController.user.getData.toJson());
     frwkLoading.startLoading();
     _listenActions();
@@ -70,37 +77,52 @@ abstract class _ChatControllerBase with Store {
     });
 
     socket.on("offer", (dynamic e) async {
+      if (e == null) return;
       otherUserSocketId = e['caller'];
       peer = await _createPeerConnection(null);
       var desc = RTCSessionDescription(e['sdp']['sdp'], e['sdp']['type']);
 
       peer
           .setRemoteDescription(desc)
-          .then((i) => peer.createAnswer({}))
+          .then((value) {
+            localMediaStream.getTracks().forEach((track) {
+              // peer.addStream(localMediaStream);
+              peer.addTrack(track, localMediaStream);
+            });
+          })
+          .then((i) => peer.createAnswer({
+                'mandatory': {
+                  'OfferToReceiveAudio': true,
+                  'OfferToReceiveVideo': true,
+                },
+                'optional': [],
+              }))
           .then((answer) => peer.setLocalDescription(answer))
           .then((j) async {
-        print('a');
+            print('a');
 
-        var description = await peer.getLocalDescription();
-        var payload = {
-          'target': e['caller'],
-          'caller': socket.id,
-          'sdp': {'type': description.type, 'sdp': description.sdp},
-        };
+            var description = await peer.getLocalDescription();
+            var payload = {
+              'target': e['caller'],
+              'caller': socket.id,
+              'sdp': {'type': description.type, 'sdp': description.sdp},
+            };
 
-        otherUserSocketId = e['caller'];
-        socket.emit("answer", payload);
-        frwkLoading.stopLoading();
-      });
+            otherUserSocketId = e['caller'];
+            socket.emit("answer", payload);
+            frwkLoading.stopLoading();
+          });
     });
 
     socket.on("ice-candidate", (e) {
+      if (e == null) return;
       RTCIceCandidate candidate =
           RTCIceCandidate(e['candidate'], e['sdpMid'], e['sdpMLineIndex']);
       peer?.addCandidate(candidate);
     });
 
     socket.on("answer", (payload) {
+      if (payload == null) return;
       var desc = new RTCSessionDescription(
           payload['sdp']['sdp'], payload['sdp']['type']);
       peer.setRemoteDescription(desc);
@@ -114,8 +136,8 @@ abstract class _ChatControllerBase with Store {
       print("disconnected");
       frwkLoading.stopLoading();
       peer.close();
-      peer?.dispose();
-      remoteRenderer?.dispose();
+      //peer?.dispose();
+      //remoteRenderer?.dispose();
     });
   }
 
@@ -128,11 +150,14 @@ abstract class _ChatControllerBase with Store {
   _callUser(String socketId) async {
     peer = await _createPeerConnection(socketId);
 
-    peer
+    /*peer
         .createOffer({})
         .then((offer) => peer.setLocalDescription(offer))
         .then((e) async {
           var description = await peer.getLocalDescription();
+
+          if (description == null) return;
+
           var payload = {
             'target': socketId,
             'caller': socket.id,
@@ -141,7 +166,12 @@ abstract class _ChatControllerBase with Store {
 
           socket.emit("offer", payload);
           frwkLoading.stopLoading();
-        });
+        });*/
+
+    localMediaStream.getTracks().forEach((track) {
+      // peer.addStream(localMediaStream);
+      peer.addTrack(track, localMediaStream);
+    });
 
     //userStream.getTracks().forEach((track) => peer.addTrack(track, userStream));
   }
@@ -162,10 +192,7 @@ abstract class _ChatControllerBase with Store {
     };
 
     final Map<String, dynamic> offerSdpConstraints = {
-      "mandatory": {
-        "OfferToReceiveAudio": true,
-        "OfferToReceiveVideo": true,
-      },
+      "mandatory": {},
       "optional": [
         {'DtlsSrtpKeyAgreement': true},
       ],
@@ -180,21 +207,28 @@ abstract class _ChatControllerBase with Store {
     // if (pc != null) print(pc);
     //pc.addStream(_localStream);
 
-    peer.onIceCandidate = (e) {
+    peer.onIceCandidate = (RTCIceCandidate e) {
+      if (e == null || e.candidate == null) return;
       var payload = {
-        'target': otherUserSocketId,
-        'candidate': e.candidate,
+        'target': socketId,
+        'candidate': {
+          'candidate': e.candidate,
+          'sdpMid': e.sdpMid,
+          'sdpMlineIndex': e.sdpMlineIndex
+        },
       };
 
       socket.emit("ice-candidate", payload);
     };
 
-    peer.addTransceiver();
+    // peer.addTransceiver();
 
     peer.onTrack = (RTCTrackEvent e) {
+      if (e == null || e.streams == null || e.streams.isEmpty) return;
       print(
           "----------------------------------------------------ONTRACK---------------------------------------");
-      remoteRenderer.srcObject = e.streams[0];
+      //remoteRenderer.srcObject = e.streams[0];
+      signaling.onRemoteChange?.call(e.streams[0]);
     };
 
     peer.onRenegotiationNeeded = () {
@@ -203,6 +237,9 @@ abstract class _ChatControllerBase with Store {
           .then((offer) => peer.setLocalDescription(offer))
           .then((e) async {
             var description = await peer.getLocalDescription();
+
+            if (description == null) return;
+
             var payload = {
               'target': socketId,
               'caller': socket.id,
@@ -214,19 +251,20 @@ abstract class _ChatControllerBase with Store {
           });
     };
 
-    /*peer.onAddTrack = (m, t) {
-      print(
-          "----------------------------------------------------ONADDTRACK---------------------------------------");
-      remoteRenderer.srcObject = m;
+    return peer;
+  }
+
+  @action
+  Future<MediaStream> _createStream() async {
+    final Map<String, dynamic> mediaConstraints = {
+      'audio': true,
+      'video': {
+        'facingMode': 'user',
+        'optional': [],
+      }
     };
 
-    peer.onAddStream = (m) {
-      print(
-          "----------------------------------------------------ONADDSTREAM---------------------------------------");
-      remoteRenderer.srcObject = m;
-    };*/
-
-    return peer;
+    return await navigator.mediaDevices.getUserMedia(mediaConstraints);
   }
 
   @action
