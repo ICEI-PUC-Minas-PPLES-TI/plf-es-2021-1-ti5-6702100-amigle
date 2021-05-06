@@ -11,7 +11,7 @@
 
 	let image: File = null;
 	let name = "";
-	let age = "";
+	let birthDate = "";
 	let email = "";
 	let password = "";
 	let confirmPassword = "";
@@ -22,7 +22,7 @@
 		try {
 			await postUser({
 				name,
-				age,
+				birthDate,
 				email,
 				password,
 			});
@@ -58,8 +58,9 @@
 			<Textfield
 				variant="outlined"
 				style="display:flex"
-				label="Idade"
-				bind:value={age}
+				label="Data de Nascimento"
+				type="date"
+				bind:value={birthDate}
 			/>
 			<Spacer vertical={16} />
 

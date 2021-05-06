@@ -41,18 +41,14 @@
 	};
 
 	const openChatModal = () => {
-		socket = io(
-			window.location.href.includes("localhost")
-				? "ws://localhost:5001"
-				: "wss://amigle-chat-manager.herokuapp.com",
-			{
-				secure: true,
-			}
-		);
+		socket = io("wss://amigle-chat-manager.herokuapp.com", {
+			secure: true,
+		});
 		initialDialog.open();
 	};
 
 	const handleTrackEvent = (e) => {
+		console.log(e);
 		remoteVideo.srcObject = e.streams[0];
 	};
 
@@ -62,7 +58,7 @@
 		peer.addIceCandidate(candidate);
 	};
 
-	const handleICECandidateEvent = (e: any) => {
+	const handleICECandidateEvent = (e: RTCPeerConnectionIceEvent) => {
 		if (e.candidate) {
 			const payload = {
 				target: otherUserSocketId,
@@ -86,9 +82,10 @@
 		peer
 			.setRemoteDescription(desc)
 			.then(() => {
-				userStream
-					.getTracks()
-					.forEach((track) => peer.addTrack(track, userStream));
+				userStream.getTracks().forEach((track) => {
+					console.log(track);
+					peer.addTrack(track, userStream);
+				});
 			})
 			.then(() => peer.createAnswer())
 			.then((answer) => peer.setLocalDescription(answer))
@@ -143,7 +140,10 @@
 
 	const callUser = (socketId: string) => {
 		peer = createPeer(socketId);
-		userStream.getTracks().forEach((track) => peer.addTrack(track, userStream));
+		userStream.getTracks().forEach((track) => {
+			console.log(track);
+			return peer.addTrack(track, userStream);
+		});
 	};
 
 	const onSelectChatOption = (option: "allTags" | "specificTag") => {
@@ -158,6 +158,7 @@
 		socket.on("match-made", (data: { socketId: string }) => {
 			callUser(data.socketId);
 			otherUserSocketId = data.socketId;
+			console.log(otherUserSocketId);
 		});
 
 		socket.on("offer", handleReceiveCall);
@@ -201,7 +202,12 @@
 
 		openChatModal();
 		navigator.mediaDevices
-			.getUserMedia({ video: true, audio: true })
+			.getUserMedia({
+				video: {
+					facingMode: "user",
+				},
+				audio: true,
+			})
 			.then((stream) => {
 				localVideo.srcObject = stream;
 				userStream = stream;
