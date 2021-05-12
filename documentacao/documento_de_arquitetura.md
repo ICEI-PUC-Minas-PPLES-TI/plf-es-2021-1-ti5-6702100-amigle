@@ -23,7 +23,7 @@ _Instituto de Informática e Ciências Exatas – Pontifícia Universidade de Mi
 
 ---
 
-_**Resumo**. O Amigle será uma plataforma online de bate papo guiada por interesses em comum. Nele é possível encontrar pessoas que tenham o mesmo gosto, seja para uma curta conversa ou para fazer novas amizades.
+**Resumo**. O Amigle será uma plataforma online de bate papo guiada por interesses em comum. Nele é possível encontrar pessoas que tenham o mesmo gosto, seja para uma curta conversa ou para fazer novas amizades.
 
 ---
 
@@ -365,40 +365,67 @@ Esse diagrama apresenta as entidades e seus relacionamentos utilizados na aplica
 <a name="avaliacao"></a>
 # 4. Avaliação da Arquitetura
 
-_Esta seção descreve a avaliação da arquitetura apresentada, baseada no método ATAM._
+Esta seção descreve a avaliação da arquitetura apresentada, baseada no método ATAM.
 
 ## 4.1. Cenários
 
-_Apresente os cenários de testes utilizados na realização dos testes da sua aplicação. Escolha cenários de testes que demonstrem os requisitos não funcionais sendo satisfeitos. Os requisitos a seguir são apenas exemplos de possíveis requisitos, devendo ser revistos, adequados a cada projeto e complementados de forma a terem uma especificação completa e auto-explicativa._
+<!-- _Apresente os cenários de testes utilizados na realização dos testes da sua aplicação. Escolha cenários de testes que demonstrem os requisitos não funcionais sendo satisfeitos. Os requisitos a seguir são apenas exemplos de possíveis requisitos, devendo ser revistos, adequados a cada projeto e complementados de forma a terem uma especificação completa e auto-explicativa._ -->
 
-**Cenário 1 - Acessibilidade:** Suspendisse consequat consectetur velit. Sed sem risus, dictum dictum facilisis vitae, commodo quis leo. Vivamus nulla sem, cursus a mollis quis, interdum at nulla. Nullam dictum congue mauris. Praesent nec nisi hendrerit, ullamcorper tortor non, rutrum sem. In non lectus tortor. Nulla vel tincidunt eros.
+**Cenário 1 - Desempenho:** Para o desenvolvimento da aplicação front-end foi escolhida a biblioteca Svelte, que possui uma performance superior a outras populares como React, Angular e Vue por não possuir um virtual DOM e possuir uma etapa de compilação que otimiza o código. Já no aplicativo móvel foi escolhido o framework Flutter, que performa melhor que outras alternativas híbridas como React Native, Ionic, etc.
 
-**Cenário 2 - Interoperabilidade:** Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce ut accumsan erat. Pellentesque in enim tempus, iaculis sem in, semper arcu.
+**Cenário 2 - Interoperabilidade:** Para a comunicação em tempo real foram escolhidos os protocolos WebSocket e WebRTC. Ambos os protocolos são nativos da web e possuem suporte no Flutter por meio de bibliotecas de terceiros.
 
-**Cenário 3 - Manutenibilidade:** Phasellus magna tellus, consectetur quis scelerisque eget, ultricies eu ligula. Sed rhoncus fermentum nisi, a ullamcorper leo fringilla id. Nulla lacinia sem vel magna ornare, non tincidunt ipsum rhoncus. Nam euismod semper ante id tristique. Mauris vel elit augue.
+**Cenário 3 - Manutenibilidade:** Foi escolhida uma arquitetura de microsserviços que separa as funcionalidades de comunicação em tempo real e gerência de dados. Isso garante ao sistema mais granularidade e separação de responbilidade.
 
-**Cenário 4 - Segurança:** Suspendisse consectetur porta tortor non convallis. Sed lobortis erat sed dignissim dignissim. Nunc eleifend elit et aliquet imperdiet. Ut eu quam at lacus tincidunt fringilla eget maximus metus. Praesent finibus, sapien eget molestie porta, neque turpis congue risus, vel porttitor sapien tortor ac nulla. Aliquam erat volutpat.
+**Cenário 4 - Segurança:** Para a autenticação foi utilizado o serviço de auth do firebase, que garante segurança por meio do protocolo OAuth2.
 
 ## 4.2. Avaliação
 
-_Apresente as medidas registradas na coleta de dados. O que não for possível quantificar apresente uma justificativa baseada em evidências qualitativas que suportam o atendimento do requisito não-funcional. Apresente uma avaliação geral da arquitetura indicando os pontos fortes e as limitações da arquitetura proposta._
+| **Atributo de Qualidade:** | Desempenho |
+| --- | --- |
+| **Requisito de Qualidade** | O sistema deve ser performático em dispositivos |
+| **Preocupação:** | O usuário deve poder acessar o sistema sem perdas de performance |
+| **Cenários(s):** | Cenário 1 |
+| **Ambiente:** | Navegador/celular em funcionamento padrão |
+| **Estímulo:** | Acesso do usuário no sistema e realização de chamada de vídeo. Edição de perfil e de tags associadas. |
+| **Mecanismo:** | Realização de testes no Google Lighthouse e no profiler do Flutter DevTools. |
+| **Medida de Resposta:** | Os resultados devem estar dentro do intervalo considerado como bom de cada ferramenta de profiling. |
+
+| **Atributo de Qualidade:** | Interoperabilidade |
+| --- | --- |
+| **Requisito de Qualidade** | Comunicação em tempo real entre as aplicações |
+| **Preocupação:** | Deve ser possível realizar comunicação em tempo real entre as aplicações móveis e web |
+| **Cenários(s):** | Cenário 2 |
+| **Ambiente:** | Navegador/celular em funcionamento padrão |
+| **Estímulo:** | Comunicação entre as aplicações |
+| **Mecanismo:** | O servidor faz uma ponte entre os dois clientes, que se conectam de forma peer to peer para transmitir os dados WebRTC em tempo real. |
+| **Medida de Resposta:** | Os dois peers devem se conectar e realizar a transmissão em tempo real |
+
+| **Atributo de Qualidade:** | Manutenabilidade |
+| --- | --- |
+| **Requisito de Qualidade** | Separação de responsabilidades |
+| **Preocupação:** | As diferentes partes do sistema devem ser separadas em relação à sua responsabilidade. |
+| **Cenários(s):** | Cenário 3 |
+| **Ambiente:** | Editor de código/ambiente de produção |
+| **Estímulo:** | Permitir que o código seja facilmente melhorado/corrigido |
+| **Mecanismo:** | O sistema é organizado entre 2 microsserviços de responsabilidades distintas: comunicação em tempo real e gerência de dados. |
+| **Medida de Resposta:** | - |
 
 | **Atributo de Qualidade:** | Segurança |
 | --- | --- |
 | **Requisito de Qualidade** | Acesso aos recursos restritos deve ser controlado |
 | **Preocupação:** | Os acessos de usuários devem ser controlados de forma que cada um tenha acesso apenas aos recursos condizentes as suas credenciais. |
 | **Cenários(s):** | Cenário 4 |
-| **Ambiente:** | Sistema em operação normal |
-| **Estímulo:** | Acesso do administrador do sistema as funcionalidades de cadastro de novos produtos e exclusão de produtos. |
-| **Mecanismo:** | O servidor de aplicação (Rails) gera um _token_ de acesso para o usuário que se autentica no sistema. Este _token_ é transferido para a camada de visualização (Angular) após a autenticação e o tratamento visual das funcionalidades podem ser tratados neste nível. |
-| **Medida de Resposta:** | As áreas restritas do sistema devem ser disponibilizadas apenas quando há o acesso de usuários credenciados. |
+| **Ambiente:** | Navegador/celular em funcionamento padrão |
+| **Estímulo:** | O administrador do sistema deve ter acesso às rotas protegidas |
+| **Mecanismo:** | O sistema possui autenticação por meio do protocolo OAuth2 e um atributo que indica se o usuário é um administrador. |
+| **Medida de Resposta:** | O administrador deve ser capaz de acessar as telas de administrador e os usuários comuns não. |
 
 **Considerações sobre a arquitetura:**
 
 | **Riscos:** | Não existe |
 | --- | --- |
 | **Pontos de Sensibilidade:** | Não existe |
-| _ **Tradeoff** _ **:** | Não existe |
 
 Evidências dos testes realizados
 
