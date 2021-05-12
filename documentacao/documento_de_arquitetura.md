@@ -373,7 +373,7 @@ Esta seção descreve a avaliação da arquitetura apresentada, baseada no méto
 
 **Cenário 1 - Desempenho:** Para o desenvolvimento da aplicação front-end foi escolhida a biblioteca Svelte, que possui uma performance superior a outras populares como React, Angular e Vue por não possuir um virtual DOM e possuir uma etapa de compilação que otimiza o código. Já no aplicativo móvel foi escolhido o framework Flutter, que performa melhor que outras alternativas híbridas como React Native, Ionic, etc.
 
-**Cenário 2 - Interoperabilidade:** Para a comunicação em tempo real foram escolhidos os protocolos WebSocket e WebRTC. Ambos os protocolos são nativos da web e possuem suporte no Flutter por meio de bibliotecas de terceiros.
+**Cenário 2 - Interoperabilidade:** Para a comunicação em tempo real foram escolhidos os protocolos WebSocket e WebRTC. Ambos os protocolos são nativos da web e possuem suporte no Flutter por meio de bibliotecas de terceiros trazendo ampla compatibilidade.
 
 **Cenário 3 - Manutenibilidade:** Foi escolhida uma arquitetura de microsserviços que separa as funcionalidades de comunicação em tempo real e gerência de dados. Isso garante ao sistema mais granularidade e separação de responbilidade.
 
