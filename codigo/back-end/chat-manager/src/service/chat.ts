@@ -9,6 +9,8 @@ class ChatService {
 
 	#activeCalls: Call[];
 
+	static activeCallUpdateListener = (calls: Call[]) => {};
+
 	constructor(io: SocketIOServer) {
 		this.#io = io;
 		this.#allTagsQueue = [];
@@ -22,16 +24,19 @@ class ChatService {
 
 	listenToSocketConnections() {
 		this.#io.on("connection", (socket) => {
-			console.log("Connected" + socket.id);
+			console.log("Connected socket:  " + socket.id);
+
 			socket.on("join-all-tags", (user) => {
 				if (user) {
 					this.#allTagsQueue.push(new UserConnection(user, socket));
 				}
 			});
 
-			socket.on("join-specific-tag", (user) => {
-				if (user) {
-					this.#allTagsQueue.push(new UserConnection(user, socket));
+			socket.on("join-specific-tag", (data) => {
+				if (data) {
+					this.#specificTagMap
+						.get(data.tagId)
+						.push(new UserConnection(data.user, socket));
 				}
 			});
 
@@ -75,6 +80,8 @@ class ChatService {
 					c.firstUser.socket.id !== call.firstUser.socket.id &&
 						c.secondUser.socket.id !== call.secondUser.socket.id;
 				});
+
+				ChatService.activeCallUpdateListener(this.#activeCalls);
 			});
 		});
 	}
@@ -98,11 +105,13 @@ class ChatService {
 			const scoreArray = getTagScoreArray(firstUser, this.#allTagsQueue);
 			const secondUser = scoreArray[0].uc;
 
-			console.log(scoreArray);
-
 			firstUser.onMatch(secondUser);
 
-			this.#activeCalls.push(new Call(firstUser, secondUser));
+			const call = new Call(firstUser, secondUser);
+
+			this.#activeCalls.push(call);
+			ChatService.activeCallUpdateListener(this.#activeCalls);
+
 			this.#allTagsQueue = this.#allTagsQueue.filter(
 				(uc) =>
 					uc.user.id !== firstUser.user.id &&

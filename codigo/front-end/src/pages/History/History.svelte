@@ -1,7 +1,42 @@
 <script lang="ts">
 	import DataTable, { Head, Body, Row, Cell } from "@smui/data-table";
+	import { onMount } from "svelte";
+	import { getChatHistory } from "../../api/chat";
 
 	import Spacer from "../../components/Spacer/Spacer.svelte";
+	import type { ChatHistoryType } from "../../types/chatType";
+	import { getLocalUser } from "../../utils/authStorage";
+
+	const userId = getLocalUser().id;
+
+	let chats: ChatHistoryType[] = [];
+
+	const formatDate = (date: string) => {
+		const dateObj = new Date(date);
+
+		if (isNaN(dateObj.getTime())) {
+			return "";
+		}
+
+		return Intl.DateTimeFormat("pt-BR").format(dateObj);
+	};
+
+	const getDateDelta = (firstDate: string, secondDate: string) => {
+		const firstDateObj = new Date(firstDate);
+		const secondDateObj = new Date(secondDate);
+
+		if (isNaN(firstDateObj.getTime()) || isNaN(secondDateObj.getTime())) {
+			return "";
+		}
+
+		const delta = firstDateObj.getTime() - secondDateObj.getTime();
+
+		return `${delta / 1000 / 60} minutos`;
+	};
+
+	onMount(async () => {
+		chats = await getChatHistory(userId);
+	});
 </script>
 
 <div>
@@ -17,11 +52,13 @@
 			</Row>
 		</Head>
 		<Body>
-			<Row>
-				<Cell>Lucas</Cell>
-				<Cell>01/01/2021</Cell>
-				<Cell>15 minutos</Cell>
-			</Row>
+			{#each chats as chat}
+				<Row>
+					<Cell>{chat.guestUserName}</Cell>
+					<Cell>{formatDate(chat.startDate)}</Cell>
+					<Cell>{getDateDelta(chat.startDate, chat.endDate)}</Cell>
+				</Row>
+			{/each}
 		</Body>
 	</DataTable>
 </div>

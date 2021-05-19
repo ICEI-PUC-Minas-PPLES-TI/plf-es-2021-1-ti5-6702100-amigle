@@ -8,7 +8,7 @@
 	import StartConversation from "../../dialogs/StartConversation/StartConversation.svelte";
 	import Loading from "../../dialogs/Loading/Loading.svelte";
 	import { getLocalUser } from "../../utils/authStorage";
-	import { onMount } from "svelte";
+	import { onDestroy, onMount } from "svelte";
 	import type { UserType } from "../../types/userType";
 	import { getUser } from "../../api/user";
 	import io from "socket.io-client";
@@ -27,6 +27,9 @@
 	let socket: any = null;
 	let peer: RTCPeerConnection;
 
+	let cameraActive = true;
+	let micActive = true;
+
 	let messages: { received: boolean; text: string }[] = [];
 	let message = "";
 
@@ -41,14 +44,17 @@
 	};
 
 	const openChatModal = () => {
-		socket = io("wss://amigle-chat-manager.herokuapp.com", {
+		const baseAddress = window.location.href.includes("localhost")
+			? "http://localhost:5001"
+			: "https://amigle-chat-manager.herokuapp.com";
+
+		socket = io(baseAddress, {
 			secure: true,
 		});
 		initialDialog.open();
 	};
 
 	const handleTrackEvent = (e) => {
-		console.log(e);
 		remoteVideo.srcObject = e.streams[0];
 	};
 
@@ -83,7 +89,6 @@
 			.setRemoteDescription(desc)
 			.then(() => {
 				userStream.getTracks().forEach((track) => {
-					console.log(track);
 					peer.addTrack(track, userStream);
 				});
 			})
@@ -175,7 +180,7 @@
 		);
 
 		socket.on("disconnect", () => {
-			alert("disconnected");
+			remoteVideo.srcObject = null;
 		});
 	};
 
@@ -197,6 +202,26 @@
 		message = "";
 	};
 
+	const toggleAudio = () => {
+		userStream.getTracks().forEach((track) => {
+			if (track.readyState == "live" && track.kind === "audio") {
+				track.enabled = micActive;
+			}
+		});
+	};
+
+	const toggleVideo = () => {
+		userStream.getTracks().forEach((track) => {
+			if (track.readyState == "live" && track.kind === "video") {
+				track.enabled = cameraActive;
+			}
+		});
+	};
+
+	const disconnectCall = () => {
+		socket.disconnect();
+	};
+
 	onMount(async () => {
 		user = await getUser(userId);
 
@@ -212,6 +237,10 @@
 				localVideo.srcObject = stream;
 				userStream = stream;
 			});
+	});
+
+	onDestroy(() => {
+		socket.disconnect();
 	});
 </script>
 
@@ -248,12 +277,47 @@
 					<button class="home-videoContainer-cameraButton">Camera</button>
 				</div>
 
-				<div>
-					<Button
-						variant="raised"
-						type="button"
-						style="background-color:#E7432C">Encerrar Chat</Button
-					>
+				<div class="home-controls">
+					<Flex justify="space-between">
+						<div class="home-controls-container">
+							<div class="home-microphone">
+								<input
+									bind:checked={micActive}
+									on:change={toggleAudio}
+									type="checkbox"
+									id="toggle-microphone"
+								/>
+								<label for="toggle-microphone">
+									{#if micActive}
+										<img src="img/mic_on.svg" alt="" />
+									{:else}
+										<img src="img/mic_off.svg" alt="" />
+									{/if}
+								</label>
+							</div>
+							<div class="home-camera">
+								<input
+									bind:checked={cameraActive}
+									on:change={toggleVideo}
+									type="checkbox"
+									id="toggle-camera"
+								/>
+								<label for="toggle-camera">
+									{#if cameraActive}
+										<img src="img/cam_on.svg" alt="" />
+									{:else}
+										<img src="img/cam_off.svg" alt="" />
+									{/if}
+								</label>
+							</div>
+						</div>
+						<Button
+							on:click={disconnectCall}
+							variant="raised"
+							type="button"
+							style="background-color:#E7432C">Encerrar Chat</Button
+						>
+					</Flex>
 				</div>
 			</div>
 		</div>
@@ -328,6 +392,41 @@
 		height: 100%;
 		background-color: #000;
 		object-fit: cover;
+	}
+	.home-controls {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		padding: 20px;
+		box-sizing: border-box;
+	}
+	.home-controls-container {
+		display: flex;
+	}
+	.home-microphone input,
+	.home-camera input {
+		display: none;
+	}
+	.home-microphone {
+		margin-right: 16px;
+	}
+	.home-microphone input:checked + label,
+	.home-camera input:checked + label {
+		background-color: #fff;
+	}
+	.home-microphone label,
+	.home-camera label {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 60px;
+		height: 60px;
+		background-color: rgb(231, 67, 44);
+		border-radius: 50%;
+		font-size: 0;
+		cursor: pointer;
 	}
 	.home-chat {
 		position: relative;

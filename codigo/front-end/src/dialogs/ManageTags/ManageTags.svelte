@@ -6,7 +6,7 @@
 	import Textfield from "@smui/textfield";
 	import { onMount } from "svelte";
 
-	import { getTags, getTagsByCategoryId, queryTags } from "../../api/tag";
+	import { queryTags } from "../../api/tag";
 	import { deleteUserTag, getUser, postUserTag } from "../../api/user";
 	import { getTagCategories } from "../../api/tagCategory";
 	import type { TagType } from "../../types/tagType";

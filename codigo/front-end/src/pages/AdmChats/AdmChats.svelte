@@ -1,14 +1,19 @@
 <script lang="ts">
 	import Button from "@smui/button";
 	import DataTable, { Head, Body, Row, Cell } from "@smui/data-table";
+	import { onMount } from "svelte";
+	import { getChats } from "../../api/chat";
 	import Flex from "../../components/Flex/Flex.svelte";
 
 	import Spacer from "../../components/Spacer/Spacer.svelte";
 	import Chat from "../../dialogs/Adm/Chat/Chat.svelte";
 	import ChatStats from "../../dialogs/Adm/ChatStats/ChatStats.svelte";
+	import type { ChatType } from "../../types/chatType";
 
 	let statsDialog;
 	let chatDialog;
+
+	let chats: ChatType[] = [];
 
 	const showStatsDialog = () => {
 		statsDialog.open();
@@ -17,6 +22,25 @@
 	const showChatDialog = () => {
 		chatDialog.open();
 	};
+
+	const formatDate = (date: string) => {
+		const dateObj = new Date(date);
+
+		if (isNaN(dateObj.getTime())) {
+			return "";
+		}
+
+		const dateString = new Intl.DateTimeFormat("pt-BR", {
+			dateStyle: "long",
+			timeStyle: "short",
+		}).format(dateObj);
+
+		return dateString;
+	};
+
+	onMount(async () => {
+		chats = await getChats();
+	});
 </script>
 
 <div>
@@ -33,19 +57,18 @@
 				<Cell>Início</Cell>
 				<Cell>Fim</Cell>
 				<Cell>Usuários</Cell>
-				<Cell>-</Cell>
 			</Row>
 		</Head>
 		<Body>
-			<Row>
-				<Cell>1</Cell>
-				<Cell>20/01/2021 às 10:52</Cell>
-				<Cell>20/01/2021 às 11:01</Cell>
-				<Cell>Lucas e Arthur</Cell>
-				<Cell>
-					<Button on:click={showChatDialog}>Visualizar</Button>
-				</Cell>
-			</Row>
+			{#each chats as chat}
+				<Row>
+					<Cell>{chat.id}</Cell>
+					<Cell>{formatDate(chat.startDate)}</Cell>
+					<Cell>{formatDate(chat.endDate)}</Cell>
+					<Cell>{chat.users.firstUser.name} e {chat.users.secondUser.name}</Cell
+					>
+				</Row>
+			{/each}
 		</Body>
 	</DataTable>
 </div>

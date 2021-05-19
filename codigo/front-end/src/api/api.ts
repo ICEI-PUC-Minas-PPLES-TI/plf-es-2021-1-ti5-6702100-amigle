@@ -53,7 +53,7 @@ export const postReqWithFormData = async (path: string, body: FormData) => {
 	}
 };
 
-export const putReq = async (path: string, body: any) => {
+export const putReq = async (path: string, body: any, noJson = false) => {
 	try {
 		const data = await fetch(`${baseAddress}/${path}`, {
 			method: "PUT",
@@ -62,6 +62,10 @@ export const putReq = async (path: string, body: any) => {
 			},
 			body: JSON.stringify(body),
 		});
+
+		if (noJson) {
+			return data;
+		}
 
 		return data;
 	} catch (error) {

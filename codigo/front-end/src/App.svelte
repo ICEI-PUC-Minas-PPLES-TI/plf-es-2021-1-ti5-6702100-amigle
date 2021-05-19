@@ -32,6 +32,7 @@
 		removeLocalUser,
 	} from "./utils/authStorage";
 	import { onMount } from "svelte";
+	import { getUser } from "./api/user";
 
 	let drawer: any;
 	let drawerOpen = false;
@@ -46,8 +47,13 @@
 		window.location.reload();
 	};
 
-	onMount(() => {
+	onMount(async () => {
 		user = getLocalUser();
+
+		if (user) {
+			const apiUser = await getUser(user.id);
+			localStorage.setItem("user", JSON.stringify(apiUser));
+		}
 	});
 
 	const routes = [

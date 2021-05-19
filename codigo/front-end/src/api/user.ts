@@ -18,7 +18,7 @@ export const postUserTag = (userId: string, tagId: number) => {
 };
 
 export const putUser = (user: any) => {
-	return putReq(`user/${user.id}`, user);
+	return putReq(`user/${user.id}`, user, true);
 };
 
 export const deleteUser = (id: string) => {
