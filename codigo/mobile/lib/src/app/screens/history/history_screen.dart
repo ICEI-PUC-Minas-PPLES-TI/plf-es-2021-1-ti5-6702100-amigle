@@ -2,6 +2,8 @@ import 'package:amigleapp/src/app/components/app_bar_widget.dart';
 import 'package:amigleapp/src/app/components/nav_drawer.dart';
 import 'package:amigleapp/src/app/models/dto/history/HistoryDTO.dart';
 import 'package:amigleapp/src/app/screens/history/history_controller.dart';
+import 'package:amigleapp/src/app/utils/extensions/date_extension.dart';
+import 'package:amigleapp/src/app/utils/extensions/string_exntension.dart';
 import 'package:amigleapp/src/app/utils/styles/colors_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -68,14 +70,14 @@ class HistoryScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          history.desc,
+                          '${history.startDate.toDate(format: 'yyyy-MM-dd hh:mm:ss').dateToString(format: 'dd/MM/yyyy hh:mm')} até ${history.endDate.toDate(format: 'yyyy-MM-dd hh:mm:ss').dateToString(format: 'hh:mm')}',
                           style: TextStyle(
                               fontSize: 10,
                               color: ColorsStyle.grayLight2,
                               fontWeight: FontWeight.w500),
                         ),
                         Text(
-                          history.user,
+                          history.guestUserName,
                           style: TextStyle(fontSize: 16),
                         )
                       ],

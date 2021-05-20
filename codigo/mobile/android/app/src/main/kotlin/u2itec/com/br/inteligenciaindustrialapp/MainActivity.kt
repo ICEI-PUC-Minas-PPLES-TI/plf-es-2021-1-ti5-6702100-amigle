@@ -1,4 +1,4 @@
-package u2itec.com.br.inteligenciaindustrialapp
+package com.amigle
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

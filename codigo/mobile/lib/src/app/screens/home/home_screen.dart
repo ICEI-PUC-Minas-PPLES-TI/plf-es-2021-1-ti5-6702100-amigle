@@ -28,10 +28,11 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     SchedulerBinding.instance.addPostFrameCallback((_) {
       _showDialog(context);
+      initRenderers();
     });
 
+    // initRenderers();
     super.initState();
-    initRenderers();
   }
 
   initRenderers() async {

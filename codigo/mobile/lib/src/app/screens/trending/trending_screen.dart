@@ -41,12 +41,12 @@ class TrendingScreen extends StatelessWidget {
             'Tags em Alta',
             style: TextStyle(color: Colors.black, fontSize: 34),
           ),
-          SizedBox(
-            height: 24,
-          ),
-          Observer(builder: (_) {
-            return _buildFilter();
-          }),
+          // SizedBox(
+          //   height: 24,
+          // ),
+          // Observer(builder: (_) {
+          //   return _buildFilter();
+          // }),
           SizedBox(
             height: 24,
           ),
@@ -114,14 +114,14 @@ class TrendingScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '${trending.number} PESSOAS FALANDO SOBRE',
+                          '${trending.count} PESSOAS FALANDO SOBRE',
                           style: TextStyle(
                               fontSize: 10,
                               color: ColorsStyle.grayLight2,
                               fontWeight: FontWeight.w500),
                         ),
                         Text(
-                          trending.tag,
+                          trending.name,
                           style: TextStyle(fontSize: 16),
                         )
                       ],

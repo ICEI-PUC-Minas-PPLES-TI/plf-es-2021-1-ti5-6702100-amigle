@@ -25,4 +25,27 @@ mixin _$HistoryController on _HistoryControllerBase, Store {
       _$historiesAtom.reportChanged();
     }, _$historiesAtom, name: '${_$historiesAtom.name}_set');
   }
+
+  final _$_HistoryControllerBaseActionController =
+      ActionController(name: '_HistoryControllerBase');
+
+  @override
+  dynamic setHistory(List<HistoryDTO> list) {
+    final _$actionInfo = _$_HistoryControllerBaseActionController.startAction();
+    try {
+      return super.setHistory(list);
+    } finally {
+      _$_HistoryControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic getHistory() {
+    final _$actionInfo = _$_HistoryControllerBaseActionController.startAction();
+    try {
+      return super.getHistory();
+    } finally {
+      _$_HistoryControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
 }
