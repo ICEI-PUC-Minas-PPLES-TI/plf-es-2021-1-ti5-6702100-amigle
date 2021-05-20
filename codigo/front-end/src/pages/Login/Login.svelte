@@ -31,6 +31,7 @@
 	<Container maxWidth={382}>
 		<form on:submit={onSubmit}>
 			<Textfield
+				id="email"
 				variant="outlined"
 				style="display:flex"
 				label="E-mail"
@@ -40,6 +41,7 @@
 			<Spacer vertical={16} />
 
 			<Textfield
+				id="password"
 				variant="outlined"
 				style="display:flex"
 				label="Senha"
@@ -55,7 +57,7 @@
 					href="/signup"
 					type="submit">Cadastre-se</a
 				>
-				<Button variant="raised" type="submit">Login</Button>
+				<Button id="loginButton" variant="raised" type="submit">Login</Button>
 			</Flex>
 		</form>
 	</Container>

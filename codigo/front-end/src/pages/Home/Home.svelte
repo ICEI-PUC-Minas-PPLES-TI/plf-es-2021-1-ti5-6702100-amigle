@@ -351,6 +351,7 @@
 				</Flex>
 				<Flex height={56}>
 					<Textfield
+						id="messageText"
 						variant="outlined"
 						style="display:flex; width:100%"
 						label="Mensagem"

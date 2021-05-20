@@ -61,6 +61,7 @@
 		<Spacer vertical={16} />
 		<Flex width={500}>
 			<Textfield
+				id="tagCategoryName"
 				variant="outlined"
 				style="display:flex; width:100%"
 				label="Nome da Categoria"

@@ -48,6 +48,7 @@
 			<Spacer vertical={32} />
 
 			<Textfield
+				id="name"
 				variant="outlined"
 				style="display:flex"
 				label="Nome"
@@ -56,6 +57,7 @@
 			<Spacer vertical={16} />
 
 			<Textfield
+				id="birthDate"
 				variant="outlined"
 				style="display:flex"
 				label="Data de Nascimento"
@@ -65,6 +67,7 @@
 			<Spacer vertical={16} />
 
 			<Textfield
+				id="email"
 				variant="outlined"
 				style="display:flex"
 				label="E-mail"
@@ -73,6 +76,7 @@
 			<Spacer vertical={16} />
 
 			<Textfield
+				id="password"
 				variant="outlined"
 				style="display:flex"
 				label="Senha"
@@ -82,6 +86,7 @@
 			<Spacer vertical={16} />
 
 			<Textfield
+				id="confirmPassword"
 				variant="outlined"
 				style="display:flex"
 				label="Confirmar Senha"
@@ -91,7 +96,9 @@
 			<Spacer vertical={32} />
 
 			<Flex justify="flex-end">
-				<Button variant="raised" type="submit">Cadastrar</Button>
+				<Button id="signupButton" variant="raised" type="submit"
+					>Cadastrar</Button
+				>
 			</Flex>
 		</form>
 	</Container>

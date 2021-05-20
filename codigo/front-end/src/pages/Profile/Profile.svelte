@@ -83,6 +83,7 @@
 			<Spacer vertical={32} />
 
 			<Textfield
+				id="name"
 				variant="outlined"
 				style="display:flex"
 				label="Nome"
@@ -91,6 +92,7 @@
 			<Spacer vertical={16} />
 
 			<Textfield
+				id="birthDate"
 				variant="outlined"
 				style="display:flex"
 				label="Data de Nascimento"
@@ -103,7 +105,7 @@
 				<Button on:click={toggleManageTags} type="button" variant="outlined"
 					>Gerenciar Tags</Button
 				>
-				<Button variant="raised" type="submit">Salvar</Button>
+				<Button id="saveButton" variant="raised" type="submit">Salvar</Button>
 			</Flex>
 			<Spacer vertical={16} />
 			<Flex justify="space-between">

@@ -10,7 +10,7 @@ export const getUser = (id: string): Promise<UserType> => {
 };
 
 export const postUser = (user: any) => {
-	return postReq("user", user);
+	return postReq("user", user, true);
 };
 
 export const postUserTag = (userId: string, tagId: number) => {

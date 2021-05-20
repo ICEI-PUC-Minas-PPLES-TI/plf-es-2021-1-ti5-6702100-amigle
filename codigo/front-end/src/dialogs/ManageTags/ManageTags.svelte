@@ -101,6 +101,7 @@
 		<Spacer vertical={16} />
 		<Flex width={500}>
 			<Textfield
+				id="tagName"
 				variant="outlined"
 				style="display:flex; width:100%"
 				label="Buscar Tags"

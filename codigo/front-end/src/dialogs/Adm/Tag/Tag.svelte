@@ -45,6 +45,7 @@
 		<Flex direction="column" justify="center">
 			<Spacer vertical={16} />
 			<Textfield
+				id="tagName"
 				variant="outlined"
 				style="display:flex; width:100%"
 				label="Nome da Tag"
