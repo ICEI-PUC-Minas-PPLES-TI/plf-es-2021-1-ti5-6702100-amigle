@@ -15,15 +15,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"const reqObject = {",
-									"  url: 'https://amigle-user-manager.herokuapp.com/user',",
-									"  method: 'GET'",
-									"};",
-									"",
-									"pm.sendRequest(reqObject, (err, res) => {",
-									"    var user_id = res.json()[0].id;",
-									"    pm.collectionVariables.set(\"user_id\", user_id);",
-									"});"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -33,7 +25,7 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
-									"    pm.response.to.have.status(400);",
+									"    pm.response.to.have.status(200);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -45,7 +37,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"TesteIsa\",\r\n    \"birthDate\": \"2003-05-04\",\r\n    \"email\": \"testeisa.teste@gmail.com\",\r\n    \"password\": \"123Teste\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Arthur\",\r\n    \"birthDate\": \"2003-05-04\",\r\n    \"email\": {{$randomEmail}},\r\n    \"password\": \"123Teste\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -327,13 +319,13 @@
 							"script": {
 								"exec": [
 									"const reqObject = {",
-									"  url: 'https://amigle-user-manager.herokuapp.com/tag',",
+									"  url: 'https://amigle-user-manager.herokuapp.com/user',",
 									"  method: 'GET'",
 									"};",
 									"",
 									"pm.sendRequest(reqObject, (err, res) => {",
-									"    var tag_id = res.json()[0].id;",
-									"    pm.collectionVariables.set(\"tag_id\", tag_id);",
+									"    var user_id = res.json()[0].id;",
+									"    pm.collectionVariables.set(\"user_id\", user_id);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -344,7 +336,7 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
-									"    pm.response.to.have.status(500);",
+									"    pm.response.to.have.status(201);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -364,13 +356,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/tag/{{tag_id}}",
+							"raw": "{{host}}/tag/{{user_id}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"tag",
-								"{{tag_id}}"
+								"{{user_id}}"
 							]
 						}
 					},
