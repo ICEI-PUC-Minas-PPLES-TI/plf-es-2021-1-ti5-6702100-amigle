@@ -12,7 +12,9 @@
 	import type { UserType } from "../../types/userType";
 	import { getUser } from "../../api/user";
 	import io from "socket.io-client";
+	import Spacer from "../../components/Spacer/Spacer.svelte";
 
+	let calling = false;
 	const userId = getLocalUser().id;
 	const tagId = 2;
 	let user: UserType = null;
@@ -79,6 +81,7 @@
 		const desc = new RTCSessionDescription(message.sdp);
 		peer.setRemoteDescription(desc);
 		loadingDialog.close();
+		calling = true;
 	};
 
 	const handleReceiveCall = (incoming: any) => {
@@ -104,6 +107,7 @@
 				otherUserSocketId = incoming.caller;
 				socket.emit("answer", payload);
 				loadingDialog.close();
+				calling = true;
 			});
 	};
 
@@ -181,6 +185,7 @@
 
 		socket.on("disconnect", () => {
 			remoteVideo.srcObject = null;
+			calling = false;
 		});
 	};
 
@@ -220,12 +225,12 @@
 
 	const disconnectCall = () => {
 		socket.disconnect();
+		calling = false;
 	};
 
 	onMount(async () => {
 		user = await getUser(userId);
 
-		openChatModal();
 		navigator.mediaDevices
 			.getUserMedia({
 				video: {
@@ -240,128 +245,139 @@
 	});
 
 	onDestroy(() => {
-		socket.disconnect();
+		socket?.disconnect();
 	});
 </script>
 
 <div>
-	<Flex justify="center">
-		<Button on:click={openChatModal}>Conversar</Button>
-	</Flex>
-	<Flex justify="space-between">
-		<div class="home-videoContainer">
-			<video
-				bind:this={remoteVideo}
-				class="home-videoContainer-remoteVideo"
-				autoplay
+	<div class:hidden={calling}>
+		<Flex align="center" justify="center" direction="column">
+			<h1 class="mdc-typography--headline3">Bem vindo ao Amigle!</h1>
+			<Spacer vertical={10} />
+			<span class="mdc-typography--subtitle1"
+				>Uma nova forma de conhecer pessoas novas com base em seus interesses!</span
 			>
-				<source type="video/mp4" />
-			</video>
-			<video
-				bind:this={localVideo}
-				class="home-videoContainer-localVideo"
-				autoplay
-				muted
-			>
-				<source type="video/mp4" />
-			</video>
-			<div class="home-videoContainer-buttons">
-				<div>
-					<button class="home-videoContainer-profileButton"
-						>Ver Perfil do Usuário</button
-					>
-				</div>
-				<div>
-					<button class="home-videoContainer-microphoneButton">Microfone</button
-					>
-					<button class="home-videoContainer-cameraButton">Camera</button>
-				</div>
-
-				<div class="home-controls">
-					<Flex justify="space-between">
-						<div class="home-controls-container">
-							<div class="home-microphone">
-								<input
-									bind:checked={micActive}
-									on:change={toggleAudio}
-									type="checkbox"
-									id="toggle-microphone"
-								/>
-								<label for="toggle-microphone">
-									{#if micActive}
-										<img src="img/mic_on.svg" alt="" />
-									{:else}
-										<img src="img/mic_off.svg" alt="" />
-									{/if}
-								</label>
-							</div>
-							<div class="home-camera">
-								<input
-									bind:checked={cameraActive}
-									on:change={toggleVideo}
-									type="checkbox"
-									id="toggle-camera"
-								/>
-								<label for="toggle-camera">
-									{#if cameraActive}
-										<img src="img/cam_on.svg" alt="" />
-									{:else}
-										<img src="img/cam_off.svg" alt="" />
-									{/if}
-								</label>
-							</div>
-						</div>
-						<Button
-							on:click={disconnectCall}
-							variant="raised"
-							type="button"
-							style="background-color:#E7432C">Encerrar Chat</Button
-						>
-					</Flex>
-				</div>
-			</div>
-		</div>
-		<div class="home-chat" class:-hidden={isChatHidden}>
-			<div class="home-chat-grabber" on:click={toggleChat}>
-				<svg
-					width="14"
-					height="9"
-					viewBox="0 0 14 9"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
+			<Spacer vertical={20} />
+			<Button on:click={openChatModal}>Iniciar uma Conversa</Button>
+		</Flex>
+	</div>
+	<div class:hidden={!calling}>
+		<Flex justify="space-between">
+			<div class="home-videoContainer">
+				<video
+					bind:this={remoteVideo}
+					class="home-videoContainer-remoteVideo"
+					autoplay
 				>
-					<path
-						d="M1.41 8.41L0 7L7 0L14 7L12.59 8.41L7 2.82L1.41 8.41Z"
-						fill="black"
-						fill-opacity="0.6"
-					/>
-				</svg>
-			</div>
-			<Flex direction="column" justify="space-between">
-				<Flex direction="column" justify="flex-start">
-					{#each messages as message}
-						<div
-							class:-mine={!message.received}
-							class:-yours={message.received}
-							class="mdc-typography--body1 home-chat-message"
+					<source type="video/mp4" />
+				</video>
+				<video
+					bind:this={localVideo}
+					class="home-videoContainer-localVideo"
+					autoplay
+					muted
+				>
+					<source type="video/mp4" />
+				</video>
+				<div class="home-videoContainer-buttons">
+					<div>
+						<button class="home-videoContainer-profileButton"
+							>Ver Perfil do Usuário</button
 						>
-							{message.text}
-						</div>
-					{/each}
+					</div>
+					<div>
+						<button class="home-videoContainer-microphoneButton"
+							>Microfone</button
+						>
+						<button class="home-videoContainer-cameraButton">Camera</button>
+					</div>
+
+					<div class="home-controls">
+						<Flex justify="space-between">
+							<div class="home-controls-container">
+								<div class="home-microphone">
+									<input
+										bind:checked={micActive}
+										on:change={toggleAudio}
+										type="checkbox"
+										id="toggle-microphone"
+									/>
+									<label for="toggle-microphone">
+										{#if micActive}
+											<img src="img/mic_on.svg" alt="" />
+										{:else}
+											<img src="img/mic_off.svg" alt="" />
+										{/if}
+									</label>
+								</div>
+								<div class="home-camera">
+									<input
+										bind:checked={cameraActive}
+										on:change={toggleVideo}
+										type="checkbox"
+										id="toggle-camera"
+									/>
+									<label for="toggle-camera">
+										{#if cameraActive}
+											<img src="img/cam_on.svg" alt="" />
+										{:else}
+											<img src="img/cam_off.svg" alt="" />
+										{/if}
+									</label>
+								</div>
+							</div>
+							<Button
+								on:click={disconnectCall}
+								variant="raised"
+								type="button"
+								style="background-color:#E7432C">Encerrar Chat</Button
+							>
+						</Flex>
+					</div>
+				</div>
+			</div>
+			<div class="home-chat" class:-hidden={isChatHidden}>
+				<div class="home-chat-grabber" on:click={toggleChat}>
+					<svg
+						width="14"
+						height="9"
+						viewBox="0 0 14 9"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="M1.41 8.41L0 7L7 0L14 7L12.59 8.41L7 2.82L1.41 8.41Z"
+							fill="black"
+							fill-opacity="0.6"
+						/>
+					</svg>
+				</div>
+				<Flex direction="column" justify="space-between">
+					<Flex direction="column" justify="flex-start">
+						{#each messages as message}
+							<div
+								class:-mine={!message.received}
+								class:-yours={message.received}
+								class="mdc-typography--body1 home-chat-message"
+							>
+								{message.text}
+							</div>
+						{/each}
+					</Flex>
+					<Flex height={56}>
+						<Textfield
+							id="messageText"
+							variant="outlined"
+							style="display:flex; width:100%"
+							label="Mensagem"
+							bind:value={message}
+						/>
+						<Button on:click={sendTextMessage}>Enviar</Button>
+					</Flex>
 				</Flex>
-				<Flex height={56}>
-					<Textfield
-						id="messageText"
-						variant="outlined"
-						style="display:flex; width:100%"
-						label="Mensagem"
-						bind:value={message}
-					/>
-					<Button on:click={sendTextMessage}>Enviar</Button>
-				</Flex>
-			</Flex>
-		</div>
-	</Flex>
+			</div>
+		</Flex>
+	</div>
 </div>
 <StartConversation
 	bind:dialog={initialDialog}
@@ -371,6 +387,9 @@
 <Loading bind:dialog={loadingDialog} />
 
 <style>
+	.hidden {
+		display: none;
+	}
 	.home-videoContainer {
 		position: relative;
 		width: 78%;
