@@ -13,9 +13,12 @@
 		base em todas as suas tags, ou com base em uma tag específica
 	</Content>
 	<Actions>
-		<Button on:click={() => onSelectOption("allTags")}>Todas as Tags</Button>
-		<Button on:click={() => onSelectOption("specificTag")}
-			>Tag Específica</Button
+		<Button id="allTagsButton" on:click={() => onSelectOption("allTags")}
+			>Todas as Tags</Button
+		>
+		<Button
+			id="specificTagButton"
+			on:click={() => onSelectOption("specificTag")}>Tag Específica</Button
 		>
 	</Actions>
 </Dialog>

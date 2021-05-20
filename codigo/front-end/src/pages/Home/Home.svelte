@@ -252,13 +252,17 @@
 <div>
 	<div class:hidden={calling}>
 		<Flex align="center" justify="center" direction="column">
-			<h1 class="mdc-typography--headline3">Bem vindo ao Amigle!</h1>
+			<h1 id="welcomeText" class="mdc-typography--headline3">
+				Bem vindo ao Amigle!
+			</h1>
 			<Spacer vertical={10} />
 			<span class="mdc-typography--subtitle1"
 				>Uma nova forma de conhecer pessoas novas com base em seus interesses!</span
 			>
 			<Spacer vertical={20} />
-			<Button on:click={openChatModal}>Iniciar uma Conversa</Button>
+			<Button id="startChatButton" on:click={openChatModal}
+				>Iniciar uma Conversa</Button
+			>
 		</Flex>
 	</div>
 	<div class:hidden={!calling}>
