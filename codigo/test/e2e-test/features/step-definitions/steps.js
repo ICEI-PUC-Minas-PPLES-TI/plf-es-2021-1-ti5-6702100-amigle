@@ -1,7 +1,7 @@
 const { Given, When, Then } = require('cucumber');
 
 const LoginPage = require('../pageobjects/login.page');
-/*const AdminPage = require('../pageobjects/admin.page');*/
+const MainPage = require('../pageobjects/main.page');
 
 
 Given(/^I am on the login page$/, () => {
@@ -12,47 +12,45 @@ When(/^I login with '([^"']+)' and '([^"']+)'$/, (useremail, password) => {
     LoginPage.login(useremail, password)
 });
 
-/*Then(/^I should be able to access the admin page and see this '([^"']+)'$/, (message) => {
-    expect(AdminPage.mainTitle).toBeExisting();
-    expect(AdminPage.mainTitle).toHaveTextContaining(message);
+When("I click on the start new conversation", () => {
+    MainPage.startConversationLink.waitForDisplayed(30000);
+    MainPage.startConversationLink.click();
 });
 
-When("I click on the Gerais button", () => {
-    AdminPage.cardGerais.waitForDisplayed(30000);
-    AdminPage.cardGerais.click();
+When("I click on new conversation by specific tag", () => {
+    MainPage.specificTagButton.waitForDisplayed(30000);
+    MainPage.specificTagButton.click();
 });
 
-When("I click on the Especificas button", () => {
-    AdminPage.cardEspecificas.waitForDisplayed(30000);
-    AdminPage.cardEspecificas.click();
+When("I click on new conversation by all tags", () => {
+    MainPage.allTagsButton.waitForDisplayed(30000);
+    MainPage.allTagsButton.click();
 });
 
-When("I click on the Por Usuário button", () => {
-    AdminPage.cardPorUsuario.waitForDisplayed(30000);
-    AdminPage.cardPorUsuario.click();
+When("I click on sign up", () => {
+    LoginPage.btnSignUpLoginPage.waitForDisplayed(30000);
+    LoginPage.btnSignUpLoginPage.click();
 });
 
-When("I click on the Posts button", () => {
-    AdminPage.cardPosts.waitForDisplayed(30000);
-    AdminPage.cardPosts.click();
+When("I fill in all the forms", () => {
+    LoginPage.signup();
 });
 
-Then("I should be able to access the admin functionality and see this Estatísticas Gerais", () => {
-    expect(AdminPage.h1Gerais).toBeExisting();
-    expect(AdminPage.h1Gerais).toHaveTextContaining("Estatísticas Gerais");
+When("I click on sign up button", () => {
+    LoginPage.btnSignUp.waitForDisplayed(30000);
+    LoginPage.btnSignUp.click(); 
 });
 
-Then("I should be able to access the admin functionality and see this Estatísticas Específicas", () => {
-    expect(AdminPage.h1Especificas).toBeExisting();
-    expect(AdminPage.h1Especificas).toHaveTextContaining("Estatísticas Específicas");
+Then(/^I should be able to access the main page and see this '([^"']+)'$/, (message) => {
+    expect(MainPage.mainTitle).toBeExisting();
+    expect(MainPage.mainTitle).toHaveTextContaining(message);
 });
 
-Then("I should be able to access the admin functionality and see this Estatísticas por Usuário", () => {
-    expect(AdminPage.h1PorUsuario).toBeExisting();
-    expect(AdminPage.h1PorUsuario).toHaveTextContaining("Estatísticas por Usuário");
+Then("I should be able to start a new conversation", () => {
+    expect(MainPage.loadingText).toBeExisting();
+    expect(MainPage.loadingText).toHaveTextContaining("Procurando");
 });
 
-Then("I should be able to access the admin functionality and see this Posts Cadastrados", () => {
-    expect(AdminPage.h1Posts).toBeExisting();
-    expect(AdminPage.h1Posts).toHaveTextContaining("Posts Cadastrados");
-});*/
+Then("I should be able to create a new user", () => {
+    expect(true);
+});
