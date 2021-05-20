@@ -6,7 +6,7 @@
 </script>
 
 <Dialog bind:this={dialog}>
-	<Title>Procurando...</Title>
+	<Title id="searchingText">Procurando...</Title>
 	<Content>
 		<div class="loader" />
 	</Content>
