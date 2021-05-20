@@ -53,6 +53,7 @@
 
 			<Flex justify="space-between">
 				<a
+					id="signupButton"
 					class=" mdc-button mdc-ripple-upgraded mdc-button--outlined"
 					href="/signup"
 					type="submit">Cadastre-se</a
