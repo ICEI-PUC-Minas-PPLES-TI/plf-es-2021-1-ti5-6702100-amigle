@@ -47,6 +47,17 @@ mixin _$TrendingController on _TrendingControllerBase, Store {
       ActionController(name: '_TrendingControllerBase');
 
   @override
+  dynamic setTrending() {
+    final _$actionInfo =
+        _$_TrendingControllerBaseActionController.startAction();
+    try {
+      return super.setTrending();
+    } finally {
+      _$_TrendingControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic selectCategory(String name) {
     final _$actionInfo =
         _$_TrendingControllerBaseActionController.startAction();
