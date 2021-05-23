@@ -2,6 +2,7 @@ import 'package:amigleapp/src/app/screens/home/chat_screen.dart';
 import 'package:amigleapp/src/app/utils/library/helpers/global.dart';
 import 'package:amigleapp/src/app/utils/styles/colors_style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 class AppBarWidget {
   static GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey();
@@ -24,20 +25,45 @@ class AppBarWidget {
       title: Text('Amigle'),
       leading: noAction
           ? null
-          : backButton ? _backButton() : _menuButton(actionMenu),
+          : backButton
+              ? _backButton()
+              : _menuButton(actionMenu),
       actions: [
         popupMenu
             ? PopupMenuButton<String>(
                 onSelected: (text) {
                   if (text == 'Mostrar Chat') {
                     appNavigator.navigate(ChatScreen());
+                  } else if (text == 'Desligar Câmera') {
+                    chatController.changeCamera();
+                  } else if (text == 'Desligar Microfone') {
+                    chatController.changeMic();
                   }
                 },
                 itemBuilder: (BuildContext context) {
                   return menu.map((e) {
                     return PopupMenuItem<String>(
                       value: e,
-                      child: Text(e),
+                      child: Observer(builder: (_) {
+                        String title = e;
+                        if (e == 'Desligar Câmera' && !chatController.camera) {
+                          title = 'Ligar Câmera';
+                        }
+
+                        if (e == 'Desligar Câmera' && chatController.camera) {
+                          title = e;
+                        }
+
+                        if (e == 'Desligar Microfone' && !chatController.mic) {
+                          title = 'Ligar Microfone';
+                        }
+
+                        if (e == 'Desligar Microfone' && chatController.mic) {
+                          title = e;
+                        }
+
+                        return Text(title);
+                      }),
                     );
                   }).toList();
                 },

@@ -60,6 +60,40 @@ mixin _$ChatController on _ChatControllerBase, Store {
     }, _$connectedAtom, name: '${_$connectedAtom.name}_set');
   }
 
+  final _$micAtom = Atom(name: '_ChatControllerBase.mic');
+
+  @override
+  bool get mic {
+    _$micAtom.context.enforceReadPolicy(_$micAtom);
+    _$micAtom.reportObserved();
+    return super.mic;
+  }
+
+  @override
+  set mic(bool value) {
+    _$micAtom.context.conditionallyRunInAction(() {
+      super.mic = value;
+      _$micAtom.reportChanged();
+    }, _$micAtom, name: '${_$micAtom.name}_set');
+  }
+
+  final _$cameraAtom = Atom(name: '_ChatControllerBase.camera');
+
+  @override
+  bool get camera {
+    _$cameraAtom.context.enforceReadPolicy(_$cameraAtom);
+    _$cameraAtom.reportObserved();
+    return super.camera;
+  }
+
+  @override
+  set camera(bool value) {
+    _$cameraAtom.context.conditionallyRunInAction(() {
+      super.camera = value;
+      _$cameraAtom.reportChanged();
+    }, _$cameraAtom, name: '${_$cameraAtom.name}_set');
+  }
+
   final _$connectAsyncAction = AsyncAction('connect');
 
   @override
@@ -145,6 +179,26 @@ mixin _$ChatController on _ChatControllerBase, Store {
     final _$actionInfo = _$_ChatControllerBaseActionController.startAction();
     try {
       return super.sendMessage(text);
+    } finally {
+      _$_ChatControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic changeMic() {
+    final _$actionInfo = _$_ChatControllerBaseActionController.startAction();
+    try {
+      return super.changeMic();
+    } finally {
+      _$_ChatControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic changeCamera() {
+    final _$actionInfo = _$_ChatControllerBaseActionController.startAction();
+    try {
+      return super.changeCamera();
     } finally {
       _$_ChatControllerBaseActionController.endAction(_$actionInfo);
     }

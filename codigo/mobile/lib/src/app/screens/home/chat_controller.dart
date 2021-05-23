@@ -284,11 +284,25 @@ abstract class _ChatControllerBase with Store {
   changeMic() {
     if (peer != null) {
       mic = !mic;
+      localMediaStream.getTracks().forEach((track) {
+        if (track.kind == "audio") {
+          track.enabled = mic;
+        }
+      });
     }
   }
 
   @action
-  changeCamera() {}
+  changeCamera() {
+    if (peer != null) {
+      camera = !camera;
+      localMediaStream.getTracks().forEach((track) {
+        if (track.kind == "video") {
+          track.enabled = camera;
+        }
+      });
+    }
+  }
 }
 
 class Message {
