@@ -5,7 +5,6 @@ import 'package:amigleapp/src/app/shared/loading-screen/loading_screen.dart';
 import 'package:amigleapp/src/app/utils/library/helpers/global.dart';
 import 'package:amigleapp/src/app/utils/styles/colors_style.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 
@@ -26,30 +25,29 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      _showDialog(context);
-      initRenderers();
-    });
-
-    // initRenderers();
     super.initState();
+    initRenderers();
   }
 
   initRenderers() async {
-    await _localRenderer.initialize();
-    await _remoteRenderer.initialize();
+    try {
+      await _localRenderer.initialize();
+      await _remoteRenderer.initialize();
 
-    signaling.onLocalChange = (m) {
-      setState(() {
-        _localRenderer.srcObject = m;
-      });
-    };
+      signaling.onLocalChange = (m) {
+        setState(() {
+          _localRenderer.srcObject = m;
+        });
+      };
 
-    signaling.onRemoteChange = (m) {
-      setState(() {
-        _remoteRenderer.srcObject = m;
-      });
-    };
+      signaling.onRemoteChange = (m) {
+        setState(() {
+          _remoteRenderer.srcObject = m;
+        });
+      };
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -70,12 +68,52 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   _buildBody() {
-    return Scaffold(
-      key: AppBarWidget.scaffoldKey,
-      drawer: NavDrawer(),
-      body: _buildStack(),
-      extendBody: true,
-    );
+    return Observer(builder: (_) {
+      return Scaffold(
+        key: AppBarWidget.scaffoldKey,
+        drawer: NavDrawer(),
+        body: chatController.connected ? _buildStack() : _buildInitialPage(),
+        extendBody: true,
+      );
+    });
+  }
+
+  _buildInitialPage() {
+    return Padding(
+        padding: EdgeInsets.all(20),
+        child: Expanded(
+            child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                'Bem vindo ao Amigle!',
+                style: TextStyle(fontSize: 32),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                'Uma nova forma de conhecer pessoas novas com base em seus interesses!',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              FlatButton(
+                  color: ColorsStyle.purple,
+                  onPressed: () {
+                    _showDialog(context);
+                  },
+                  child: Text(
+                    'INICIAR UMA CONVERSA',
+                    style: TextStyle(fontSize: 14, color: Colors.white),
+                  ))
+            ],
+          ),
+        )));
   }
 
   _buildStack() {

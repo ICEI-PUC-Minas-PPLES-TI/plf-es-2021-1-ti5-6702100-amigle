@@ -24,16 +24,19 @@ abstract class _ChatControllerBase with Store {
 
   RTCPeerConnection peer;
 
-  // @observable
-  // RTCVideoRenderer localRenderer = RTCVideoRenderer();
-
-  // @observable
-  // RTCVideoRenderer remoteRenderer = RTCVideoRenderer();
-
   MediaStream localMediaStream;
   MediaStream remoteMediaStream;
 
   Signaling signaling;
+
+  @observable
+  bool connected = false;
+
+  @observable
+  bool mic = true;
+
+  @observable
+  bool camera = true;
 
   @action
   addMessage(String text, bool otherUser) {
@@ -47,7 +50,10 @@ abstract class _ChatControllerBase with Store {
       'transports': ['websocket'],
       'autoConnect': false,
     });
-    socket.on('connect', (_) => print('Connected'));
+    socket.on('connect', (_) {
+      print("Connected");
+      connected = true;
+    });
     socket.connect();
   }
 
@@ -134,6 +140,7 @@ abstract class _ChatControllerBase with Store {
 
     socket.on("disconnect", (e) {
       print("disconnected");
+      connected = false;
       frwkLoading.stopLoading();
       peer.close();
       //peer?.dispose();
@@ -272,6 +279,16 @@ abstract class _ChatControllerBase with Store {
     addMessage(text, false);
     socket.emit('send-message', {"target": otherUserSocketId, "text": text});
   }
+
+  @action
+  changeMic() {
+    if (peer != null) {
+      mic = !mic;
+    }
+  }
+
+  @action
+  changeCamera() {}
 }
 
 class Message {

@@ -43,6 +43,23 @@ mixin _$ChatController on _ChatControllerBase, Store {
     }, _$messagesAtom, name: '${_$messagesAtom.name}_set');
   }
 
+  final _$connectedAtom = Atom(name: '_ChatControllerBase.connected');
+
+  @override
+  bool get connected {
+    _$connectedAtom.context.enforceReadPolicy(_$connectedAtom);
+    _$connectedAtom.reportObserved();
+    return super.connected;
+  }
+
+  @override
+  set connected(bool value) {
+    _$connectedAtom.context.conditionallyRunInAction(() {
+      super.connected = value;
+      _$connectedAtom.reportChanged();
+    }, _$connectedAtom, name: '${_$connectedAtom.name}_set');
+  }
+
   final _$connectAsyncAction = AsyncAction('connect');
 
   @override
