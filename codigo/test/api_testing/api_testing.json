@@ -14,17 +14,8 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "1f75bc92-f1c3-4bce-8a55-364197372562",
 								"exec": [
-									"const reqObject = {",
-									"  url: 'https://amigle-user-manager.herokuapp.com/user',",
-									"  method: 'GET'",
-									"};",
-									"",
-									"pm.sendRequest(reqObject, (err, res) => {",
-									"    var user_id = res.json()[0].id;",
-									"    pm.collectionVariables.set(\"user_id\", user_id);",
-									"});"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -32,7 +23,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "31290ac7-570b-41ca-ba09-be50aea7cfa5",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
 									"    pm.response.to.have.status(200);",
@@ -47,7 +37,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"TesteIsa\",\r\n    \"birthDate\": \"2003-05-04\",\r\n    \"email\": \"testeisa.teste@gmail.com\",\r\n    \"password\": \"123Teste\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Arthur\",\r\n    \"birthDate\": \"2003-05-04\",\r\n    \"email\": {{$randomEmail}},\r\n    \"password\": \"123Teste\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -72,7 +62,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "63edc77f-193d-4a77-a07a-a00acf967ba7",
 								"exec": [
 									"const reqObject = {",
 									"  url: 'https://amigle-user-manager.herokuapp.com/user',",
@@ -90,10 +79,9 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b836d1fa-033a-4043-b4c6-820faf3975ec",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
-									"    pm.response.to.have.status(200);",
+									"    pm.response.to.have.status(201);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -114,18 +102,13 @@
 							]
 						},
 						"url": {
-							"raw": "http://127.0.0.1:5000/user/nfqN26ar9DQOihn361eEolti4pc2",
-							"protocol": "http",
+							"raw": "{{host}}/user/{{user_id}}",
 							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
+								"{{host}}"
 							],
-							"port": "5000",
 							"path": [
 								"user",
-								"nfqN26ar9DQOihn361eEolti4pc2"
+								"{{user_id}}"
 							]
 						}
 					},
@@ -137,7 +120,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "93627bab-545d-4e72-a0aa-69ffe4b05b59",
 								"exec": [
 									""
 								],
@@ -147,7 +129,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "eb793d2d-27f9-41fc-b262-b370ddd5adff",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
 									"    pm.response.to.have.status(200);",
@@ -178,7 +159,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "c16001a6-3ef9-4b12-ae4c-876fcc223f2e",
 								"exec": [
 									"const reqObject = {",
 									"  url: 'https://amigle-user-manager.herokuapp.com/user',",
@@ -196,7 +176,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "62a94744-e659-4d10-94fd-bb5ad4b47304",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
 									"    pm.response.to.have.status(200);",
@@ -228,7 +207,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "cd86c0ff-d050-4344-bf30-3ce4eea1e1ac",
 								"exec": [
 									"const reqObject = {",
 									"  url: 'https://amigle-user-manager.herokuapp.com/user',",
@@ -246,10 +224,9 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "79d593d9-feaf-4011-b02e-b30ad6abb65e",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
-									"    pm.response.to.have.status(200);",
+									"    pm.response.to.have.status(201);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -287,7 +264,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "98895ae7-0718-471a-9347-ccbd92679b20",
 								"exec": [
 									"const reqObject = {",
 									"  url: 'https://amigle-user-manager.herokuapp.com/user',",
@@ -305,7 +281,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "45ec1751-e220-4f10-bd37-a429f6213cb8",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
 									"    pm.response.to.have.status(200);",
@@ -331,8 +306,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "tag",
@@ -343,16 +317,15 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "17734f68-1e57-436e-a70d-26e245166fa4",
 								"exec": [
 									"const reqObject = {",
-									"  url: 'https://amigle-user-manager.herokuapp.com/tag',",
+									"  url: 'https://amigle-user-manager.herokuapp.com/user',",
 									"  method: 'GET'",
 									"};",
 									"",
 									"pm.sendRequest(reqObject, (err, res) => {",
-									"    var tag_id = res.json()[0].id;",
-									"    pm.collectionVariables.set(\"tag_id\", tag_id);",
+									"    var user_id = res.json()[0].id;",
+									"    pm.collectionVariables.set(\"user_id\", user_id);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -361,10 +334,9 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "3dd83ab4-68f1-43dc-8b1e-7c685264ec63",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
-									"    pm.response.to.have.status(200);",
+									"    pm.response.to.have.status(201);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -384,13 +356,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{hos}}/tag/{{tag_id}}",
+							"raw": "{{host}}/tag/{{user_id}}",
 							"host": [
-								"{{hos}}"
+								"{{host}}"
 							],
 							"path": [
 								"tag",
-								"{{tag_id}}"
+								"{{user_id}}"
 							]
 						}
 					},
@@ -402,7 +374,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "b2b4bc4e-c3b8-4556-b711-391e4a5db870",
 								"exec": [
 									"const reqObject = {",
 									"  url: 'https://amigle-user-manager.herokuapp.com/tag',",
@@ -420,7 +391,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "d5f6ce74-5816-4e73-9478-1f18b90ec5ea",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
 									"    pm.response.to.have.status(200);",
@@ -452,7 +422,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "c470a2e7-aa32-4577-bd2c-a45a1addb6e4",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
 									"    pm.response.to.have.status(200);",
@@ -483,7 +452,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "63cc3c53-c90a-468d-af16-7c6c85aa8e7f",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
 									"    pm.response.to.have.status(200);",
@@ -526,7 +494,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a648e91f-047b-43a1-a50d-84fb47168b19",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
 									"    pm.response.to.have.status(200);",
@@ -569,7 +536,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "89f95de7-d1a0-4f0e-93a2-8c78e095d47b",
 								"exec": [
 									"const reqObject = {",
 									"  url: 'https://amigle-user-manager.herokuapp.com/tag',",
@@ -587,10 +553,9 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "0aa82fce-dfc6-4b3c-a61c-1a42eb79d82a",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
-									"    pm.response.to.have.status(200);",
+									"    pm.response.to.have.status(201);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -619,7 +584,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "c75705d9-2acd-4c43-8041-0cb393144fc4",
 								"exec": [
 									"const reqObject = {",
 									"  url: 'https://amigle-user-manager.herokuapp.com/tag',",
@@ -637,7 +601,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "304fdcdb-98c2-4868-8334-a7290bc3e154",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
 									"    pm.response.to.have.status(201);",
@@ -672,8 +635,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "tag_category",
@@ -684,7 +646,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "49093220-b9d0-4e5b-8a6b-1e0fb9e8bc50",
 								"exec": [
 									""
 								],
@@ -694,7 +655,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "e281472f-71dc-45a0-890f-17eb085e3e49",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
 									"    pm.response.to.have.status(201);",
@@ -734,7 +694,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "be69167f-5bbe-4b22-aa57-5574b0ace0f3",
 								"exec": [
 									"const reqObject = {",
 									"  url: 'https://amigle-user-manager.herokuapp.com/tag_category',",
@@ -752,7 +711,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "66a1d8d3-c96d-4bac-8626-de9f735c2cb5",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
 									"    pm.response.to.have.status(200);",
@@ -784,7 +742,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "52d2e5c0-3c84-4b31-a8f6-edeb3a430236",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
 									"    pm.response.to.have.status(200);",
@@ -815,7 +772,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "1f54692d-0474-4f26-b2db-ffad462f7f9f",
 								"exec": [
 									"const reqObject = {",
 									"  url: 'https://amigle-user-manager.herokuapp.com/tag_category',",
@@ -833,7 +789,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "3079df2f-3be4-421e-a3c7-0432a96dc6e9",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
 									"    pm.response.to.have.status(200);",
@@ -874,7 +829,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "d1ce0735-eba3-4871-ae90-8fee2f5f0110",
 								"exec": [
 									"const reqObject = {",
 									"  url: 'https://amigle-user-manager.herokuapp.com/tag_category',",
@@ -892,7 +846,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b8608b80-7137-4b5c-bd29-3a105b21d7cc",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
 									"    pm.response.to.have.status(200);",
@@ -918,8 +871,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "user_tag",
@@ -930,7 +882,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "04839e84-1857-40db-bbd8-fd036f198a32",
 								"exec": [
 									"const reqObject = {",
 									"  url: 'https://amigle-user-manager.herokuapp.com/user',",
@@ -958,7 +909,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ecf9316f-cce9-4c34-82af-627070b8555c",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
 									"    pm.response.to.have.status(200);",
@@ -991,7 +941,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "08c73e7c-5720-4395-905b-1f46430d1c7c",
 								"exec": [
 									"const reqObject = {",
 									"  url: 'https://amigle-user-manager.herokuapp.com/user',",
@@ -1019,7 +968,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "3c74df7e-c123-4b6d-9c5f-08907eb3a885",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
 									"    pm.response.to.have.status(200);",
@@ -1046,8 +994,7 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "chat",
@@ -1058,7 +1005,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "d6daded5-bb1e-4773-bda1-51e65549440f",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
 									"    pm.response.to.have.status(200);",
@@ -1070,7 +1016,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "5068adb5-47de-4f65-90b5-5b0b5b2b2675",
 								"exec": [
 									"const reqObject = {",
 									"  url: 'https://amigle-user-manager.herokuapp.com/chat',",
@@ -1116,7 +1061,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "7de3bfdb-f2aa-4bd3-b045-84c417821d96",
 								"exec": [
 									"const reqObject = {",
 									"  url: 'https://amigle-user-manager.herokuapp.com/chat',",
@@ -1134,7 +1078,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "88162798-f7f0-4943-958e-1f3e5e20e6e4",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
 									"    pm.response.to.have.status(201);",
@@ -1166,7 +1109,6 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "0cb3562f-725e-483f-9506-79ed0112197c",
 								"exec": [
 									"const reqObject = {",
 									"  url: 'https://amigle-user-manager.herokuapp.com/user',",
@@ -1184,7 +1126,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1dd5b233-2ae1-40d0-9147-5a2bc8c1b027",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
 									"    pm.response.to.have.status(200);",
@@ -1216,7 +1157,6 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "496a3124-9c54-4231-a26f-70a4f3adc08e",
 								"exec": [
 									"pm.test(\"Status code is 200\", () => {",
 									"    pm.response.to.have.status(200);",
@@ -1241,15 +1181,13 @@
 					},
 					"response": []
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		}
 	],
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "cddf08ad-0198-4056-863d-ed99ac030123",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -1259,7 +1197,6 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "9bbbb180-2abc-4a7a-a63d-114e98956d7d",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -1269,30 +1206,24 @@
 	],
 	"variable": [
 		{
-			"id": "b591233e-e4a3-40d0-be0f-637608ef33c7",
 			"key": "host",
 			"value": ""
 		},
 		{
-			"id": "8c778052-461c-4768-b620-119bce41c1c1",
 			"key": "user_id",
 			"value": ""
 		},
 		{
-			"id": "2a5bc65b-f2c6-4d4c-bcda-0ce2f8d24556",
 			"key": "tag_id",
 			"value": ""
 		},
 		{
-			"id": "85cf2ef9-a0e8-4b08-a904-8c967f756877",
 			"key": "tag_category_id",
 			"value": ""
 		},
 		{
-			"id": "c809f728-f29a-45f9-b8ef-857fa8317b7d",
 			"key": "chat_id",
 			"value": ""
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
