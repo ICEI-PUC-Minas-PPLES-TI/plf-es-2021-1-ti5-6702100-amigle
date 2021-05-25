@@ -12,7 +12,7 @@ Feature: User functionalities
     When I login with 'sam@gmail.com' and '12345678'
     And I click on the start new conversation
     And I click on new conversation by specific tag
-    Then I should be able to start a new conversation
+    Then I should be able to start a new conversation with specific tag
 
   Scenario: As an user, I want to login start a new conversation by all tags
 
@@ -20,7 +20,7 @@ Feature: User functionalities
     When I login with 'sam@gmail.com' and '12345678'
     And I click on the start new conversation
     And I click on new conversation by all tags
-    Then I should be able to start a new conversation
+    Then I should be able to start a new conversation with all tags
 
   Scenario: As an user, I want to create a new account
 

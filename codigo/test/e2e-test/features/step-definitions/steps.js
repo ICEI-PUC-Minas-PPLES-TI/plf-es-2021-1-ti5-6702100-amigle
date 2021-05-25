@@ -28,8 +28,8 @@ When("I click on new conversation by all tags", () => {
 });
 
 When("I click on sign up", () => {
-    LoginPage.btnSignUpLoginPage.waitForDisplayed(30000);
-    LoginPage.btnSignUpLoginPage.click();
+    LoginPage.btnSignInLoginPage.waitForDisplayed(30000);
+    LoginPage.btnSignInLoginPage.click();
 });
 
 When("I fill in all the forms", () => {
@@ -46,11 +46,18 @@ Then(/^I should be able to access the main page and see this '([^"']+)'$/, (mess
     expect(MainPage.mainTitle).toHaveTextContaining(message);
 });
 
-Then("I should be able to start a new conversation", () => {
+
+Then("I should be able to start a new conversation with all tags", () => {
     expect(MainPage.loadingText).toBeExisting();
     expect(MainPage.loadingText).toHaveTextContaining("Procurando");
 });
 
+Then("I should be able to start a new conversation with specific tag", () => {
+    expect(MainPage.chooseTagText).toBeExisting();
+    expect(MainPage.chooseTagText).toHaveTextContaining("Escolher a Tag");
+});
+
 Then("I should be able to create a new user", () => {
-    expect(true);
+    expect(MainPage.mainTitle).toBeExisting();
+    expect(MainPage.mainTitle).toHaveTextContaining("Bem vindo ao Amigle!");
 });
