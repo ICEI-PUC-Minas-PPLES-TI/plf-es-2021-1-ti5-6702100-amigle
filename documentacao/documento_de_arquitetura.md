@@ -78,9 +78,9 @@ Ao criar um perfil, o usuário deve selecionar tags para associar a seu perfil. 
 
 Um dos maiores usos da internet na era moderna é para a socialização. Empresas focadas nesse mercado como o Twitter e Facebook são hoje gigantes no mundo da tecnologia, o que antes era um lugar reservado para empresas de Software e Hardware.
 
-No entanto, a maioria destas plataformas são mais adequadas para a socialização entre um circulo social pré-existente na vida da pessoa, como seus amigos, família, colegas, etc.
+No entanto, a maioria destas plataformas são mais adequadas para a socialização entre um círculo social pré-existente na vida da pessoa, como seus amigos, família, colegas, etc.
 
-Em contraponto, existem plataformas como o Omegle e Chatroulette, que permitem que usuários conheçam outras pessoas de forma aleatória, porém, por possuir poucos ou nenhum filtro, se torna não muito eficiente para este propósito.
+Em contraponto, existem plataformas como o Omegle e Chatroulette, que permitem que usuários conheçam outras pessoas de forma aleatória, porém, por possuírem poucos ou nenhum filtro, se torna não muito eficiente para este propósito.
 
 ## 1.2. Objetivos do trabalho
 
