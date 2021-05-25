@@ -46,7 +46,7 @@
 </script>
 
 <Dialog bind:this={dialog}>
-	<Title>Escolher a Tag</Title>
+	<Title id="chooseTagTitle">Escolher a Tag</Title>
 	<Set chips={categories} let:chip>
 		<Chip on:click={() => onSort(chip.id)}>{chip.name}</Chip>
 	</Set>
