@@ -88,7 +88,7 @@ Em contraponto, existem plataformas como o Omegle e Chatroulette, que permitem q
 O Amigle é uma plataforma disponível para web, iOS e Android com o objetivo permitir que pessoas se conheçam com base em seus interesses em comum, que são representados por meio de tags.
 
 ### 1.2.2 Objetivos Específicos
-O trabalho tem como o objetivo desenvolver 3 platafomas distintas, porém que funcionam em conjunto. São elas:
+O trabalho tem como o objetivo desenvolver 3 plataformas distintas, porém que funcionam em conjunto. São elas:
 
 - Aplicação móvel de chat
 - Aplicação web de chat
