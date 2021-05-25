@@ -16,7 +16,6 @@
 
 	let calling = false;
 	const userId = getLocalUser().id;
-	const tagId = 2;
 	let user: UserType = null;
 
 	let localVideo: HTMLVideoElement;
@@ -158,11 +157,12 @@
 	const onSelectChatOption = (option: "allTags" | "specificTag") => {
 		if (option === "allTags") {
 			socket.emit("join-all-tags", user);
-		} else {
-			socket.emit("join-specific-tag", { user, tagId });
-		}
 
-		loadingDialog.open();
+			loadingDialog.open();
+		} else {
+			initialDialog.close();
+			chooseTagDialog.open();
+		}
 
 		socket.on("match-made", (data: { socketId: string }) => {
 			callUser(data.socketId);
@@ -187,6 +187,13 @@
 			remoteVideo.srcObject = null;
 			calling = false;
 		});
+	};
+
+	const onSpecificTagSelected = (tagId: number) => {
+		chooseTagDialog.close();
+		loadingDialog.open();
+
+		socket.emit("join-specific-tag", { user, tagId });
 	};
 
 	const sendTextMessage = () => {
@@ -387,7 +394,7 @@
 	bind:dialog={initialDialog}
 	onSelectOption={onSelectChatOption}
 />
-<ChooseTag bind:dialog={chooseTagDialog} />
+<ChooseTag bind:dialog={chooseTagDialog} onSelected={onSpecificTagSelected} />
 <Loading bind:dialog={loadingDialog} />
 
 <style>

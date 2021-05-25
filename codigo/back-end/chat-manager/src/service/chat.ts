@@ -1,8 +1,11 @@
+import fetch from "node-fetch";
 import { Server as SocketIOServer, Socket } from "socket.io";
 import Call from "../model/Call";
 import UserConnection from "../model/UserConnection";
 import { getTagScoreArray } from "../utils/matchUsers";
 class ChatService {
+	historyURL = "http://localhost:3000/chat";
+
 	#io: SocketIOServer;
 	#allTagsQueue: UserConnection[];
 	#specificTagMap: Map<number, UserConnection[]>;
@@ -22,6 +25,42 @@ class ChatService {
 		this.handleUserMatches();
 	}
 
+	saveToHistory(call: Call) {
+		const users = [call.firstUser.user.id, call.secondUser.user.id].sort();
+
+		const body = {
+			firstUserId: users[0],
+			secondUserId: users[1],
+		};
+
+		fetch(this.historyURL, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(body),
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				call.id = res.chatId;
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
+
+	updateHistory(call: Call) {
+		fetch(this.historyURL + `/${call.id}`, {
+			method: "PUT",
+		})
+			.then((res) => {
+				// do nothing
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
+
 	listenToSocketConnections() {
 		this.#io.on("connection", (socket) => {
 			console.log("Connected socket:  " + socket.id);
@@ -34,9 +73,15 @@ class ChatService {
 
 			socket.on("join-specific-tag", (data) => {
 				if (data) {
-					this.#specificTagMap
-						.get(data.tagId)
-						.push(new UserConnection(data.user, socket));
+					const tagQueue = this.#specificTagMap.get(data.tagId);
+
+					if (tagQueue) {
+						tagQueue.push(new UserConnection(data.user, socket));
+					} else {
+						this.#specificTagMap.set(data.tagId, [
+							new UserConnection(data.user, socket),
+						]);
+					}
 				}
 			});
 
@@ -75,6 +120,7 @@ class ChatService {
 				}
 
 				call.hangUp(socket.id);
+				this.updateHistory(call);
 
 				this.#activeCalls = this.#activeCalls.filter((c) => {
 					c.firstUser.socket.id !== call.firstUser.socket.id &&
@@ -89,6 +135,7 @@ class ChatService {
 	handleUserMatches() {
 		setInterval(() => {
 			this.handleAllTagsMatch();
+			this.handleSpecificTagsMatch();
 		}, 3_000);
 	}
 
@@ -109,6 +156,8 @@ class ChatService {
 
 			const call = new Call(firstUser, secondUser);
 
+			this.saveToHistory(call);
+
 			this.#activeCalls.push(call);
 			ChatService.activeCallUpdateListener(this.#activeCalls);
 
@@ -120,7 +169,35 @@ class ChatService {
 		}
 	}
 
-	handleSpecificTagsMatch() {}
+	handleSpecificTagsMatch() {
+		let finished = false;
+
+		while (!finished) {
+			finished = true;
+
+			for (const [_, value] of this.#specificTagMap.entries()) {
+				if (value.length > 1) {
+					finished = false;
+
+					const firstUser = value.shift();
+					const secondUser = value.shift();
+
+					firstUser.onMatch(secondUser);
+
+					const call = new Call(firstUser, secondUser);
+
+					this.saveToHistory(call);
+
+					this.#activeCalls.push(call);
+					ChatService.activeCallUpdateListener(this.#activeCalls);
+				}
+			}
+
+			if (finished) {
+				return;
+			}
+		}
+	}
 }
 
 export default ChatService;

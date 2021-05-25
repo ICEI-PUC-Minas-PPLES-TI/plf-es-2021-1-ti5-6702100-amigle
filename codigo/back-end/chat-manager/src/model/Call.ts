@@ -1,6 +1,7 @@
 import UserConnection from "./UserConnection";
 
 class Call {
+	id: number;
 	firstUser: UserConnection;
 	secondUser: UserConnection;
 

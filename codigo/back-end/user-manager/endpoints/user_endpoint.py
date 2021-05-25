@@ -11,11 +11,11 @@ user = Blueprint('user', __name__)
 
 @user.route("/user", methods=['POST'])
 def insert():
-    body = request.args
+    body = request.json
     if not validate_body_request(body, ["name", "birthDate", "email", "password"]):
         endpoints_exception(400, "INVALID_BODY")
 
-    birth_date = datetime.fromisoformat(body["birthDate"]).date()
+    birth_date = datetime.strptime(body["birthDate"], '%Y-%m-%d').date()
     if datetime.now().date().year - birth_date.year < 13:
         endpoints_exception(400, "INVALID_BIRTH_DATE")
     try:

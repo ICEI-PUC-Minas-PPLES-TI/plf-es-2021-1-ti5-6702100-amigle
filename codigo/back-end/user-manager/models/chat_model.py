@@ -21,11 +21,19 @@ def get_all():
 
 def get_all_by_user(user_id):
     session = start_session()
+
+    chats = []
+
     result = (session.query(Chat.id, Chat.start_date, Chat.end_date, Chat.first_user_id, Chat.second_user_id)
               .join(User, User.id == Chat.first_user_id or User.id == Chat.second_user_id)
-              ).filter(User.id == user_id).all()
+              ).all()
+
+    for chat in result:
+        if (chat.first_user_id == user_id or chat.second_user_id == user_id) and chat.end_date is not None:
+            chats.append(chat)
+
     close_session(session)
-    return result
+    return chats
 
 
 class Chat(Base):

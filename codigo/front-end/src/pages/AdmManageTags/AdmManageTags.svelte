@@ -27,9 +27,11 @@
 	};
 
 	const changeTagCategory = async (tag: TagType) => {
-		const newCategoryId = (document.querySelector(
-			`#select-tag-category[data-tag-id='${tag.id}']`
-		) as any).value;
+		const newCategoryId = (
+			document.querySelector(
+				`#select-tag-category[data-tag-id='${tag.id}']`
+			) as any
+		).value;
 
 		try {
 			await putTag({
@@ -93,7 +95,7 @@
 						><select id="select-tag-category" data-tag-id={tag.id}>
 							{#each tagCategories as tagCategory}
 								<option
-									selected={tag.id === tagCategory.id}
+									selected={tag.category.id === tagCategory.id}
 									value={tagCategory.id}>{tagCategory.name}</option
 								>
 							{/each}

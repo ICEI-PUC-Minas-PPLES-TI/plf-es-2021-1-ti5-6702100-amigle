@@ -27,11 +27,6 @@
 				password,
 			});
 
-			window.location.href = "/";
-
-			const user = await login(email, password);
-			localStorage.setItem("user", JSON.stringify(user));
-
 			window.location.pathname = "/";
 		} catch (error) {
 			alert("Ocorreu um erro ao realizar o cadastro");
