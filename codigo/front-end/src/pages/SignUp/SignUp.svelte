@@ -19,6 +19,11 @@
 	const onSubmit = async (event: Event) => {
 		event.preventDefault();
 
+		if (password !== confirmPassword) {
+			alert("As senhas não estão iguais");
+			return;
+		}
+
 		try {
 			await postUser({
 				name,
