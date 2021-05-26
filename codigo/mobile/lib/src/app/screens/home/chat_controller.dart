@@ -70,8 +70,16 @@ abstract class _ChatControllerBase with Store {
   }
 
   @action
-  specificTag(tagId) {
-    connect();
+  specificTag(Signaling signaling, tagId) async {
+    await connect();
+    this.signaling = signaling;
+    localMediaStream = await _createStream();
+    this.signaling.onLocalChange?.call(localMediaStream);
+    //localRenderer.srcObject = localMediaStream;
+    var body = {'user': userController.user.getData.toJson(), 'tagId': tagId};
+
+    socket.emit("join-specific-tag", body);
+    frwkLoading.startLoading();
     _listenActions();
   }
 
@@ -135,6 +143,10 @@ abstract class _ChatControllerBase with Store {
     });
 
     socket.on("message-received", (message) {
+      String msg = message['text'];
+      if (messages.isNotEmpty && messages[messages.length - 1].text == msg) {
+        return;
+      }
       addMessage(message['text'], true);
     });
 

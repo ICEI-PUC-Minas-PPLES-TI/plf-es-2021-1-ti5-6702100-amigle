@@ -70,7 +70,7 @@ class HistoryScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '${history.startDate.toDate(format: 'yyyy-MM-dd hh:mm:ss').dateToString(format: 'dd/MM/yyyy hh:mm')} até ${history.endDate.toDate(format: 'yyyy-MM-dd hh:mm:ss').dateToString(format: 'hh:mm')}',
+                          '${history.startDate.toDate(format: 'yyyy-MM-dd HH:mm:ss').dateToString(format: 'dd/MM/yyyy HH:mm')} até ${history.endDate.toDate(format: 'yyyy-MM-dd HH:mm:ss').dateToString(format: 'HH:mm')}',
                           style: TextStyle(
                               fontSize: 10,
                               color: ColorsStyle.grayLight2,

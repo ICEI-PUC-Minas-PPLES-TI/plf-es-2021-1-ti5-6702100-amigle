@@ -108,6 +108,14 @@ mixin _$ChatController on _ChatControllerBase, Store {
     return _$allTagsAsyncAction.run(() => super.allTags(signaling));
   }
 
+  final _$specificTagAsyncAction = AsyncAction('specificTag');
+
+  @override
+  Future specificTag(Signaling signaling, dynamic tagId) {
+    return _$specificTagAsyncAction
+        .run(() => super.specificTag(signaling, tagId));
+  }
+
   final _$_callUserAsyncAction = AsyncAction('_callUser');
 
   @override
@@ -139,16 +147,6 @@ mixin _$ChatController on _ChatControllerBase, Store {
     final _$actionInfo = _$_ChatControllerBaseActionController.startAction();
     try {
       return super.addMessage(text, otherUser);
-    } finally {
-      _$_ChatControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic specificTag(dynamic tagId) {
-    final _$actionInfo = _$_ChatControllerBaseActionController.startAction();
-    try {
-      return super.specificTag(tagId);
     } finally {
       _$_ChatControllerBaseActionController.endAction(_$actionInfo);
     }

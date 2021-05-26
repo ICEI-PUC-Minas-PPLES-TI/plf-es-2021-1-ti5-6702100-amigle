@@ -1,5 +1,6 @@
 import 'package:amigleapp/src/app/components/app_bar_widget.dart';
 import 'package:amigleapp/src/app/components/nav_drawer.dart';
+import 'package:amigleapp/src/app/models/dto/tags/TagDTO.dart';
 import 'package:amigleapp/src/app/screens/home/Signaling.dart';
 import 'package:amigleapp/src/app/shared/loading-screen/loading_screen.dart';
 import 'package:amigleapp/src/app/utils/library/helpers/global.dart';
@@ -201,13 +202,57 @@ class _HomeScreenState extends State<HomeScreen> {
                     )),
                 FlatButton(
                     padding: EdgeInsets.all(2),
-                    onPressed: () {},
+                    onPressed: () {
+                      appNavigator.popNavigate();
+                      _showDialogTags(context);
+                    },
                     child: Text(
                       'TAG ESPECÍFICA',
                       style: TextStyle(fontSize: 14, color: ColorsStyle.purple),
                     ))
               ],
             )
+          ],
+        ));
+  }
+
+  _showDialogTags(BuildContext context) {
+    showDialog(
+        barrierDismissible: true,
+        context: context,
+        child: SimpleDialog(
+          contentPadding: EdgeInsets.all(20),
+          children: [
+            Text(
+              'Escolha a Tag',
+              style: TextStyle(fontSize: 16),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            SizedBox(
+              height: 200,
+              child: ListView.separated(
+                itemCount: userController.user.getData.tags.length,
+                itemBuilder: (ctx, index) {
+                  TagDTO tag = userController.user.getData.tags[index];
+                  return ListTile(
+                    onTap: () {
+                      appNavigator.popNavigate();
+                      chatController.specificTag(signaling, tag.id);
+                    },
+                    title: Text(tag.name),
+                  );
+                },
+                separatorBuilder: (ctx, index) {
+                  return Container(
+                    height: 1,
+                    width: double.infinity,
+                    color: ColorsStyle.grayLight,
+                  );
+                },
+              ),
+            ),
           ],
         ));
   }
