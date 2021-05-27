@@ -388,7 +388,7 @@ Esta seção descreve a avaliação da arquitetura apresentada, baseada no méto
 | **Cenários(s):** | Cenário 1 |
 | **Ambiente:** | Navegador/celular em funcionamento padrão |
 | **Estímulo:** | Acesso do usuário no sistema e realização de chamada de vídeo. Edição de perfil e de tags associadas. |
-| **Mecanismo:** | Realização de testes no Google Lighthouse e no profiler do Flutter DevTools. |
+| **Mecanismo:** | Realização de testes no Google Lighthouse. |
 | **Medida de Resposta:** | Os resultados devem estar dentro do intervalo considerado como bom de cada ferramenta de profiling. |
 
 | **Atributo de Qualidade:** | Interoperabilidade |
@@ -427,7 +427,17 @@ Esta seção descreve a avaliação da arquitetura apresentada, baseada no méto
 | --- | --- |
 | **Pontos de Sensibilidade:** | Não existe |
 
-Evidências dos testes realizados
+<img width="642" src="https://user-images.githubusercontent.com/35220979/119827329-62cc5c80-becf-11eb-8177-d7824044633d.png">
+
+**Figura 6 – Benchmark no Google Lighthouse**
+
+<img src="https://user-images.githubusercontent.com/35220979/119827418-7c6da400-becf-11eb-981c-548e986fad54.jpg">
+
+**Figura 7 – Comunicação em Tempo Real App**
+
+<img width="2159" alt="Screen Shot 2021-05-26 at 7 57 38 PM" src="https://user-images.githubusercontent.com/35220979/119827426-7f689480-becf-11eb-85c1-b762a11fa36f.png">
+
+**Figura 8 – Comunicação em Tempo Real Web**
 
 _Apresente imagens, descreva os testes de tal forma que se comprove a realização da avaliação._
 
@@ -457,4 +467,4 @@ _Apresente imagens, descreva os testes de tal forma que se comprove a realizaç�
 <a name="apendices"></a>
 # 6. APÊNDICES
 
-_Inclua o URL do repositório (Github, Bitbucket, etc) onde você armazenou o código da sua prova de conceito/protótipo arquitetural da aplicação como anexos. A inclusão da URL desse repositório de código servirá como base para garantir a autenticidade dos trabalhos._
+**Vídeo:** https://www.youtube.com/watch?v=rDwP0pSDm44

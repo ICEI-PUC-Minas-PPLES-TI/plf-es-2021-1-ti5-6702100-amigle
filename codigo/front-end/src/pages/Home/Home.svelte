@@ -412,7 +412,6 @@
 		right: 20px;
 		width: 20%;
 		height: 20%;
-		object-fit: cover;
 		transform: rotateY(180deg);
 	}
 	.home-videoContainer-remoteVideo {
@@ -422,7 +421,6 @@
 		width: 100%;
 		height: 100%;
 		background-color: #000;
-		object-fit: cover;
 	}
 	.home-controls {
 		position: absolute;
