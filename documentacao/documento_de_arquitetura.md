@@ -425,7 +425,7 @@ Esta seção descreve a avaliação da arquitetura apresentada, baseada no méto
 
 | **Riscos:** | Não existe |
 | --- | --- |
-| **Pontos de Sensibilidade:** | Não existe |
+| **Pontos de Sensibilidade:** | Infraestrutura gratuíta do Heroku possui instabilidade, WebRTC possui instabilidades, como perdas de pacotes ou pacotes duplicados |
 
 <img width="642" src="https://user-images.githubusercontent.com/35220979/119827329-62cc5c80-becf-11eb-8177-d7824044633d.png">
 
@@ -438,8 +438,6 @@ Esta seção descreve a avaliação da arquitetura apresentada, baseada no méto
 <img width="2159" alt="Screen Shot 2021-05-26 at 7 57 38 PM" src="https://user-images.githubusercontent.com/35220979/119827426-7f689480-becf-11eb-85c1-b762a11fa36f.png">
 
 **Figura 8 – Comunicação em Tempo Real Web**
-
-_Apresente imagens, descreva os testes de tal forma que se comprove a realização da avaliação._
 
 <a name="referencias"></a>
 # 5. REFERÊNCIAS

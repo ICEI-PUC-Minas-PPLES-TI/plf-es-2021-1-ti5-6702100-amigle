@@ -19,14 +19,8 @@ Ao criar um perfil, o usuário deve selecionar tags para associar a seu perfil. 
 
 ## Instruções de utilização
 
-Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.
+1. Instalar as dependências de cada projeto (pip3 install no back-end, npm install no back-end e no front-end)
+2. Executar os três projetos no terminal
+3. Acessar o front-end do projeto pelo localhost:5000 ou executar a aplicação flutter em um simulador ou dispositivo físico
 
-## Histórico de versões
-
-* 0.1.1
-    * CHANGE: Atualização das documentacoes. Código permaneceu inalterado.
-* 0.1.0
-    * Implementação da funcionalidade X pertencente ao processo P.
-* 0.0.1
-    * Trabalhando na modelagem do processo de negócios.
-
+Alternativa: acessar o site publicado em: https://pedantic-knuth-1a189b.netlify.app/
