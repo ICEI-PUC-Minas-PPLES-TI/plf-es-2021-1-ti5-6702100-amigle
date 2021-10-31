@@ -1,0 +1,29 @@
+cff-version: 1.0.1
+message: Please cite this software using these metadata.
+title: Amigle
+authors:
+  - family-names: Gramiscelli Branco
+    given-names: Arthur 
+  - family-names: Souza Braga
+    given-names: Arthur Henrique 
+  - family-names: Cruz Nicácio
+    given-names: Isabella Carine 
+  - family-names: Alves Gusmão
+    given-names: Lucas 
+  - family-names: Alves de Castro Baker
+    given-names: Samuel 
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Bastos De Paula
+    given-names: Hugo 
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Alves de Oliveira
+    given-names: Pedro 
+keywords:
+  - Bate papo
+  - Interesses
+repository-code: https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2021-1-ti5-6702100-amigle 
+license: CC-BY-4.0
+version: 1.0.0
+date-released: 2021-06-20
